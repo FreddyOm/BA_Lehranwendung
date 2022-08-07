@@ -1,0 +1,16 @@
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\bin\Debug\SeriousGameEngine.exe.config
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\bin\Debug\SeriousGameEngine.exe
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\bin\Debug\SeriousGameEngine.pdb
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.csproj.AssemblyReference.cache
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.csproj.SuggestedBindingRedirects.cache
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\MainWindow.g.cs
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\App.g.cs
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine_MarkupCompile.cache
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine_MarkupCompile.lref
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\MainWindow.baml
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.g.resources
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.Properties.Resources.resources
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.csproj.GenerateResource.cache
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.csproj.CoreCompileInputs.cache
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.exe
+C:\Users\fredd\OneDrive\BA_Lehranwendung\SeriousGameEngine\SeriousGameEngine\obj\Debug\SeriousGameEngine.pdb
