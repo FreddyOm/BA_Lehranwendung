@@ -25,5 +25,30 @@ namespace SeriousGameEngine
             InitializeComponent();
 
         }
+
+        private void Button_Settings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Konto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Opt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
