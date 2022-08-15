@@ -22,12 +22,14 @@ namespace SeriousGameEngine
     {
         private Grid[] screens = new Grid[6];
         private Border[] subjects = new Border[4];
+        private Border[] gameTemplates = new Border[6];
 
         public MainWindow()
         {
             InitializeComponent();
             InitScreens();
             InitSubjects();
+            InitGameTemplates();
 
             SetScreen(SCREEN.HOME);
         }
@@ -103,6 +105,40 @@ namespace SeriousGameEngine
 
         #endregion subjects
 
+        #region templates
+
+        private void Button_Action_Click(object sender, RoutedEventArgs e)
+        {
+            SetGameTemplateCategory(TEMPLATE_CATEGORY.ACTION);
+        }
+
+        private void Button_Adventure_Click(object sender, RoutedEventArgs e)
+        {
+            SetGameTemplateCategory(TEMPLATE_CATEGORY.ADVENTURE);
+        }
+
+        private void Button_Puzzle_Click(object sender, RoutedEventArgs e)
+        {
+            SetGameTemplateCategory(TEMPLATE_CATEGORY.PUZZLE);
+        }
+
+        private void Button_Simulation_Click(object sender, RoutedEventArgs e)
+        {
+            SetGameTemplateCategory(TEMPLATE_CATEGORY.SIMULATION);
+        }
+
+        private void Button_Roleplay_Click(object sender, RoutedEventArgs e)
+        {
+            SetGameTemplateCategory(TEMPLATE_CATEGORY.RPG);
+        }
+
+        private void Button_TemplatesFavorits_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion templates
+
         private void Button_Profil_Click(object sender, RoutedEventArgs e)
         {
 
@@ -148,6 +184,7 @@ namespace SeriousGameEngine
                 case SCREEN.TEMPLATE:
                     screens[(int)SCREEN.TEMPLATE].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
+                    SetGameTemplateCategory(TEMPLATE_CATEGORY.ACTION);
                     break;
                 case SCREEN.MODIFY:
                     screens[(int)SCREEN.MODIFY].Visibility = Visibility.Visible;
@@ -188,6 +225,33 @@ namespace SeriousGameEngine
         }
 
         #endregion subjects
+
+        #region game templates
+
+        private void InitGameTemplates()
+        {
+            gameTemplates[0] = Border_TemplateAction;
+            gameTemplates[1] = Border_TemplateAdventure;
+            gameTemplates[2] = Border_TemplatePuzzle;
+            gameTemplates[3] = Border_TemplateSimulation;
+            gameTemplates[4] = Border_TemplateRPG;
+            gameTemplates[5] = Border_TemplateFavourites;
+        }
+
+        private void SetGameTemplateCategory(TEMPLATE_CATEGORY cat)
+        {
+            foreach(Border category in gameTemplates)
+            {
+                category.Visibility = Visibility.Hidden;
+            }
+
+            gameTemplates[(int)cat].Visibility = Visibility.Visible;
+        }
+
+
+        #endregion game templates
+
+        
     }
 
     public enum SCREEN
@@ -207,4 +271,14 @@ namespace SeriousGameEngine
         POLITICS = 2,
         FURTHER = 3,
     }
+
+    public enum TEMPLATE_CATEGORY
+    { 
+        ACTION = 0,
+        ADVENTURE = 1,
+        PUZZLE = 2,
+        SIMULATION = 3,
+        RPG = 4
+    }
+
 }
