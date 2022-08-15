@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SeriousGameEngine.TemplateElemente;
 
 namespace SeriousGameEngine
 {
@@ -24,14 +25,22 @@ namespace SeriousGameEngine
         private Border[] subjects = new Border[4];
         private Border[] gameTemplates = new Border[6];
 
+        private StackPanel options;
+        private StackPanel categories;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            options = Options_Panel;
+            categories = Grid_Categories_Menu;
+            
             InitScreens();
             InitSubjects();
             InitGameTemplates();
 
             SetScreen(SCREEN.HOME);
+            CreateOption();
         }
 
         #region buttons
@@ -251,7 +260,16 @@ namespace SeriousGameEngine
 
         #endregion game templates
 
-        
+        private void CreateOption()
+        {
+            options.Children.Add(new ColorOptionElement("MyColorOption", "Color", "Pick this color!", Color.FromRgb(1, 1, 1)));
+            options.Children.Add(new YesNoOptionElement("MyYesNoOption", "YesNo", "Set this checkbox!"));
+            options.Children.Add(new RealNumOptionElement("MyRealOption", "RealNumber", "Set this value!"));
+            options.Children.Add(new DecimalNumOptionElement("MyDecimalOption", "DecNumber", "Set this value!"));
+            options.Children.Add(new TextOptionElement("MyTextOption", "Text", "Set this value!"));
+            options.Children.Add(new EnumOptionElement("MyEnumOption", "Enum", "Drop this down!", typeof(SCREEN)));
+            options.Children.Add(new GraphicOptionElement("MyGraphicOption", "Graphic", "Drop it like it's hot!"));
+        }
     }
 
     public enum SCREEN
@@ -263,7 +281,6 @@ namespace SeriousGameEngine
         MODIFY = 4,
         EXPORT = 5
     }
-
     public enum SUBJECT
     {
         SCIENCE = 0,
@@ -271,7 +288,6 @@ namespace SeriousGameEngine
         POLITICS = 2,
         FURTHER = 3,
     }
-
     public enum TEMPLATE_CATEGORY
     { 
         ACTION = 0,
