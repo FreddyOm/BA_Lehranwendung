@@ -269,6 +269,7 @@ namespace SeriousGameEngine
             options.Children.Add(new TextOptionElement("MyTextOption", "Text", "Set this value!"));
             options.Children.Add(new EnumOptionElement("MyEnumOption", "Enum", "Drop this down!", typeof(SCREEN)));
             options.Children.Add(new GraphicOptionElement("MyGraphicOption", "Graphic", "Drop it like it's hot!"));
+            options.Children.Add(new AudioOptionElement("MyAudioOption", "Audio", "Drop the beat like it's hot!"));
         }
     }
 

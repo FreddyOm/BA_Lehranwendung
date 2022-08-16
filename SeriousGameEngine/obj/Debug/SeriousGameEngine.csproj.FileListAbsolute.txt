@@ -100,3 +100,5 @@ C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\ro\Xceed.Wpf.Av
 C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Resource\AudioDatei1.png
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\obj\Debug\SeriousGameEngine_Content.g.cs

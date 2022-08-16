@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Xceed.Wpf.Toolkit;
+using System.IO;
 
 namespace SeriousGameEngine.TemplateElemente
 {
@@ -322,9 +323,10 @@ namespace SeriousGameEngine.TemplateElemente
 
                 try
                 {
-                    image.Width = 150;
+                    image.Width = 50;
                     image.BeginInit();
-                    image.Source = (ImageSource)new ImageSourceConverter().ConvertFromString(path);
+                    string imgPath = Environment.CurrentDirectory + "/Resource/AudioDatei1.png";
+                    image.Source = (ImageSource) new ImageSourceConverter().ConvertFromString(imgPath);
                     image.EndInit();
                 }
                 catch (Exception ex)
@@ -335,9 +337,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class AudioOptionElement : DragDropGraphicElement
+    public class AudioOptionElement : DragDropAudioElement
     {
-        public AudioOptionElement(string id, string optionName, string tooltip, string value = "") : base(new[] { ".wav", ".mp3", ".jpg", ".jpeg" }, id, optionName, tooltip, value)
+        public AudioOptionElement(string id, string optionName, string tooltip, string value = "") : base(new[] { ".wav", ".mp3" }, id, optionName, tooltip, value)
         { }
 
         public string GetValue()
