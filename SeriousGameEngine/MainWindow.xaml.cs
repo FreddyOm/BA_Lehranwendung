@@ -148,6 +148,11 @@ namespace SeriousGameEngine
 
         #endregion templates
 
+        private void Button_NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            SetScreen(SCREEN.SUBJECT);
+        }
+
         private void Button_Profil_Click(object sender, RoutedEventArgs e)
         {
 
@@ -157,11 +162,7 @@ namespace SeriousGameEngine
         {
 
         }
-
-        private void Button_Username_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         #endregion buttons
 
@@ -189,6 +190,7 @@ namespace SeriousGameEngine
                 case SCREEN.SUBJECT:
                     screens[(int)SCREEN.SUBJECT].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
+                    SetSubject(SUBJECT.SCIENCE);
                     break;
                 case SCREEN.TEMPLATE:
                     screens[(int)SCREEN.TEMPLATE].Visibility = Visibility.Visible;
@@ -270,11 +272,6 @@ namespace SeriousGameEngine
             options.Children.Add(new EnumOptionElement("MyEnumOption", "Enum", "Drop this down!", typeof(SCREEN)));
             options.Children.Add(new GraphicOptionElement("MyGraphicOption", "Graphic", "Drop it like it's hot!"));
             options.Children.Add(new AudioOptionElement("MyAudioOption", "Audio", "Drop the beat like it's hot!"));
-        }
-
-        private void Button_NewGame_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 
