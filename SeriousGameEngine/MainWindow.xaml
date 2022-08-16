@@ -451,7 +451,7 @@
                         </DockPanel>
                     </Grid>
 
-                    <Grid x:Name="Grid_Modifyscreen" Margin="0">
+                    <Grid x:Name="Grid_Modifyscreen" Margin="0" d:IsHidden="True">
 
                         <DockPanel x:Name="Modify_DockPanel" LastChildFill="True">
 
@@ -508,14 +508,15 @@
 
                     </Grid>
 
-                    <Grid x:Name="Grid_Exportscreen" Margin="195,51,8,10" Grid.ColumnSpan="2" d:IsHidden="True">
-                        <Border x:Name="Border_Exportsmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,46,896,0">
-                            <Grid x:Name="Grid_Exportsmenu" Margin="0" Background="Transparent">
-                                <TextBlock x:Name="Text_ExportHeadline" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="20,20,0,531" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Export"/>
-                            </Grid>
+                    <DockPanel x:Name="Grid_Exportscreen" Margin="0" HorizontalAlignment="Left">
+
+                        <Border x:Name="Border_Exportsmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="150">
+                            <StackPanel Margin="20">
+                                <TextBlock x:Name="Text_ExportHeadline" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="EXPORT"/>
+                            </StackPanel>
                         </Border>
 
-                    </Grid>
+                    </DockPanel>
 
                 </Grid>
 
