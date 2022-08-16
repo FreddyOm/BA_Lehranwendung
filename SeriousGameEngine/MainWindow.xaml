@@ -114,7 +114,7 @@
 
                     <Grid x:Name="Grid_Homescreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" d:IsHidden="True">
                         <DockPanel x:Name="Games_Screen" LastChildFill="True">
-                            <Button x:Name="Button_NewGame" Style="{DynamicResource RoundedCornerStyle}" DockPanel.Dock="Top" Margin="0,0,0,0" Content="Neues Serious Game erstellen" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" Height="40" HorizontalAlignment="Left" Width="250" FontSize="14"/>
+                            <Button x:Name="Button_NewGame" Style="{DynamicResource RoundedCornerStyle}" DockPanel.Dock="Top" Margin="0,0,0,0" Content="Neues Serious Game erstellen" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" Height="40" HorizontalAlignment="Left" Width="250" FontSize="14" Click="Button_NewGame_Click"/>
 
                             <DockPanel x:Name="File_Categories" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True">
                                 <TextBlock x:Name="Text_Name" Margin="0" Text="Name" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="23" Width="210"/>
@@ -508,16 +508,17 @@
 
                     </Grid>
 
-                    <DockPanel x:Name="Grid_Exportscreen" Margin="0" HorizontalAlignment="Left">
+                    <Grid x:Name="Grid_Exportscreen" Margin="0" HorizontalAlignment="Left">
+                        <DockPanel >
+                            <Border x:Name="Border_Exportsmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="150">
+                                <StackPanel Margin="20">
+                                    <TextBlock x:Name="Text_ExportHeadline" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="EXPORT"/>
+                                </StackPanel>
+                            </Border>
 
-                        <Border x:Name="Border_Exportsmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="150">
-                            <StackPanel Margin="20">
-                                <TextBlock x:Name="Text_ExportHeadline" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="EXPORT"/>
-                            </StackPanel>
-                        </Border>
-
-                    </DockPanel>
-
+                        </DockPanel>
+                    </Grid>
+                    
                 </Grid>
 
             </DockPanel>

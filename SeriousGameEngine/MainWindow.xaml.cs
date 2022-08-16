@@ -271,6 +271,11 @@ namespace SeriousGameEngine
             options.Children.Add(new GraphicOptionElement("MyGraphicOption", "Graphic", "Drop it like it's hot!"));
             options.Children.Add(new AudioOptionElement("MyAudioOption", "Audio", "Drop the beat like it's hot!"));
         }
+
+        private void Button_NewGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public enum SCREEN
