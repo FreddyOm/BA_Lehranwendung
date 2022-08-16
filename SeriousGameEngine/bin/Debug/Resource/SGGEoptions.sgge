@@ -1,0 +1,7 @@
+{"Path":"Logik/Kategorien/Anzahl","Tooltip":"Die Anzahl der Kategorien.","Option": 7, "FieldType": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" }
+{"Path":"Logik/WinCondition/Gewinnanzahl","Tooltip": "Die Anzahl der Items bis zum Gewinn.","Option": 7,"FieldType": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"}
+{"Path": "Items/Fragen/Antwortkategorie","Tooltip":"Der Index, der zur entsprechenden Kategorie passt.","Option": 7,"FieldType": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"}
+{"Path": "Items/Inhalt/Text","Tooltip": "Der Text, der im Item steht.","Option": 2,"FieldType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"}
+{"Path": "Kategorien/Logik/Antwort","Tooltip": "Gibt den Antwortindex dieser Kategorie an.","Option": 7,"FieldType": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"}
+{"Path": "Kategorie/Aussehen/Text","Tooltip": "Der Text dieser Kategorie.","Option": 2,"FieldType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"}
+{"Path": "EnumTest/Enum/MeinEnum","Tooltip": "Ein Enum.","Option": 5"}

@@ -17,7 +17,7 @@ using System.IO;
 
 namespace SeriousGameEngine.TemplateElemente
 {
-    public class OptionElement : DockPanel
+    public class OptionUIElement : DockPanel
     {
         int marginL = 5;
         int marginT = 5;
@@ -25,12 +25,12 @@ namespace SeriousGameEngine.TemplateElemente
         int marginB = 0;
         private float width = 200.0f;
         private float height = 25.0f;
-        public static string backgroundColor1 = "#FFFFFFFF";
+        public static string backgroundColor1 = "#FF0A2630";
         public static string backgroundColor2 = "#FF9C8A87";
         public static string foregroundColor1 = "#FFFFFFFF";
-        public static string foregroundColor2 = "#FFFFFFFF";
+        public static string foregroundColor2 = "#FF91BAD5";
 
-        public OptionElement(string optionName, string tooltip)
+        public OptionUIElement(string optionName, string tooltip)
         {
             this.Name = optionName;
             this.Margin = new Thickness(marginL, marginT, marginR, marginB);
@@ -56,14 +56,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class YesNoOptionElement : OptionElement
+    public class YesNoOptionElement : OptionUIElement
     {
         CheckBox checkBox;
 
         public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(optionName, tooltip)
         {
             checkBox = new CheckBox();
-            checkBox.Name = id;
+            checkBox.Name = id.Replace('/', '_');
             checkBox.IsChecked = value;
 
             SetDock(checkBox, Dock.Right);
@@ -76,14 +76,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class TextOptionElement : OptionElement
+    public class TextOptionElement : OptionUIElement
     {
         TextBox textBox;
 
         public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(optionName, tooltip)
         {
             textBox = new TextBox();
-            textBox.Name = id;
+            textBox.Name = id.Replace('/', '_');
             textBox.Text = value;
 
             SetDock(textBox, Dock.Right);
@@ -96,14 +96,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class RealNumOptionElement : OptionElement
+    public class RealNumOptionElement : OptionUIElement
     {
         TextBox textBox;
 
         public RealNumOptionElement(string id, string optionName, string tooltip, string value = "0") : base(optionName, tooltip)
         {
             textBox = new TextBox();
-            textBox.Name = id;
+            textBox.Name = id.Replace('/','_');
             textBox.Text = "" + value;
 
             SetDock(textBox, Dock.Right);
@@ -116,14 +116,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class DecimalNumOptionElement : OptionElement
+    public class DecimalNumOptionElement : OptionUIElement
     {
         TextBox textBox;
 
         public DecimalNumOptionElement(string id, string optionName, string tooltip, string value = "0.0") : base(optionName, tooltip)
         {
             textBox = new TextBox();
-            textBox.Name = id;
+            textBox.Name = id.Replace('/', '_'); ;
             textBox.Text = "" + value;
 
             SetDock(textBox, Dock.Right);
@@ -136,14 +136,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class ColorOptionElement : OptionElement
+    public class ColorOptionElement : OptionUIElement
     {
         ColorPicker colorPicker;
 
         public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(optionName, tooltip)
         {
             colorPicker = new ColorPicker();
-            colorPicker.Name = id;
+            colorPicker.Name = id.Replace('/', '_');
             colorPicker.SelectedColor = value;
 
             SetDock(colorPicker, Dock.Right);
@@ -156,16 +156,16 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class EnumOptionElement : OptionElement
+    public class EnumOptionElement : OptionUIElement
     {
         ComboBox dropDown;
 
-        public EnumOptionElement(string id, string optionName, string tooltip, Type value) : base(optionName, tooltip)
+        public EnumOptionElement(string id, string optionName, string tooltip, Array enumOptions) : base(optionName, tooltip)
         {
             dropDown = new ComboBox();
-            dropDown.Name = id;
-            dropDown.ItemsSource = Enum.GetValues(value);
-
+            dropDown.Name = id.Replace('/', '_');
+            dropDown.ItemsSource = enumOptions;
+            
             SetDock(dropDown, Dock.Right);
             Children.Add(dropDown);
         }
@@ -176,7 +176,7 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class DragDropGraphicElement : OptionElement
+    public class DragDropGraphicElement : OptionUIElement
     {
         public string path;
         private Border border;
@@ -194,7 +194,7 @@ namespace SeriousGameEngine.TemplateElemente
             border = new Border();
             image = new Image();
             border.CornerRadius = new CornerRadius(3,3,3,3);
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionElement.backgroundColor2));
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.backgroundColor2));
             border.Width = 50;
             border.Height = 50;
 
@@ -262,7 +262,7 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class DragDropAudioElement : OptionElement
+    public class DragDropAudioElement : OptionUIElement
     {
         public string path;
         private Border border;
@@ -280,7 +280,7 @@ namespace SeriousGameEngine.TemplateElemente
             border = new Border();
             image = new Image();
             border.CornerRadius = new CornerRadius(3, 3, 3, 3);
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionElement.backgroundColor2));
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.backgroundColor2));
             border.Width = 50;
             border.Height = 50;
 

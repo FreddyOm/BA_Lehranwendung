@@ -102,3 +102,12 @@ C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\sv\Xceed.Wpf.Av
 C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Resource\AudioDatei1.png
 C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\obj\Debug\SeriousGameEngine_Content.g.cs
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\SGGE_Runtime.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.xml
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\SGGE_Runtime.pdb
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.xml
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\SGGE.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\SGGE.pdb
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Resource\SGGEoptions.sgge

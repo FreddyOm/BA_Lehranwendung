@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SeriousGameEngine.TemplateElemente;
+using SeriousGameEngine.CMS;
 
 namespace SeriousGameEngine
 {
@@ -28,6 +29,8 @@ namespace SeriousGameEngine
         private StackPanel options;
         private StackPanel categories;
 
+        private SGGEDataManager content;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,10 +43,22 @@ namespace SeriousGameEngine
             InitGameTemplates();
 
             SetScreen(SCREEN.HOME);
-            CreateOption();
+            
+            content = new SGGEDataManager();
+
+            var element = content.GetElement("Logik/Kategorien/Anzahl");
+            element?.ToString();
+
+            //CreateOption();
         }
 
         #region buttons
+
+        public void OnCategoryButtonClicked(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            LoadOptions((string)button.Content);
+        }
 
         #region navigation
 
@@ -162,7 +177,6 @@ namespace SeriousGameEngine
         {
 
         }
-       
 
         #endregion buttons
 
@@ -200,6 +214,7 @@ namespace SeriousGameEngine
                 case SCREEN.MODIFY:
                     screens[(int)SCREEN.MODIFY].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
+                    FillCategories();
                     break;
                 case SCREEN.EXPORT:
                     screens[(int)SCREEN.EXPORT].Visibility = Visibility.Visible;
@@ -262,16 +277,88 @@ namespace SeriousGameEngine
 
         #endregion game templates
 
-        private void CreateOption()
+
+        #region cms
+
+        #region category
+
+        public void FillCategories()
         {
-            options.Children.Add(new ColorOptionElement("MyColorOption", "Color", "Pick this color!", Color.FromRgb(1, 1, 1)));
-            options.Children.Add(new YesNoOptionElement("MyYesNoOption", "YesNo", "Set this checkbox!"));
-            options.Children.Add(new RealNumOptionElement("MyRealOption", "RealNumber", "Set this value!"));
-            options.Children.Add(new DecimalNumOptionElement("MyDecimalOption", "DecNumber", "Set this value!"));
-            options.Children.Add(new TextOptionElement("MyTextOption", "Text", "Set this value!"));
-            options.Children.Add(new EnumOptionElement("MyEnumOption", "Enum", "Drop this down!", typeof(SCREEN)));
-            options.Children.Add(new GraphicOptionElement("MyGraphicOption", "Graphic", "Drop it like it's hot!"));
-            options.Children.Add(new AudioOptionElement("MyAudioOption", "Audio", "Drop the beat like it's hot!"));
+            //Remove delegates and delete all existing buttons
+            for(int i = 0; i < Category_Buttons.Children.Count; i++)
+            {
+                if(Category_Buttons.Children[i] is CategoryButton)
+                {
+                    CategoryButton b = Category_Buttons.Children[i] as CategoryButton;
+                    if (b.HasEventHandler)
+                        b.Click -= new RoutedEventHandler(OnCategoryButtonClicked);
+                }
+            }
+
+            Category_Buttons.Children.RemoveRange(0, Category_Buttons.Children.Count);
+
+            //Rebuild all categories
+            foreach(var e in content.GetAllCategories())
+            {
+                CategoryButton button = new CategoryButton(e.Category);
+                button.Click += new RoutedEventHandler(OnCategoryButtonClicked);
+                button.HasEventHandler = true;
+                Category_Buttons.Children.Add(button);
+            }
+        }
+
+        #endregion category
+
+        #region options 
+
+        private void LoadOptions(string category)
+        {
+            options.Children.RemoveRange(0, options.Children.Count);
+
+            OptionDataElement[] categoryElements = content.GetElementsOfCategory(category);
+
+            foreach(var element in categoryElements)
+            {
+                CreateOption(element);
+            }
+        }
+
+        #endregion options
+
+        #endregion cms
+
+        private void CreateOption(OptionDataElement ode)
+        {
+            switch(ode.Option)
+            {
+                case SGGE.OPTION.COLOR:
+                    options.Children.Add(new ColorOptionElement(ode.Path, ode.Name, ode.Tooltip, Colors.White));
+                    break;
+                case SGGE.OPTION.YES_NO_OPTION:
+                    options.Children.Add(new YesNoOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.GRAPHICS:
+                    options.Children.Add(new GraphicOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.SOUND_FILE:
+                    options.Children.Add(new AudioOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.REAL_NUM:
+                    options.Children.Add(new RealNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.DECIMAL_NUM:
+                    options.Children.Add(new DecimalNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.ENUM:
+                    EnumOptionDataElement eode = (EnumOptionDataElement)ode;
+                    options.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues));
+                    break;
+                case SGGE.OPTION.TEXT:
+                    options.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.ARRAY:
+                    break;
+            }       
         }
     }
 
