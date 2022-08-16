@@ -2,12 +2,8 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SGGE;
-using SGGE_Runtime;
 using Newtonsoft.Json;
-using System.Xml.Linq;
 
 namespace SeriousGameEngine.CMS
 {
@@ -16,62 +12,15 @@ namespace SeriousGameEngine.CMS
     /// </summary>
     public class SGGEDataManager
     {
-        public string LOAD_PATH;
-
+        private string LOAD_PATH;
         private Dictionary<string, OptionDataElement> optionsDict = new Dictionary<string, OptionDataElement>();
+
+        #region init
 
         public SGGEDataManager()
         {
             LOAD_PATH = Environment.CurrentDirectory + "/Resource/SGGEoptions.sgge";
             LoadOptions();
-        }
-
-        public OptionDataElement GetElement(string elementPath)
-        {
-            if(!optionsDict.ContainsKey(elementPath))
-                return null;
-
-            return optionsDict[elementPath];
-        }
-
-        public OptionDataElement[] GetAllElements()
-        {
-            return optionsDict.Values.ToArray();
-        }
-
-        public OptionDataElement[] GetAllCategories()
-        {
-            List<OptionDataElement> oe = new List<OptionDataElement>();
-
-            foreach(var element in GetAllElements())
-            {
-                if(!oe.Any( el => el.Category == element.Category))
-                {
-                    oe.Add(element);
-                }
-            }
-
-            return oe.ToArray();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="categoryName"></param>
-        /// <returns></returns>
-        public OptionDataElement[] GetElementsOfCategory(string categoryName)
-        {
-            List<OptionDataElement> oe = new List<OptionDataElement>();
-
-            foreach (var element in GetAllElements())
-            {
-                if (element.Category.Equals(categoryName))
-                {
-                    oe.Add(element);
-                }
-            }
-
-            return oe.ToArray();
         }
 
         /// <summary>
@@ -96,7 +45,7 @@ namespace SeriousGameEngine.CMS
                         ArrayOptionData aod = (ArrayOptionData)od;
                         optionsDict.Add(aod.Path, new ArrayOptionDataElement(aod.Path, aod.Tooltip, aod.Option, aod.Options.ToArray()));
                     }
-                    else if(od.Option == SGGE.OPTION.ENUM)
+                    else if (od.Option == SGGE.OPTION.ENUM)
                     {
                         OptionData eod = od;
                         optionsDict.Add(eod.Path, new EnumOptionDataElement(eod.Path, eod.Tooltip, eod.Option, null));
@@ -118,12 +67,80 @@ namespace SeriousGameEngine.CMS
                 return false;
             }
         }
+
+        #endregion init
+
+        #region element getter
+
+        /// <summary>
+        /// Gets an option element with a specific id.
+        /// </summary>
+        /// <param name="elementPath"></param>
+        /// <returns></returns>
+        public OptionDataElement GetElement(string elementPath)
+        {
+            if(!optionsDict.ContainsKey(elementPath))
+                return null;
+
+            return optionsDict[elementPath];
+        }
+
+        /// <summary>
+        /// Gets all option elements available for that game.
+        /// </summary>
+        /// <returns></returns>
+        public OptionDataElement[] GetAllElements()
+        {
+            return optionsDict.Values.ToArray();
+        }
+
+        /// <summary>
+        /// Gets a list with all categories. No redundancies.
+        /// </summary>
+        /// <returns></returns>
+        public OptionDataElement[] GetAllCategories()
+        {
+            List<OptionDataElement> oe = new List<OptionDataElement>();
+
+            foreach(var element in GetAllElements())
+            {
+                if(!oe.Any( el => el.Category == element.Category))
+                {
+                    oe.Add(element);
+                }
+            }
+
+            return oe.ToArray();
+        }
+
+        /// <summary>
+        /// Gets all option elements that share one specific category.
+        /// </summary>
+        /// <param name="categoryName"></param>
+        /// <returns></returns>
+        public OptionDataElement[] GetElementsOfCategory(string categoryName)
+        {
+            List<OptionDataElement> oe = new List<OptionDataElement>();
+
+            foreach (var element in GetAllElements())
+            {
+                if (element.Category.Equals(categoryName))
+                {
+                    oe.Add(element);
+                }
+            }
+
+            return oe.ToArray();
+        }
+
+        #endregion element getter
+
     }
 
-
+    #region option data elements
 
     /// <summary>
-    /// A container to store all data from the SGGE Options
+    /// A data container to store all data from the SGGE Options.
     /// </summary>
     public class OptionDataElement
     {
@@ -173,6 +190,9 @@ namespace SeriousGameEngine.CMS
         }
     }
 
+    /// <summary>
+    /// A data container for an array option.
+    /// </summary>
     public class ArrayOptionDataElement : OptionDataElement
     {
         public OptionDataElement[] optionDataElements;
@@ -200,6 +220,9 @@ namespace SeriousGameEngine.CMS
         }
     }
 
+    /// <summary>
+    /// A data container for an enum option.
+    /// </summary>
     public class EnumOptionDataElement : OptionDataElement
     {
         public Array EnumValues;
@@ -208,4 +231,6 @@ namespace SeriousGameEngine.CMS
             EnumValues = _enum;
         }
     }
+
+    #endregion option data elements
 }
