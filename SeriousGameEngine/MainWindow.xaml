@@ -86,7 +86,7 @@
                     
                     </Border>
                 </StackPanel>
-                <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left">
+                <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left" d:IsHidden="True">
                     <Border x:Name="Menu_Panel_BorderSmall" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="673">
                         <StackPanel x:Name="Menu_PanelSmall" Margin="0" Background="Transparent">
                             <Image Source="Resource/Menu.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="51" Width="51" Margin="5,5,0,0"></Image>
@@ -138,8 +138,8 @@
                                 <TextBlock x:Name="Text_Status" Margin="0" Text="Status" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="23"/>
                             </DockPanel>
 
-                            <Border x:Name="Scroll_Menu" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
-                                <ScrollViewer x:Name="Grid_PreviousGamesMenu" Background="#00000000" Foreground="#00000000" BorderThickness="1,1,1,1" Margin="0">
+                            <Border x:Name="Scroll_Menu" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <ScrollViewer x:Name="Grid_PreviousGamesMenu" Background="#00000000" Foreground="#00000000" BorderThickness="1,1,1,1" Margin="0" VerticalScrollBarVisibility="Hidden">
                                     <StackPanel Margin="0,5">
 
                                         <DockPanel x:Name="File" Margin="5,0,0,5" LastChildFill="False" Height="20">
@@ -604,11 +604,11 @@
 
                             </Border>
 
-                            <DockPanel Margin="5,0,0,0">
-                                <Border x:Name="Border_ModifyPreviewElement" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,2.5" DockPanel.Dock="Top" Height="250" Width="250">
+                            <DockPanel Margin="5,0,0,0" VerticalAlignment="Stretch">
+                                <Border x:Name="Border_ModifyPreviewElement" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,2.5" DockPanel.Dock="Top" Height="250" VerticalAlignment="Stretch">
                                     <Grid></Grid>
                                 </Border>
-                                <Border x:Name="Border_ModifyPreviewGame" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,2.5,0,0" DockPanel.Dock="Bottom" Width="250">
+                                <Border x:Name="Border_ModifyPreviewGame" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,2.5,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Grid></Grid>
                                 </Border>
                             </DockPanel>

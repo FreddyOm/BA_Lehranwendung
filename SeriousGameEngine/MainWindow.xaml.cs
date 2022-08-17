@@ -258,11 +258,13 @@ namespace SeriousGameEngine
             {
                 SideboardSmall.Visibility = Visibility.Hidden;
                 Sideboard.Visibility = Visibility.Visible;
+                Grid_MenuSettings.Width = Sideboard.Width;
             }
             else
             {
                 Sideboard.Visibility = Visibility.Hidden;
                 SideboardSmall.Visibility = Visibility.Visible;
+                Grid_MenuSettings.Width = SideboardSmall.Width;
             }
         }
 
