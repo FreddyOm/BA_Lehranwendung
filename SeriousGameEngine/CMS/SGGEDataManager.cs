@@ -43,18 +43,24 @@ namespace SeriousGameEngine.CMS
 
                     if (od.Option == OPTION.ARRAY)
                     {
-                        string json = line;
-                        var aoe = JObject.Parse(json);
+                        // Arrays get a special treatment. -> Deserializing as OptionData and afterwards casting as EnumOptionData/ArrayOptionData doesn't work!
+
+                        //deserialize the line dynamically via "JObject.Parse"
+                        var aoe = JObject.Parse(line);
                         List<OptionData> subOptions = new List<OptionData>();
 
-                        foreach(var option in aoe["Options"])
+                        //traverse the suboptions individually
+                        foreach (var option in aoe["Options"])
                         {
+                            // deserialize a general OptionData object
                             var subOption = JsonConvert.DeserializeObject<OptionData>(option.ToString());
                             switch(subOption.Option)
                             {
                                 case OPTION.ARRAY:
-                                    break;
+                                    // not supported
+                                    continue;
                                 case OPTION.ENUM:
+                                    //deserialize the object specifically as an enum so no data is lost during the deserialization
                                     subOptions.Add(JsonConvert.DeserializeObject<EnumOptionData>(option.ToString()));
                                     break;
                                 default:
@@ -62,6 +68,7 @@ namespace SeriousGameEngine.CMS
                                     break;
                             }
                         }
+                        // add all general data to the dictionary and pass the subOption list as an array
                         optionsDict.Add(od.Path, new ArrayOptionDataElement(od.Path, od.Tooltip, OPTION.ARRAY, subOptions.ToArray()));
                     }
                     else if (od.Option == OPTION.ENUM)
