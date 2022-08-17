@@ -160,7 +160,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         ComboBox dropDown;
 
-        public EnumOptionElement(string id, string optionName, string tooltip, Array enumOptions) : base(optionName, tooltip)
+        public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions) : base(optionName, tooltip)
         {
             dropDown = new ComboBox();
             dropDown.Name = id.Replace('/', '_');

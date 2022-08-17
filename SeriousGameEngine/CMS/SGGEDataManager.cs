@@ -38,17 +38,17 @@ namespace SeriousGameEngine.CMS
                 {
                     string line = sr.ReadLine();
 
-                    var od = JsonConvert.DeserializeObject<OptionData>(line);
+                    OptionData od = JsonConvert.DeserializeObject<OptionData>(line);
 
-                    if (od.Option == SGGE.OPTION.ARRAY)
+                    if (od.Option == OPTION.ARRAY)
                     {
-                        ArrayOptionData aod = (ArrayOptionData)od;
+                        ArrayOptionData aod = JsonConvert.DeserializeObject<ArrayOptionData>(line);
                         optionsDict.Add(aod.Path, new ArrayOptionDataElement(aod.Path, aod.Tooltip, aod.Option, aod.Options.ToArray()));
                     }
-                    else if (od.Option == SGGE.OPTION.ENUM)
+                    else if (od.Option == OPTION.ENUM)
                     {
-                        OptionData eod = od;
-                        optionsDict.Add(eod.Path, new EnumOptionDataElement(eod.Path, eod.Tooltip, eod.Option, null));
+                        var eod = JsonConvert.DeserializeObject<EnumOptionData>(line);
+                        optionsDict.Add(eod.Path, new EnumOptionDataElement(eod.Path, eod.Tooltip, eod.Option, eod.Enumerables));
                     }
                     else
                     {
@@ -196,7 +196,7 @@ namespace SeriousGameEngine.CMS
     public class ArrayOptionDataElement : OptionDataElement
     {
         public OptionDataElement[] optionDataElements;
-        public ArrayOptionDataElement(string path, string tooltip, SGGE.OPTION option, OptionData[] subOptions) : base(path, tooltip, option)
+        public ArrayOptionDataElement(string path, string tooltip, SGGE.OPTION option, IOptionData[] subOptions) : base(path, tooltip, option)
         {
             optionDataElements = new OptionDataElement[subOptions.Length];
 
@@ -225,8 +225,8 @@ namespace SeriousGameEngine.CMS
     /// </summary>
     public class EnumOptionDataElement : OptionDataElement
     {
-        public Array EnumValues;
-        public EnumOptionDataElement(string path, string tooltip, SGGE.OPTION option, Array _enum) : base(path, tooltip, option)
+        public string[] EnumValues;
+        public EnumOptionDataElement(string path, string tooltip, SGGE.OPTION option, string[] _enum) : base(path, tooltip, option)
         {
             EnumValues = _enum;
         }
