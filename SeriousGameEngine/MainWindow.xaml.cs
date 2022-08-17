@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using SeriousGameEngine.TemplateElemente;
 using SeriousGameEngine.CMS;
+using System.ComponentModel;
 
 namespace SeriousGameEngine
 {
@@ -34,9 +35,24 @@ namespace SeriousGameEngine
 
             //Set Home menu
             SetScreen(SCREEN.HOME);
+            MoveSideBoard(false);
+
+            SideboardSmall.MouseEnter += new System.Windows.Input.MouseEventHandler(MouseEntered);
+            Sideboard.MouseLeave += new System.Windows.Input.MouseEventHandler(MouseLeave);
+
         }
 
         #endregion init
+
+        #region deinit
+
+        public void Window_Closing(object sender, CancelEventArgs e)
+        {
+            SideboardSmall.MouseEnter -= new System.Windows.Input.MouseEventHandler(MouseEntered);
+            Sideboard.MouseLeave -= new System.Windows.Input.MouseEventHandler(MouseLeave);
+        }
+
+        #endregion deinit
 
         #region buttons
 
@@ -223,6 +239,34 @@ namespace SeriousGameEngine
         }
 
         #endregion screens
+
+        #region menu
+        
+        private void MouseEntered(object sender, System.Windows.Input.MouseEventArgs args) 
+        {
+            MoveSideBoard(true);
+        }
+
+        private void MouseLeave(object sender, System.Windows.Input.MouseEventArgs args)
+        {
+            MoveSideBoard(false);
+        }
+
+        private void MoveSideBoard(bool _out)
+        {
+            if(_out)
+            {
+                SideboardSmall.Visibility = Visibility.Hidden;
+                Sideboard.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Sideboard.Visibility = Visibility.Hidden;
+                SideboardSmall.Visibility = Visibility.Visible;
+            }
+        }
+
+        #endregion menu
 
         #region subjects
 

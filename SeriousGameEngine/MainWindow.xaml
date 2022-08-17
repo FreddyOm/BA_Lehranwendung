@@ -6,7 +6,10 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SeriousGameEngine"
         mc:Ignorable="d"
-        Title="Serious Game Engine" Height="720" Width="1280" MaxHeight="720" MaxWidth="1280" MinHeight="720" MinWidth="1280" Background="#FFFFFFFF">
+        Title="Serious Game Engine" Height="720" Width="1280" MaxHeight="720" MaxWidth="1280" MinHeight="720" MinWidth="1280" Background="#FFFFFFFF"
+        Closing="Window_Closing">
+
+
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
