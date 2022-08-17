@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SeriousGameEngine.TemplateElemente;
+using SeriousGameEngine.CMS;
 
 namespace SeriousGameEngine
 {
@@ -25,25 +15,40 @@ namespace SeriousGameEngine
         private Border[] subjects = new Border[4];
         private Border[] gameTemplates = new Border[6];
 
-        private StackPanel options;
-        private StackPanel categories;
+        private SGGEDataManager content;
+
+        #region init
 
         public MainWindow()
         {
+            // Win
             InitializeComponent();
-
-            options = Options_Panel;
-            categories = Grid_Categories_Menu;
             
+            // App
             InitScreens();
             InitSubjects();
             InitGameTemplates();
+            
+            // CMS
+            content = new SGGEDataManager();
 
+            //Set Home menu
             SetScreen(SCREEN.HOME);
-            CreateOption();
         }
 
+        #endregion init
+
         #region buttons
+
+        #region category buttons
+
+        public void OnCategoryButtonClicked(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            LoadOptions((string)button.Content);
+        }
+
+        #endregion category buttons
 
         #region navigation
 
@@ -148,6 +153,13 @@ namespace SeriousGameEngine
 
         #endregion templates
 
+        #region user
+
+        private void Button_NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            SetScreen(SCREEN.SUBJECT);
+        }
+
         private void Button_Profil_Click(object sender, RoutedEventArgs e)
         {
 
@@ -158,10 +170,7 @@ namespace SeriousGameEngine
 
         }
 
-        private void Button_Username_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        #endregion user
 
         #endregion buttons
 
@@ -189,6 +198,7 @@ namespace SeriousGameEngine
                 case SCREEN.SUBJECT:
                     screens[(int)SCREEN.SUBJECT].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
+                    SetSubject(SUBJECT.SCIENCE);
                     break;
                 case SCREEN.TEMPLATE:
                     screens[(int)SCREEN.TEMPLATE].Visibility = Visibility.Visible;
@@ -198,6 +208,7 @@ namespace SeriousGameEngine
                 case SCREEN.MODIFY:
                     screens[(int)SCREEN.MODIFY].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
+                    FillCategories();
                     break;
                 case SCREEN.EXPORT:
                     screens[(int)SCREEN.EXPORT].Visibility = Visibility.Visible;
@@ -260,22 +271,90 @@ namespace SeriousGameEngine
 
         #endregion game templates
 
-        private void CreateOption()
+        #region cms
+
+        #region category
+
+        public void FillCategories()
         {
-            options.Children.Add(new ColorOptionElement("MyColorOption", "Color", "Pick this color!", Color.FromRgb(1, 1, 1)));
-            options.Children.Add(new YesNoOptionElement("MyYesNoOption", "YesNo", "Set this checkbox!"));
-            options.Children.Add(new RealNumOptionElement("MyRealOption", "RealNumber", "Set this value!"));
-            options.Children.Add(new DecimalNumOptionElement("MyDecimalOption", "DecNumber", "Set this value!"));
-            options.Children.Add(new TextOptionElement("MyTextOption", "Text", "Set this value!"));
-            options.Children.Add(new EnumOptionElement("MyEnumOption", "Enum", "Drop this down!", typeof(SCREEN)));
-            options.Children.Add(new GraphicOptionElement("MyGraphicOption", "Graphic", "Drop it like it's hot!"));
-            options.Children.Add(new AudioOptionElement("MyAudioOption", "Audio", "Drop the beat like it's hot!"));
+            //Remove delegates and delete all existing buttons
+            for(int i = 0; i < Category_Buttons.Children.Count; i++)
+            {
+                if(Category_Buttons.Children[i] is CategoryButton)
+                {
+                    CategoryButton b = Category_Buttons.Children[i] as CategoryButton;
+                    if (b.HasEventHandler)
+                        b.Click -= new RoutedEventHandler(OnCategoryButtonClicked);
+                }
+            }
+
+            Category_Buttons.Children.Clear();
+
+            //Rebuild all categories
+            foreach(var e in content.GetAllCategories())
+            {
+                CategoryButton button = new CategoryButton(e.Category);
+                button.Click += new RoutedEventHandler(OnCategoryButtonClicked);
+                button.HasEventHandler = true;
+                Category_Buttons.Children.Add(button);
+            }
         }
 
-        private void Button_NewGame_Click(object sender, RoutedEventArgs e)
-        {
+        #endregion category
 
+        #region options 
+
+        private void LoadOptions(string category)
+        {
+            Options_Panel.Children.RemoveRange(0, Options_Panel.Children.Count);
+
+            OptionDataElement[] categoryElements = content.GetElementsOfCategory(category);
+
+            foreach(var element in categoryElements)
+            {
+                CreateOption(element);
+            }
         }
+
+        private void CreateOption(OptionDataElement ode)
+        {
+            switch (ode.Option)
+            {
+                case SGGE.OPTION.COLOR:
+                    Options_Panel.Children.Add(new ColorOptionElement(ode.Path, ode.Name, ode.Tooltip, Colors.White));
+                    break;
+                case SGGE.OPTION.YES_NO_OPTION:
+                    Options_Panel.Children.Add(new YesNoOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.GRAPHICS:
+                    Options_Panel.Children.Add(new GraphicOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.SOUND_FILE:
+                    Options_Panel.Children.Add(new AudioOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.REAL_NUM:
+                    Options_Panel.Children.Add(new RealNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.DECIMAL_NUM:
+                    Options_Panel.Children.Add(new DecimalNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.ENUM:
+                    EnumOptionDataElement eode = (EnumOptionDataElement)ode;
+                    Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues));
+                    break;
+                case SGGE.OPTION.TEXT:
+                    Options_Panel.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    break;
+                case SGGE.OPTION.ARRAY:
+                    ArrayOptionDataElement aode = (ArrayOptionDataElement)ode;
+                    Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements));
+                    break;
+            }
+        }
+
+        #endregion options
+
+        #endregion cms
     }
 
     public enum SCREEN

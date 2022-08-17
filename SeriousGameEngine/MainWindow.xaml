@@ -181,7 +181,7 @@
                             </Border>
 
                             <Grid x:Name="Grid_Subjects" Margin="5,0,0,0">
-                                <Border x:Name="Border_SubjectsScience" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                <Border x:Name="Border_SubjectsScience" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
                                     <UniformGrid x:Name="Grid_SubjectsScience" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top">
                                         <Border x:Name="Border_Math" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="123" Width="180">
                                             <Button x:Name="Button_Math" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" FontSize="14" FontWeight="Bold" Width="178" Height="121"/>
@@ -198,6 +198,7 @@
                                         <Border x:Name="Border_Sciences" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="122" Width="180">
                                             <Button x:Name="Button_Sciences" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
+                                        
                                     </UniformGrid>
                                 </Border>
 
@@ -212,11 +213,13 @@
                                         <Border x:Name="Border_French" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
                                             <Button x:Name="Button_French" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Französisch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Spanish" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Spanish" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Spanish" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Spanisch" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
                                         </Border>
-                                        <Border x:Name="Border_Latin" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Latin" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Latin" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Latein" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
@@ -225,43 +228,53 @@
 
                                 <Border x:Name="Border_SubjectsPolitics" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
                                     <UniformGrid x:Name="Grid_SubjectsPolitics" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top">
-                                        <Border x:Name="Border_History" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_History" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_History" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Geschichte" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Politics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Politics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Politics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Gemeinschaftskunde" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Ethics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Ethics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Ethics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Ethik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Religion" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Religion" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Religion" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Religionsunterricht" FontFamily="Arial" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
                                         </Border>
+                                    
                                     </UniformGrid>
                                 </Border>
 
                                 <Border x:Name="Border_SubjectsFurther" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
                                     <UniformGrid x:Name="Grid_SubjectsFurther" Margin="10" Background="Transparent" Columns="4"  VerticalAlignment="Top">
-                                        <Border x:Name="Border_Sports" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Sports" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Sports" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Sport" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Art" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Art" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Art" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Bildende Kunst" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Music" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+
+                                        <Border x:Name="Border_Music" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Music" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Musik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Psychology" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="122" Width="180">
+
+                                        <Border x:Name="Border_Psychology" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
                                             <Button x:Name="Button_Psychology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Psychologie" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
+                                    
                                     </UniformGrid>
                                 </Border>
                             </Grid>
@@ -466,11 +479,13 @@
 
                                         <TextBlock x:Name="Text_HeadlineCategory" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0,20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="KATEGORIEN"/>
 
-                                        <Button x:Name="Button_Level" Margin="5,10" Content="Level" Background="#FF0A2630" BorderBrush="#FF0A2630" 
+                                        <StackPanel x:Name="Category_Buttons" Margin="20,10,5,0">
+                                            <Button x:Name="Button_Level" Margin="0,10,0,0" Content="Level" Background="#FF0A2630" BorderBrush="#FF0A2630" 
                                             Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center"></Button>
 
-                                        <Button x:Name="Button_Character" Margin="5,10" Content="Charkter" Background="#FF0A2630" BorderBrush="#FF0A2630" 
+                                            <Button x:Name="Button_Character" Margin="0,10,0,0" Content="Charkter" Background="#FF0A2630" BorderBrush="#FF0A2630" 
                                             Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Height="18"></Button>
+                                        </StackPanel>
 
                                     </StackPanel>
                                 </ScrollViewer>

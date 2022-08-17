@@ -498,7 +498,7 @@ namespace SeriousGameEngine {
         #line hidden
         
         
-        #line 178 "..\..\MainWindow.xaml"
+        #line 180 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Border Border_Physics;
         
@@ -506,7 +506,7 @@ namespace SeriousGameEngine {
         #line hidden
         
         
-        #line 179 "..\..\MainWindow.xaml"
+        #line 181 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Button_Physics;
         

@@ -14,10 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Xceed.Wpf.Toolkit;
 using System.IO;
+using SeriousGameEngine.CMS;
 
 namespace SeriousGameEngine.TemplateElemente
 {
-    public class OptionElement : DockPanel
+    public class OptionUIElement : DockPanel
     {
         int marginL = 5;
         int marginT = 5;
@@ -25,12 +26,12 @@ namespace SeriousGameEngine.TemplateElemente
         int marginB = 0;
         private float width = 200.0f;
         private float height = 25.0f;
-        public static string backgroundColor1 = "#FFFFFFFF";
+        public static string backgroundColor1 = "#FF0A2630";
         public static string backgroundColor2 = "#FF9C8A87";
         public static string foregroundColor1 = "#FFFFFFFF";
-        public static string foregroundColor2 = "#FFFFFFFF";
+        public static string foregroundColor2 = "#FF91BAD5";
 
-        public OptionElement(string optionName, string tooltip)
+        public OptionUIElement(string optionName, string tooltip)
         {
             this.Name = optionName;
             this.Margin = new Thickness(marginL, marginT, marginR, marginB);
@@ -56,14 +57,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class YesNoOptionElement : OptionElement
+    public class YesNoOptionElement : OptionUIElement
     {
         CheckBox checkBox;
 
         public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(optionName, tooltip)
         {
             checkBox = new CheckBox();
-            checkBox.Name = id;
+            checkBox.Name = id.Replace('/', '_');
             checkBox.IsChecked = value;
 
             SetDock(checkBox, Dock.Right);
@@ -76,14 +77,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class TextOptionElement : OptionElement
+    public class TextOptionElement : OptionUIElement
     {
         TextBox textBox;
 
         public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(optionName, tooltip)
         {
             textBox = new TextBox();
-            textBox.Name = id;
+            textBox.Name = id.Replace('/', '_');
             textBox.Text = value;
 
             SetDock(textBox, Dock.Right);
@@ -96,14 +97,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class RealNumOptionElement : OptionElement
+    public class RealNumOptionElement : OptionUIElement
     {
         TextBox textBox;
 
         public RealNumOptionElement(string id, string optionName, string tooltip, string value = "0") : base(optionName, tooltip)
         {
             textBox = new TextBox();
-            textBox.Name = id;
+            textBox.Name = id.Replace('/','_');
             textBox.Text = "" + value;
 
             SetDock(textBox, Dock.Right);
@@ -116,14 +117,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class DecimalNumOptionElement : OptionElement
+    public class DecimalNumOptionElement : OptionUIElement
     {
         TextBox textBox;
 
         public DecimalNumOptionElement(string id, string optionName, string tooltip, string value = "0.0") : base(optionName, tooltip)
         {
             textBox = new TextBox();
-            textBox.Name = id;
+            textBox.Name = id.Replace('/', '_'); ;
             textBox.Text = "" + value;
 
             SetDock(textBox, Dock.Right);
@@ -136,14 +137,14 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class ColorOptionElement : OptionElement
+    public class ColorOptionElement : OptionUIElement
     {
         ColorPicker colorPicker;
 
         public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(optionName, tooltip)
         {
             colorPicker = new ColorPicker();
-            colorPicker.Name = id;
+            colorPicker.Name = id.Replace('/', '_');
             colorPicker.SelectedColor = value;
 
             SetDock(colorPicker, Dock.Right);
@@ -156,16 +157,16 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class EnumOptionElement : OptionElement
+    public class EnumOptionElement : OptionUIElement
     {
         ComboBox dropDown;
 
-        public EnumOptionElement(string id, string optionName, string tooltip, Type value) : base(optionName, tooltip)
+        public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions) : base(optionName, tooltip)
         {
             dropDown = new ComboBox();
-            dropDown.Name = id;
-            dropDown.ItemsSource = Enum.GetValues(value);
-
+            dropDown.Name = id.Replace('/', '_');
+            dropDown.ItemsSource = enumOptions;
+            
             SetDock(dropDown, Dock.Right);
             Children.Add(dropDown);
         }
@@ -176,7 +177,7 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class DragDropGraphicElement : OptionElement
+    public class DragDropGraphicElement : OptionUIElement
     {
         public string path;
         private Border border;
@@ -194,7 +195,7 @@ namespace SeriousGameEngine.TemplateElemente
             border = new Border();
             image = new Image();
             border.CornerRadius = new CornerRadius(3,3,3,3);
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionElement.backgroundColor2));
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.backgroundColor2));
             border.Width = 50;
             border.Height = 50;
 
@@ -251,18 +252,7 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class GraphicOptionElement : DragDropGraphicElement
-    {
-        public GraphicOptionElement(string id, string optionName, string tooltip, string value = "") : base(new [] {".png", ".tif", ".jpg", ".jpeg"},id, optionName, tooltip, value)
-        {  }
-
-        public string GetValue()
-        {
-            return path;
-        }
-    }
-
-    public class DragDropAudioElement : OptionElement
+    public class DragDropAudioElement : OptionUIElement
     {
         public string path;
         private Border border;
@@ -280,7 +270,7 @@ namespace SeriousGameEngine.TemplateElemente
             border = new Border();
             image = new Image();
             border.CornerRadius = new CornerRadius(3, 3, 3, 3);
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionElement.backgroundColor2));
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.backgroundColor2));
             border.Width = 50;
             border.Height = 50;
 
@@ -326,7 +316,7 @@ namespace SeriousGameEngine.TemplateElemente
                     image.Width = 50;
                     image.BeginInit();
                     string imgPath = Environment.CurrentDirectory + "/Resource/AudioDatei1.png";
-                    image.Source = (ImageSource) new ImageSourceConverter().ConvertFromString(imgPath);
+                    image.Source = (ImageSource)new ImageSourceConverter().ConvertFromString(imgPath);
                     image.EndInit();
                 }
                 catch (Exception ex)
@@ -334,6 +324,17 @@ namespace SeriousGameEngine.TemplateElemente
                     System.Windows.MessageBox.Show(ex.ToString());
                 }
             }
+        }
+    }
+
+    public class GraphicOptionElement : DragDropGraphicElement
+    {
+        public GraphicOptionElement(string id, string optionName, string tooltip, string value = "") : base(new [] {".png", ".tif", ".jpg", ".jpeg"},id, optionName, tooltip, value)
+        {  }
+
+        public string GetValue()
+        {
+            return path;
         }
     }
 
@@ -345,6 +346,89 @@ namespace SeriousGameEngine.TemplateElemente
         public string GetValue()
         {
             return path;
+        }
+    }
+
+    public class ArrayOptionElement : OptionUIElement
+    {
+        TextBox countTextBox;
+        StackPanel contentElements;
+        OptionDataElement[] optionDataElements;
+
+        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements) : base(optionName, tooltip)
+        {
+            this.optionDataElements = optionDataElements;
+            countTextBox = new TextBox();
+            countTextBox.Name = id.Replace('/', '_');
+            countTextBox.Width = 30;
+            countTextBox.TextChanged += new TextChangedEventHandler(PopulateContent);
+
+            SetDock(countTextBox, Dock.Right);
+            Children.Add(countTextBox);
+
+
+            contentElements = new StackPanel();
+            contentElements.Name = id.Replace('/', '_') + "_Content";
+
+            SetDock(contentElements, Dock.Bottom);
+            Children.Add(contentElements);
+
+        }
+
+        private void PopulateContent(object sender, TextChangedEventArgs args)
+        {
+            contentElements.Children.Clear();
+
+            if(string.IsNullOrEmpty(countTextBox.Text))
+            { 
+                return;
+            }
+
+            int amount = 0;
+            amount = int.Parse(countTextBox.Text);
+            
+            if (amount < 0)
+            {
+                amount = 0;
+            }
+
+            for (int i = 0; i < amount; i++)
+            {
+                foreach(var element in optionDataElements)
+                {
+                    switch (element.Option)
+                    {
+                        case SGGE.OPTION.COLOR:
+                            contentElements.Children.Add(new ColorOptionElement(element.Path, element.Name, element.Tooltip, Colors.White));
+                            break;
+                        case SGGE.OPTION.YES_NO_OPTION:
+                            contentElements.Children.Add(new YesNoOptionElement(element.Path, element.Name, element.Tooltip));
+                            break;
+                        case SGGE.OPTION.GRAPHICS:
+                            contentElements.Children.Add(new GraphicOptionElement(element.Path, element.Name, element.Tooltip));
+                            break;
+                        case SGGE.OPTION.SOUND_FILE:
+                            contentElements.Children.Add(new AudioOptionElement(element.Path, element.Name, element.Tooltip));
+                            break;
+                        case SGGE.OPTION.REAL_NUM:
+                            contentElements.Children.Add(new RealNumOptionElement(element.Path, element.Name, element.Tooltip));
+                            break;
+                        case SGGE.OPTION.DECIMAL_NUM:
+                            contentElements.Children.Add(new DecimalNumOptionElement(element.Path, element.Name, element.Tooltip));
+                            break;
+                        case SGGE.OPTION.ENUM:
+                            EnumOptionDataElement eode = (EnumOptionDataElement)element;
+                            contentElements.Children.Add(new EnumOptionElement(element.Path, element.Name, element.Tooltip, eode.EnumValues));
+                            break;
+                        case SGGE.OPTION.TEXT:
+                            contentElements.Children.Add(new TextOptionElement(element.Path, element.Name, element.Tooltip));
+                            break;
+                        case SGGE.OPTION.ARRAY:
+                            // currently not supported
+                            break;
+                    }
+                }
+            }
         }
     }
 }
