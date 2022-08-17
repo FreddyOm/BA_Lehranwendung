@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SGGE;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SeriousGameEngine.CMS
 {
@@ -43,12 +44,25 @@ namespace SeriousGameEngine.CMS
                     if (od.Option == OPTION.ARRAY)
                     {
                         string json = line;
-                        ArrayOptionData aod = JsonConvert.DeserializeObject<ArrayOptionData>(json);
-                        string path = aod.Path;
-                        int opt = (int)aod.Option;
-                        string Tooltip = aod.Tooltip;
-                        var subOpt = aod.Options;
-                        optionsDict.Add(aod.Path, new ArrayOptionDataElement(aod.Path, aod.Tooltip, aod.Option, aod.Options.ToArray()));
+                        var aoe = JObject.Parse(json);
+                        List<OptionData> subOptions = new List<OptionData>();
+
+                        foreach(var option in aoe["Options"])
+                        {
+                            var subOption = JsonConvert.DeserializeObject<OptionData>(option.ToString());
+                            switch(subOption.Option)
+                            {
+                                case OPTION.ARRAY:
+                                    break;
+                                case OPTION.ENUM:
+                                    subOptions.Add(JsonConvert.DeserializeObject<EnumOptionData>(option.ToString()));
+                                    break;
+                                default:
+                                    subOptions.Add(subOption);
+                                    break;
+                            }
+                        }
+                        optionsDict.Add(od.Path, new ArrayOptionDataElement(od.Path, od.Tooltip, OPTION.ARRAY, subOptions.ToArray()));
                     }
                     else if (od.Option == OPTION.ENUM)
                     {
@@ -209,12 +223,12 @@ namespace SeriousGameEngine.CMS
             {
                 if(subOptions[i].Option == OPTION.ARRAY)
                 {
-                    System.Windows.MessageBox.Show("Multidimensional arrays are currently not supported!");
+                    System.Windows.MessageBox.Show($"Multidimensionale Arrays werden aktuell nicht unterstützt!\nDas Element {subOptions[i].Path} wird übersprungen.");
                     continue;
                 }
                 else if(subOptions[i].Option == OPTION.ENUM)
                 {
-                    var enumOption = subOptions[i] as EnumOptionData;
+                    var enumOption = (EnumOptionData) subOptions[i];
                     subOptionElements[i] = new EnumOptionDataElement(enumOption.Path, enumOption.Tooltip, OPTION.ENUM, enumOption.Enumerables);
                 }
                 else

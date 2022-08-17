@@ -1,5 +1,4 @@
 {"Path":"CAT/Titel/Name","Tooltip":"Test Tooltip","Option":2}
-{"Enumerables":["EnumOption1","EnumOption2","EnumOption3"],"Path":"Enum/Titel/EnumName","Tooltip":"Tooltip","Option":5}
 {"Path":"Num/Titel/Number","Tooltip":"Tooltip","Option":7}
 {"Path":"Decimal/Titel/Number","Tooltip":"Tooltip","Option":6}
-{"Options":[{"Path":"Test/String","Tooltip":"Mein Tooltip","Option":2},{"Path":"Test/Int","Tooltip":"Mein Tooltip","Option":7}],"Path":"Array/Titel/Arr","Tooltip":"Tooltip","Option":8}
+{"Options":[{"Path":"Test/String","Tooltip":"Mein Tooltip","Option":2},{"Path":"Test/Int","Tooltip":"Mein Tooltip","Option":7},{"Enumerables":["EnumOption1","EnumOption2","EnumOption3"],"Path":"Enum/Titel/EnumName","Tooltip":"Tooltip","Option":5}],"Path":"Array/Titel/Arr","Tooltip":"Tooltip","Option":8}
