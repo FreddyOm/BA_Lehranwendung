@@ -160,7 +160,6 @@ namespace SeriousGameEngine.CMS
         }
 
         #endregion element getter
-
     }
 
     #region option data elements
