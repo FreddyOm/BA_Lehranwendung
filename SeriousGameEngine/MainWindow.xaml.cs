@@ -288,7 +288,7 @@ namespace SeriousGameEngine
                 }
             }
 
-            Category_Buttons.Children.RemoveRange(0, Category_Buttons.Children.Count);
+            Category_Buttons.Children.Clear();
 
             //Rebuild all categories
             foreach(var e in content.GetAllCategories())
@@ -346,6 +346,8 @@ namespace SeriousGameEngine
                     Options_Panel.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip));
                     break;
                 case SGGE.OPTION.ARRAY:
+                    ArrayOptionDataElement aode = (ArrayOptionDataElement)ode;
+                    Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements));
                     break;
             }
         }
@@ -353,7 +355,6 @@ namespace SeriousGameEngine
         #endregion options
 
         #endregion cms
-
     }
 
     public enum SCREEN

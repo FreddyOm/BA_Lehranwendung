@@ -42,7 +42,12 @@ namespace SeriousGameEngine.CMS
 
                     if (od.Option == OPTION.ARRAY)
                     {
-                        ArrayOptionData aod = JsonConvert.DeserializeObject<ArrayOptionData>(line);
+                        string json = line;
+                        ArrayOptionData aod = JsonConvert.DeserializeObject<ArrayOptionData>(json);
+                        string path = aod.Path;
+                        int opt = (int)aod.Option;
+                        string Tooltip = aod.Tooltip;
+                        var subOpt = aod.Options;
                         optionsDict.Add(aod.Path, new ArrayOptionDataElement(aod.Path, aod.Tooltip, aod.Option, aod.Options.ToArray()));
                     }
                     else if (od.Option == OPTION.ENUM)
@@ -195,25 +200,26 @@ namespace SeriousGameEngine.CMS
     /// </summary>
     public class ArrayOptionDataElement : OptionDataElement
     {
-        public OptionDataElement[] optionDataElements;
-        public ArrayOptionDataElement(string path, string tooltip, SGGE.OPTION option, IOptionData[] subOptions) : base(path, tooltip, option)
+        public OptionDataElement[] subOptionElements;
+        public ArrayOptionDataElement(string path, string tooltip, OPTION option, OptionData[] subOptions) : base(path, tooltip, option)
         {
-            optionDataElements = new OptionDataElement[subOptions.Length];
+            subOptionElements = new OptionDataElement[subOptions.Length];
 
             for(int i = 0; i < subOptions.Length; i++)
             {
-                if(subOptions[i].Option == SGGE.OPTION.ARRAY)
+                if(subOptions[i].Option == OPTION.ARRAY)
                 {
                     System.Windows.MessageBox.Show("Multidimensional arrays are currently not supported!");
                     continue;
                 }
-                else if(subOptions[i].Option == SGGE.OPTION.ENUM)
+                else if(subOptions[i].Option == OPTION.ENUM)
                 {
-
+                    var enumOption = subOptions[i] as EnumOptionData;
+                    subOptionElements[i] = new EnumOptionDataElement(enumOption.Path, enumOption.Tooltip, OPTION.ENUM, enumOption.Enumerables);
                 }
                 else
                 {
-                    optionDataElements[i] = new OptionDataElement(subOptions[i].Path, subOptions[i].Tooltip, subOptions[i].Option);
+                    subOptionElements[i] = new OptionDataElement(subOptions[i].Path, subOptions[i].Tooltip, subOptions[i].Option);
                 }
                 
             }
