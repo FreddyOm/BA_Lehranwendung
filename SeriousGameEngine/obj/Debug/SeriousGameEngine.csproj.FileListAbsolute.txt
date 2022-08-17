@@ -159,3 +159,12 @@ A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\sv\Xceed.Wpf.AvalonDo
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Debug\SeriousGameEngine_Content.g.cs
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Debug\SeriousGameEngine.csproj.CopyComplete
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\Resource\SGGEoptions.sgge
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.dll
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\SGGE.dll
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\SGGE_Runtime.dll
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.dll
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.xml
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\SGGE.pdb
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\SGGE_Runtime.pdb
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.xml
