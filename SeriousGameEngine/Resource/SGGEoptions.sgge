@@ -1,5 +1,7 @@
-{"Path":"CAT/Titel/Name","Tooltip":"Test Tooltip","Option":2}
-{"Path":"Num/Titel/Number","Tooltip":"Tooltip","Option":7}
-{"Path":"Decimal/Titel/Number","Tooltip":"Tooltip","Option":6}
-{"Enumerables":["EnumOption1","EnumOption2","EnumOption3"],"Path":"Enum/Titel/EnumName","Tooltip":"Tooltip","Option":5}
-{"Options":[{"Path":"Test/String","Tooltip":"Mein Tooltip","Option":2},{"Path":"Test/Int","Tooltip":"Mein Tooltip","Option":7}],"Path":"Array/Titel/Arr","Tooltip":"Tooltip","Option":8}
+{"Path":"Logik/Kategorien/Anzahl","Tooltip":"Die Anzahl der Kategorien.","Option":7}
+{"Path":"Logik/WinCondition/Gewinnanzahl","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
+{"Enumerables":["MyFirstVar","MySecVar","MyThirdVar"],"Path":"EnumTest/Enum/MeinEnum","Tooltip":"Ein Enum.","Option":5}
+{"Path":"Kategorien/Logik/Antwort","Tooltip":"Gibt den Antwortindex dieser Kategorie an.","Option":7}
+{"Path":"Kategorie/Aussehen/Text","Tooltip":"Der Text dieser Kategorie.","Option":2}
+{"Path":"Kategorie/Aussehen/Farbe","Tooltip":"Die Farbe dieser Kategorie.","Option":1}
+{"Options":[{"Path":"Items/Fragen/Antwortkategorie","Tooltip":"Der Index, der zur entsprechenden Kategorie passt.","Option":7},{"Path":"Items/Inhalt/Text","Tooltip":"Der Text, der im Item steht.","Option":2},{"Path":"Items/Inhalt/Hintergrund","Tooltip":"Der Hintergrund des Items.","Option":3}],"Path":"Kategorien/Test/Test","Tooltip":"TESTTESTTEST.","Option":8}

@@ -168,3 +168,10 @@ A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.xml
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\SGGE.pdb
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\SGGE_Runtime.pdb
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.xml
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Resource\SGGEoptions.sgge
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.dll
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\Newtonsoft.Json.xml
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\SGGE.pdb
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\SGGE_Runtime.pdb
+C:\Users\fredd\Desktop\SGGE_WPF\SGGE\SeriousGameEngine\bin\Debug\UnityEngine.xml

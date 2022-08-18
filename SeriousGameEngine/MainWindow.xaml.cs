@@ -37,8 +37,8 @@ namespace SeriousGameEngine
             SetScreen(SCREEN.HOME);
             MoveSideBoard(false);
 
-            SideboardSmall.MouseEnter += new System.Windows.Input.MouseEventHandler(MouseEntered);
-            Sideboard.MouseLeave += new System.Windows.Input.MouseEventHandler(MouseLeave);
+            SideboardSmall.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MouseEntered);
+            Sideboard.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MouseLeave);
 
         }
 
@@ -48,8 +48,8 @@ namespace SeriousGameEngine
 
         public void Window_Closing(object sender, CancelEventArgs e)
         {
-            SideboardSmall.MouseEnter -= new System.Windows.Input.MouseEventHandler(MouseEntered);
-            Sideboard.MouseLeave -= new System.Windows.Input.MouseEventHandler(MouseLeave);
+            SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MouseEntered);
+            Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MouseLeave);
         }
 
         #endregion deinit
@@ -242,12 +242,12 @@ namespace SeriousGameEngine
 
         #region menu
         
-        private void MouseEntered(object sender, System.Windows.Input.MouseEventArgs args) 
+        private void MouseEntered(object sender, System.Windows.Input.MouseButtonEventArgs args) 
         {
             MoveSideBoard(true);
         }
 
-        private void MouseLeave(object sender, System.Windows.Input.MouseEventArgs args)
+        private void MouseLeave(object sender, System.Windows.Input.MouseButtonEventArgs args)
         {
             MoveSideBoard(false);
         }

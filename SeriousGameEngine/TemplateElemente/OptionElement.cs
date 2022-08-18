@@ -139,6 +139,7 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.UndoLimit = 8;
             textBox.BorderThickness = new Thickness(0);
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
+            textBox.Margin = new Thickness(2, 2, 2, 2);
 
             border.Child = textBox;
 
@@ -168,6 +169,7 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             
             textBox.Height = 30;
+            textBox.Margin = new Thickness(2,2,2,2);
 
             textBox.UndoLimit = 8;
 
@@ -200,6 +202,7 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             
             textBox.Height = 30;
+            textBox.Margin = new Thickness(2,2,2,2);
             
             textBox.UndoLimit = 8;
 
@@ -228,6 +231,7 @@ namespace SeriousGameEngine.TemplateElemente
             colorPicker.VerticalAlignment = VerticalAlignment.Center;
             colorPicker.HorizontalAlignment = HorizontalAlignment.Right;
             colorPicker.Background = new SolidColorBrush(Colors.Transparent);
+            colorPicker.Margin = new Thickness(2);
 
             border.Child = colorPicker;
         }
@@ -252,7 +256,9 @@ namespace SeriousGameEngine.TemplateElemente
             dropDown.BorderBrush = new SolidColorBrush(Colors.Transparent);
             dropDown.VerticalAlignment = VerticalAlignment.Center;
             dropDown.HorizontalAlignment = HorizontalAlignment.Stretch;
+            dropDown.VerticalContentAlignment = VerticalAlignment.Center;
             dropDown.Height = 30;
+            dropDown.Margin = new Thickness(2);
             
             // add elements
             border.Child = dropDown;
@@ -293,15 +299,23 @@ namespace SeriousGameEngine.TemplateElemente
         TextBox countTextBox = new TextBox();
         StackPanel contentElements = new StackPanel();
         OptionDataElement[] optionDataElements;
-        Grid trenner;
+        Grid spacing;
+        CheckBox checkBox = new CheckBox();
         private int maxElements = 99;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="optionName"></param>
+        /// <param name="tooltip"></param>
+        /// <param name="optionDataElements"></param>
         public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements) : base(optionName, tooltip)
         {
             this.optionDataElements = optionDataElements;
             countTextBox.Name = id.Replace('/', '_');
             countTextBox.Width = 30;
-            countTextBox.Height = 30;
+            countTextBox.Height = 26;
             countTextBox.TextChanged += new TextChangedEventHandler(PopulateContent);
             countTextBox.VerticalContentAlignment = VerticalAlignment.Center;
             countTextBox.HorizontalAlignment = HorizontalAlignment.Right;
@@ -309,13 +323,29 @@ namespace SeriousGameEngine.TemplateElemente
             contentElements.Name = id.Replace('/', '_') + "_Content";
             border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C6C74"));
             border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C6C74"));
+            border.Margin = new Thickness(0,2,0,0);
             
+            checkBox.VerticalAlignment = VerticalAlignment.Center;
+            checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+
+            checkBox.Click += new RoutedEventHandler(ShowHideArrayOptions);
+
             SetDock(border, Dock.Bottom);
 
-
             border.Child = contentElements;
+            Children.Add(checkBox);
             Children.Add(countTextBox);
 
+        }
+
+        /// <summary>
+        /// Update array when checkbox is (un-)checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void ShowHideArrayOptions(object sender, RoutedEventArgs args)
+        {
+            PopulateContent(null, null);
         }
 
         /// <summary>
@@ -325,8 +355,22 @@ namespace SeriousGameEngine.TemplateElemente
         /// <param name="args"></param>
         private void PopulateContent(object sender, TextChangedEventArgs args)
         {
+            // dispose elements to avoid memory leak and clear them afterwards
+            foreach(var element in contentElements.Children)
+            {
+                if(element is OptionUIElement)
+                {
+                    OptionUIElement e = element as OptionUIElement;
+                    e.Dispose();
+                }                
+            }
+
             contentElements.Children.Clear();
 
+            // return if checkbox is not checked
+            if (!(bool)checkBox.IsChecked) { return; }
+
+            // no valid inputs
             if(string.IsNullOrEmpty(countTextBox.Text))
             { 
                 return;
@@ -345,6 +389,7 @@ namespace SeriousGameEngine.TemplateElemente
                 amount = 0;
             }
 
+            // show elements
             for (int i = 0; i < amount; i++)
             {
                 foreach(var element in optionDataElements)
@@ -381,25 +426,25 @@ namespace SeriousGameEngine.TemplateElemente
                             break;
                     }
                 }
-                if(i != amount -1)
-                {
-                    trenner = new Grid();
-                    trenner.Height = 1;
-                    trenner.HorizontalAlignment = HorizontalAlignment.Stretch;
+                // add spacing 
+                    spacing = new Grid();
+                    spacing.Height = 1;
+                    spacing.HorizontalAlignment = HorizontalAlignment.Stretch;
 
-                    trenner.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF91BAD5"));
-                    trenner.Margin = new Thickness(5, 10, 5, 0);
+                    spacing.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF91BAD5"));
+                    spacing.Margin = new Thickness(5, 10, 5, 0);
 
-                    contentElements.Children.Add(trenner);
-                }
-                
+                    contentElements.Children.Add(spacing);
             }
-            
         }
 
+        /// <summary>
+        /// Unsubscribe events
+        /// </summary>
         public override void Dispose()
         {
             countTextBox.TextChanged -= new TextChangedEventHandler(PopulateContent);
+            checkBox.Click -= new RoutedEventHandler(ShowHideArrayOptions);
             base.Dispose();
         }
     }
