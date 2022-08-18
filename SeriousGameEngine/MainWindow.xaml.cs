@@ -20,6 +20,9 @@ namespace SeriousGameEngine
 
         #region init
 
+        /// <summary>
+        /// Constructor of the window
+        /// </summary>
         public MainWindow()
         {
             // Win
@@ -37,8 +40,8 @@ namespace SeriousGameEngine
             SetScreen(SCREEN.HOME);
             MoveSideBoard(false);
 
-            SideboardSmall.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MouseEntered);
-            Sideboard.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MouseLeave);
+            SideboardSmall.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
+            Sideboard.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
 
         }
 
@@ -46,10 +49,15 @@ namespace SeriousGameEngine
 
         #region deinit
 
+        /// <summary>
+        /// Event that is called when the window is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Window_Closing(object sender, CancelEventArgs e)
         {
-            SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MouseEntered);
-            Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MouseLeave);
+            SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
+            Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
         }
 
         #endregion deinit
@@ -192,6 +200,9 @@ namespace SeriousGameEngine
 
         #region screens
 
+        /// <summary>
+        /// Initializes the screens
+        /// </summary>
         private void InitScreens()
         {
             screens[0] = Grid_MenuSettings;
@@ -202,6 +213,10 @@ namespace SeriousGameEngine
             screens[5] = Grid_Exportscreen;
         }
 
+        /// <summary>
+        /// Sets the screen to a specific screen
+        /// </summary>
+        /// <param name="screen"></param>
         private void SetScreen(SCREEN screen)
         {
             foreach(Grid grid in screens)
@@ -242,16 +257,30 @@ namespace SeriousGameEngine
 
         #region menu
         
-        private void MouseEntered(object sender, System.Windows.Input.MouseButtonEventArgs args) 
+        /// <summary>
+        /// Receiver of the mouse pressed event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void MousePressedSmallSideboard(object sender, System.Windows.Input.MouseButtonEventArgs args) 
         {
             MoveSideBoard(true);
         }
 
-        private void MouseLeave(object sender, System.Windows.Input.MouseButtonEventArgs args)
+        /// <summary>
+        /// Receiver of the mouse pressed event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void MousePressedBigSideboard(object sender, System.Windows.Input.MouseButtonEventArgs args)
         {
             MoveSideBoard(false);
         }
 
+        /// <summary>
+        /// Moves the sideboard menu in or out
+        /// </summary>
+        /// <param name="_out"></param>
         private void MoveSideBoard(bool _out)
         {
             if(_out)
@@ -272,6 +301,9 @@ namespace SeriousGameEngine
 
         #region subjects
 
+        /// <summary>
+        /// Initializes all subjects
+        /// </summary>
         private void InitSubjects()
         {
             subjects[0] = Border_SubjectsScience;
@@ -280,6 +312,10 @@ namespace SeriousGameEngine
             subjects[3] = Border_SubjectsFurther;
         }
 
+        /// <summary>
+        /// Sets a specific subject 
+        /// </summary>
+        /// <param name="subject">The subject to load</param>
         private void SetSubject(SUBJECT subject)
         {
             foreach(Border sub in subjects)
@@ -294,6 +330,9 @@ namespace SeriousGameEngine
 
         #region game templates
 
+        /// <summary>
+        /// Initializes the game template categories
+        /// </summary>
         private void InitGameTemplates()
         {
             gameTemplates[0] = Border_TemplateAction;
@@ -304,6 +343,10 @@ namespace SeriousGameEngine
             gameTemplates[5] = Border_TemplateFavourites;
         }
 
+        /// <summary>
+        /// Loads a specific category for the templates
+        /// </summary>
+        /// <param name="cat"></param>
         private void SetGameTemplateCategory(TEMPLATE_CATEGORY cat)
         {
             foreach(Border category in gameTemplates)
@@ -321,6 +364,9 @@ namespace SeriousGameEngine
 
         #region category
 
+        /// <summary>
+        /// Creates the category menu
+        /// </summary>
         public void FillCategories()
         {
             //Remove delegates and delete all existing buttons
@@ -350,6 +396,10 @@ namespace SeriousGameEngine
 
         #region options 
 
+        /// <summary>
+        /// Loads all options of a specific category
+        /// </summary>
+        /// <param name="category"></param>
         private void LoadOptions(string category)
         {
             foreach (var element in Options_Panel.Children)
@@ -371,6 +421,10 @@ namespace SeriousGameEngine
             }
         }
 
+        /// <summary>
+        /// Creates a option element for a specific option data
+        /// </summary>
+        /// <param name="ode">The option data element</param>
         private void CreateOption(OptionDataElement ode)
         {
             switch (ode.Option)

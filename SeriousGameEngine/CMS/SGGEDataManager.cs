@@ -18,6 +18,9 @@ namespace SeriousGameEngine.CMS
 
         #region init
 
+        /// <summary>
+        /// The Constructor of the data manager
+        /// </summary>
         public SGGEDataManager()
         {
             LOAD_PATH = Environment.CurrentDirectory + "/Resource/SGGEoptions.sgge";
@@ -211,7 +214,6 @@ namespace SeriousGameEngine.CMS
             Tooltip = tooltip;
             Option = option;
             Path = path;
-
         }
     }
 

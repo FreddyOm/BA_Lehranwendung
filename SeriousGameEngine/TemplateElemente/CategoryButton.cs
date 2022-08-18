@@ -3,6 +3,9 @@ using System.Windows.Media;
 
 namespace SeriousGameEngine.TemplateElemente
 {
+    /// <summary>
+    /// A class that defines a category button
+    /// </summary>
     internal class CategoryButton : Button
     {
         public bool HasEventHandler { get; set; }
