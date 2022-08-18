@@ -4,6 +4,7 @@ using System.Windows.Media;
 using SeriousGameEngine.TemplateElemente;
 using SeriousGameEngine.CMS;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace SeriousGameEngine
 {
@@ -402,6 +403,8 @@ namespace SeriousGameEngine
         /// <param name="category"></param>
         private void LoadOptions(string category)
         {
+
+            // dispose all elements and clear list
             foreach (var element in Options_Panel.Children)
             {
                 if(element is OptionUIElement)
@@ -413,11 +416,58 @@ namespace SeriousGameEngine
 
             Options_Panel.Children.Clear();
 
+            //categories
             OptionDataElement[] categoryElements = content.GetElementsOfCategory(category);
+
+            // filter headings and list every heading once
+            List<string> header = new List<string>();
 
             foreach(var element in categoryElements)
             {
-                CreateOption(element);
+                if(!header.Contains(element.Header))
+                    header.Add(element.Header);
+            }
+
+            // add all fitting options to their headings
+            foreach(string h in header)
+            {
+                if(!string.IsNullOrEmpty(h))
+                {
+                    Options_Panel.Children.Add(new HeaderElement(h));
+                    
+                    foreach (var element in categoryElements)
+                    {
+                        if (element.Header.Equals(h))
+                        {
+                            CreateOption(element);
+                        }
+                    }
+                }
+            }
+
+            // check if other elements without headings exist
+            List<OptionDataElement> otherElements = new List<OptionDataElement>();
+
+            foreach(var element in categoryElements)
+            {
+                if (string.IsNullOrEmpty(element.Header))
+                {
+                    otherElements.Add(element);
+                }
+            }
+
+            // if not, return
+            if(otherElements.Count == 0) { return; }
+
+            // otherwise add all elements under the "other" heading
+            Options_Panel.Children.Add(new HeaderElement("Sonstige"));
+
+            foreach (var element in categoryElements)
+            {
+                if (string.IsNullOrEmpty(element.Header))
+                {
+                    CreateOption(element);
+                }
             }
         }
 

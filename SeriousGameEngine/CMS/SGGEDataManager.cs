@@ -242,8 +242,7 @@ namespace SeriousGameEngine.CMS
                 else
                 {
                     subOptionElements[i] = new OptionDataElement(subOptions[i].Path, subOptions[i].Tooltip, subOptions[i].Option);
-                }
-                
+                } 
             }
         }
     }

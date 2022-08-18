@@ -71,10 +71,11 @@
     <Grid x:Name="Grid_Background" Background="#FF5C6C74">
 
         <DockPanel Margin="8">
-            <Grid x:Name="Grid_MenuSettings">
-                <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent">
-                    <Border x:Name="Menu_Panel_Border" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="673">
-                        <StackPanel x:Name="Menu_Panel" Margin="0" Background="Transparent">
+            <Grid x:Name="Grid_MenuSettings" VerticalAlignment="Stretch">
+
+                <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch">
+                    <Border x:Name="Menu_Panel_Border" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
+                        <StackPanel x:Name="Menu_Panel" Background="Transparent" Height="685">
                             <Image Source="Resource/Menu.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="51" Width="51" Margin="5,5,0,0"></Image>
                             <Button x:Name="Button_Profilepricture" Style="{DynamicResource RoundedCornerStyle}" Height="70" Width="70" Background="#FF5C6C74" BorderBrush="#FF0A2630"  Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Content="Profilbild" Margin="62,70,66,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Benutzername" Margin="39,5,39,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -83,9 +84,10 @@
                             <Button x:Name="Button_Profil" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Benutzerkonto" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Profil_Click"/>
                             <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="5,220,0,5"></Image>
                         </StackPanel>
-                    
+
                     </Border>
                 </StackPanel>
+
                 <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left" d:IsHidden="True">
                     <Border x:Name="Menu_Panel_BorderSmall" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="673">
                         <StackPanel x:Name="Menu_PanelSmall" Margin="0" Background="Transparent">
@@ -103,12 +105,11 @@
                             <Image x:Name="Img_Menu_LogoutSmall" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="5,195,0,5"></Image>
                         </StackPanel>
                     </Border>
-
                 </StackPanel>
 
             </Grid>
 
-           
+
             <DockPanel x:Name="Inspector" Margin="5,0,0,0">
 
                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
@@ -201,7 +202,7 @@
                                         <Border x:Name="Border_Sciences" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
                                             <Button x:Name="Button_Sciences" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        
+
                                     </UniformGrid>
                                 </Border>
 
@@ -251,7 +252,7 @@
                                             <Button x:Name="Button_Religion" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Religionsunterricht" FontFamily="Arial" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                    
+
                                     </UniformGrid>
                                 </Border>
 
@@ -277,7 +278,7 @@
                                             <Button x:Name="Button_Psychology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
                         Content="Psychologie" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                    
+
                                     </UniformGrid>
                                 </Border>
                             </Grid>

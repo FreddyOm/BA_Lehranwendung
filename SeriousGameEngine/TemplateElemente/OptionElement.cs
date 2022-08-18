@@ -552,7 +552,8 @@ namespace SeriousGameEngine.TemplateElemente
                     return;
                 }
 
-                pathTextBlock.Text = path;
+                var splitPath = path.Split('\\');
+                pathTextBlock.Text = splitPath[splitPath.Length - 1];
 
                 // copy the image into a resources folder
             }
@@ -585,6 +586,7 @@ namespace SeriousGameEngine.TemplateElemente
             innerBorder.Drop += DragAndDrop;
             innerBorder.Height = 123;
             innerBorder.Child = image;
+            innerBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             // path text block
             pathTextBlock.Text = path;
@@ -626,8 +628,8 @@ namespace SeriousGameEngine.TemplateElemente
                     System.Windows.MessageBox.Show(errorMsg);
                     return;
                 }
-
-                pathTextBlock.Text = path;
+                var splitPath = path.Split('\\');
+                pathTextBlock.Text = splitPath[splitPath.Length - 1];
 
                 // copy file and save in a resource folder
             }
