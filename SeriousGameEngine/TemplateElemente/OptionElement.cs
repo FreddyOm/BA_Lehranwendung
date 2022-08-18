@@ -35,7 +35,7 @@ namespace SeriousGameEngine.TemplateElemente
             // DockPanel
             Name = optionName;
             Margin = new Thickness(marginL, marginT, marginR, marginB);
-            Height = height;
+            //Height = height;
             //SetDock(this, Dock.Top);
             LastChildFill = true;
 
@@ -46,7 +46,7 @@ namespace SeriousGameEngine.TemplateElemente
             //textName.Height = height;
             textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.foregroundColor1));
             textName.HorizontalAlignment = HorizontalAlignment.Left;
-            textName.VerticalAlignment = VerticalAlignment.Center;
+            textName.VerticalAlignment = VerticalAlignment.Top;
 
             SetDock(textName, Dock.Left);
             Children.Add(textName);
@@ -124,21 +124,10 @@ namespace SeriousGameEngine.TemplateElemente
 
     public class TextOptionElement : OptionUIElement
     {
-        Border border;
         TextBox textBox;
 
         public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(optionName, tooltip)
         {
-            // border
-            border = new Border();
-            border.Name = id.Replace('/', '_');
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            border.BorderThickness = new Thickness(1, 1, 1, 1);
-            border.CornerRadius = new CornerRadius(4, 4, 4, 4);
-            HorizontalAlignment = HorizontalAlignment.Center;
-            VerticalAlignment = VerticalAlignment.Center;
-
             // textbox
             textBox = new TextBox();
             textBox.Name = "TextBox_" + id.Replace('/', '_');
@@ -153,8 +142,6 @@ namespace SeriousGameEngine.TemplateElemente
 
             border.Child = textBox;
 
-            //SetDock(border, Dock.Right);
-            Children.Add(border);
         }
 
         public string GetValue()
@@ -306,19 +293,29 @@ namespace SeriousGameEngine.TemplateElemente
         TextBox countTextBox = new TextBox();
         StackPanel contentElements = new StackPanel();
         OptionDataElement[] optionDataElements;
+        Grid trenner;
+        private int maxElements = 99;
 
         public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements) : base(optionName, tooltip)
         {
             this.optionDataElements = optionDataElements;
-            countTextBox = new TextBox();
             countTextBox.Name = id.Replace('/', '_');
             countTextBox.Width = 30;
+            countTextBox.Height = 30;
             countTextBox.TextChanged += new TextChangedEventHandler(PopulateContent);
+            countTextBox.VerticalContentAlignment = VerticalAlignment.Center;
+            countTextBox.HorizontalAlignment = HorizontalAlignment.Right;
 
             contentElements.Name = id.Replace('/', '_') + "_Content";
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C6C74"));
+            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C6C74"));
+            
+            SetDock(border, Dock.Bottom);
+
 
             border.Child = contentElements;
             Children.Add(countTextBox);
+
         }
 
         /// <summary>
@@ -340,6 +337,11 @@ namespace SeriousGameEngine.TemplateElemente
             
             if (amount < 0)
             {
+                amount = 0;
+            }
+            else if(amount > maxElements)
+            {
+                System.Windows.MessageBox.Show($"Es werden maximal {maxElements} Elemente unterstützt.\nGebe eine Anzahl zwischen 0 und {maxElements} an.");
                 amount = 0;
             }
 
@@ -379,7 +381,26 @@ namespace SeriousGameEngine.TemplateElemente
                             break;
                     }
                 }
+                if(i != amount -1)
+                {
+                    trenner = new Grid();
+                    trenner.Height = 1;
+                    trenner.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+                    trenner.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF91BAD5"));
+                    trenner.Margin = new Thickness(5, 10, 5, 0);
+
+                    contentElements.Children.Add(trenner);
+                }
+                
             }
+            
+        }
+
+        public override void Dispose()
+        {
+            countTextBox.TextChanged -= new TextChangedEventHandler(PopulateContent);
+            base.Dispose();
         }
     }
 
@@ -426,6 +447,7 @@ namespace SeriousGameEngine.TemplateElemente
         public override void Dispose()
         {
             innerBorder.Drop -= DragAndDrop;
+            base.Dispose();
         }
 
         private void DragAndDrop(object sender, DragEventArgs e)
@@ -497,6 +519,7 @@ namespace SeriousGameEngine.TemplateElemente
         public override void Dispose()
         {
             this.Drop -= DragAndDrop;
+            base.Dispose();
         }
 
         private void DragAndDrop(object sender, DragEventArgs e)
@@ -537,7 +560,7 @@ namespace SeriousGameEngine.TemplateElemente
             Height = 30;
             HorizontalAlignment = HorizontalAlignment.Center;
             Margin = new Thickness(0,0,5,0);
-            VerticalAlignment = VerticalAlignment.Center;
+            VerticalAlignment = VerticalAlignment.Top;
 
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
