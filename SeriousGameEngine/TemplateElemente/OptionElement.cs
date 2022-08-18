@@ -18,42 +18,80 @@ using SeriousGameEngine.CMS;
 
 namespace SeriousGameEngine.TemplateElemente
 {
-    public class OptionUIElement : DockPanel
-    {
-        int marginL = 5;
-        int marginT = 5;
-        int marginR = 5;
-        int marginB = 0;
-        private float width = 200.0f;
-        private float height = 25.0f;
-        public static string backgroundColor1 = "#FF0A2630";
-        public static string backgroundColor2 = "#FF9C8A87";
-        public static string foregroundColor1 = "#FFFFFFFF";
-        public static string foregroundColor2 = "#FF91BAD5";
 
+    public class OptionUIElement : DockPanel, IDisposable
+    {
+        int marginL = 10;
+        int marginT = 10;
+        int marginR = 10;
+        int marginB = 0;
+
+        private float width = 200.0f;
+        private float height = 38;
+        public Border border = new Border();
+        Tooltip tooltipElement;
         public OptionUIElement(string optionName, string tooltip)
         {
-            this.Name = optionName;
-            this.Margin = new Thickness(marginL, marginT, marginR, marginB);
+            // DockPanel
+            Name = optionName;
+            Margin = new Thickness(marginL, marginT, marginR, marginB);
+            Height = height;
+            //SetDock(this, Dock.Top);
+            LastChildFill = true;
 
-            Label labelName = new Label();
-            Label labelTooltip = new Label();
+            //TextBlock
+            TextBlock textName = new TextBlock();
+            textName.Text = optionName;
+            textName.Width = width;
+            //textName.Height = height;
+            textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.foregroundColor1));
+            textName.HorizontalAlignment = HorizontalAlignment.Left;
+            textName.VerticalAlignment = VerticalAlignment.Center;
 
-            labelName.Content = optionName;
-            labelName.Width = width;
-            labelName.Height = height;
-            labelName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(foregroundColor1));
+            SetDock(textName, Dock.Left);
+            Children.Add(textName);
 
-            labelTooltip.Content = tooltip;
-            labelTooltip.Width = width;
-            labelTooltip.Height = height;
-            labelTooltip.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(foregroundColor1));
+            // Tooltip Image
+            tooltipElement = new Tooltip(tooltip);
+            SetDock(tooltipElement, Dock.Left);
+            Children.Add(tooltipElement);
 
-            SetDock(labelName, Dock.Left);
-            Children.Add(labelName);
+            // border
+            border.Name = "Border_" + optionName;
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            border.BorderThickness = new Thickness(1, 1, 1, 1);
+            border.CornerRadius = new CornerRadius(8, 8, 8, 8);
+            border.HorizontalAlignment = HorizontalAlignment.Stretch;
+            SetDock(border, Dock.Right);            
+            Children.Add(border);
+        }
 
-            SetDock(labelTooltip, Dock.Left);
-            Children.Add(labelTooltip);
+        public virtual void Dispose()
+        {
+            tooltipElement.Dispose();
+        }
+    }
+
+    public class HeaderElement : TextBlock
+    {
+        int marginL = 5;
+        int marginT = 0;
+        int marginR = 0;
+        int marginB = 0;
+        
+        private int fontSize = 18;
+        private FontWeight fontWeight = SystemFonts.CaptionFontWeight;
+
+        public HeaderElement(string headerText)
+        {
+            this.Text = headerText;
+            Margin = new Thickness(marginL, marginT, marginR, marginB);
+
+            FontSize = fontSize;
+            FontWeight = fontWeight;
+            FontFamily = Design.AppFont;
+            Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF9C8A87));
         }
     }
 
@@ -63,12 +101,19 @@ namespace SeriousGameEngine.TemplateElemente
 
         public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(optionName, tooltip)
         {
-            checkBox = new CheckBox();
-            checkBox.Name = id.Replace('/', '_');
-            checkBox.IsChecked = value;
+            HorizontalAlignment = HorizontalAlignment.Center;
+            VerticalAlignment = VerticalAlignment.Center;
 
-            SetDock(checkBox, Dock.Right);
-            Children.Add(checkBox);
+            checkBox = new CheckBox();
+            checkBox.Name = "Checkbox_" + id.Replace('/', '_');
+            checkBox.IsChecked = value;
+            checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+            checkBox.VerticalAlignment = VerticalAlignment.Center;
+            checkBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            checkBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            checkBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+
+            border.Child = checkBox;
         }
 
         public bool GetValue()
@@ -79,16 +124,37 @@ namespace SeriousGameEngine.TemplateElemente
 
     public class TextOptionElement : OptionUIElement
     {
+        Border border;
         TextBox textBox;
 
         public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(optionName, tooltip)
         {
-            textBox = new TextBox();
-            textBox.Name = id.Replace('/', '_');
-            textBox.Text = value;
+            // border
+            border = new Border();
+            border.Name = id.Replace('/', '_');
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            border.BorderThickness = new Thickness(1, 1, 1, 1);
+            border.CornerRadius = new CornerRadius(4, 4, 4, 4);
+            HorizontalAlignment = HorizontalAlignment.Center;
+            VerticalAlignment = VerticalAlignment.Center;
 
-            SetDock(textBox, Dock.Right);
-            Children.Add(textBox);
+            // textbox
+            textBox = new TextBox();
+            textBox.Name = "TextBox_" + id.Replace('/', '_');
+            textBox.Text = value;
+            textBox.Height = 30;
+            textBox.Background = new SolidColorBrush(Colors.Transparent);
+            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+            textBox.FontFamily = Design.AppFont;
+            textBox.UndoLimit = 8;
+            textBox.BorderThickness = new Thickness(0);
+            textBox.VerticalContentAlignment = VerticalAlignment.Center;
+
+            border.Child = textBox;
+
+            //SetDock(border, Dock.Right);
+            Children.Add(border);
         }
 
         public string GetValue()
@@ -99,16 +165,27 @@ namespace SeriousGameEngine.TemplateElemente
 
     public class RealNumOptionElement : OptionUIElement
     {
-        TextBox textBox;
+        TextBox textBox = new TextBox();
 
         public RealNumOptionElement(string id, string optionName, string tooltip, string value = "0") : base(optionName, tooltip)
         {
-            textBox = new TextBox();
-            textBox.Name = id.Replace('/','_');
+            textBox.Name = "Textbox_" + id.Replace('/','_');
             textBox.Text = "" + value;
 
-            SetDock(textBox, Dock.Right);
-            Children.Add(textBox);
+            textBox.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            textBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+            
+            textBox.FontFamily = Design.AppFont;
+
+            textBox.VerticalContentAlignment = VerticalAlignment.Center;
+            
+            textBox.Height = 30;
+
+            textBox.UndoLimit = 8;
+
+            // add elements
+            border.Child = textBox;
         }
 
         public int GetValue()
@@ -119,16 +196,28 @@ namespace SeriousGameEngine.TemplateElemente
 
     public class DecimalNumOptionElement : OptionUIElement
     {
-        TextBox textBox;
+        TextBox textBox = new TextBox();
 
         public DecimalNumOptionElement(string id, string optionName, string tooltip, string value = "0.0") : base(optionName, tooltip)
         {
-            textBox = new TextBox();
-            textBox.Name = id.Replace('/', '_'); ;
-            textBox.Text = "" + value;
+            // textbox
+            textBox.Name = "Textbox_" + id.Replace('/', '_');
+            textBox.Text = value;
+            
+            textBox.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            textBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
 
-            SetDock(textBox, Dock.Right);
-            Children.Add(textBox);
+            textBox.FontFamily = Design.AppFont;
+            
+            textBox.VerticalContentAlignment = VerticalAlignment.Center;
+            
+            textBox.Height = 30;
+            
+            textBox.UndoLimit = 8;
+
+            // add elements
+            border.Child = textBox;
         }
 
         public float GetValue()
@@ -143,12 +232,17 @@ namespace SeriousGameEngine.TemplateElemente
 
         public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(optionName, tooltip)
         {
-            colorPicker = new ColorPicker();
-            colorPicker.Name = id.Replace('/', '_');
-            colorPicker.SelectedColor = value;
+            border.VerticalAlignment = VerticalAlignment.Center;
 
-            SetDock(colorPicker, Dock.Right);
-            Children.Add(colorPicker);
+            colorPicker = new ColorPicker();
+            colorPicker.Name = "ColorPicker_" + id.Replace('/', '_');
+            colorPicker.SelectedColor = value;
+            colorPicker.Width = 400;
+            colorPicker.VerticalAlignment = VerticalAlignment.Center;
+            colorPicker.HorizontalAlignment = HorizontalAlignment.Right;
+            colorPicker.Background = new SolidColorBrush(Colors.Transparent);
+
+            border.Child = colorPicker;
         }
 
         public Color GetValue()
@@ -159,16 +253,22 @@ namespace SeriousGameEngine.TemplateElemente
 
     public class EnumOptionElement : OptionUIElement
     {
-        ComboBox dropDown;
+        ComboBox dropDown = new ComboBox();
 
         public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions) : base(optionName, tooltip)
         {
-            dropDown = new ComboBox();
-            dropDown.Name = id.Replace('/', '_');
+            // dropdown
+            dropDown.Name = "DropDown_" + id.Replace('/', '_');
             dropDown.ItemsSource = enumOptions;
+            dropDown.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+            dropDown.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            dropDown.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            dropDown.VerticalAlignment = VerticalAlignment.Center;
+            dropDown.HorizontalAlignment = HorizontalAlignment.Stretch;
+            dropDown.Height = 30;
             
-            SetDock(dropDown, Dock.Right);
-            Children.Add(dropDown);
+            // add elements
+            border.Child = dropDown;
         }
 
         public int GetValue()
@@ -177,160 +277,12 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
-    public class DragDropGraphicElement : OptionUIElement
-    {
-        public string path;
-        private Border border;
-        private Image image;
-
-        private string[] format;
-        public DragDropGraphicElement(string[] format, string id, string optionName, string tooltip, string path) : base(optionName, tooltip)
-        {
-            if (!string.IsNullOrEmpty(path))
-            {
-                this.path = path;
-            }
-            this.format = format;
-
-            border = new Border();
-            image = new Image();
-            border.CornerRadius = new CornerRadius(3,3,3,3);
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.backgroundColor2));
-            border.Width = 50;
-            border.Height = 50;
-
-            border.AllowDrop = true;
-            
-            border.Drop += DragAndDrop;
-
-            DockPanel.SetDock(border, Dock.Left);
-            Children.Add(border);
- 
-            DockPanel.SetDock(image, Dock.Right);
-            Children.Add(image);
-
-        }
-
-        public void Dispose()
-        {
-            this.Drop -= DragAndDrop;
-        }
-
-        private void DragAndDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                var data = (string[])e.Data.GetData(DataFormats.FileDrop);
-                path = data[0];
-
-                if (!format.Any<string>(ending => path.ToLower().EndsWith(ending)))
-                {
-                    string errorMsg = "Aktuell werden nur folgemde Dateitypen unterstützt:\n";
-
-                    foreach(string ext in format)
-                    {
-                        errorMsg += "\"" + ext + "\" \n";
-                    }
-
-                    System.Windows.MessageBox.Show(errorMsg);
-                    return;
-                }
-                
-                try
-                {
-                    image.Width = 150;
-                    image.BeginInit();
-                    image.Source = (ImageSource)new ImageSourceConverter().ConvertFromString(path);
-                    image.EndInit();
-                }catch(Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.ToString());
-                }
-                    
-
-            }
-        }
-    }
-
-    public class DragDropAudioElement : OptionUIElement
-    {
-        public string path;
-        private Border border;
-        private Image image;
-
-        private string[] format;
-        public DragDropAudioElement(string[] format, string id, string optionName, string tooltip, string path) : base(optionName, tooltip)
-        {
-            if (!string.IsNullOrEmpty(path))
-            {
-                this.path = path;
-            }
-            this.format = format;
-
-            border = new Border();
-            image = new Image();
-            border.CornerRadius = new CornerRadius(3, 3, 3, 3);
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.backgroundColor2));
-            border.Width = 50;
-            border.Height = 50;
-
-            border.AllowDrop = true;
-
-            border.Drop += DragAndDrop;
-
-            DockPanel.SetDock(border, Dock.Left);
-            Children.Add(border);
-
-            DockPanel.SetDock(image, Dock.Right);
-            Children.Add(image);
-
-        }
-
-        public void Dispose()
-        {
-            this.Drop -= DragAndDrop;
-        }
-
-        private void DragAndDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                var data = (string[])e.Data.GetData(DataFormats.FileDrop);
-                path = data[0];
-
-                if (!format.Any<string>(ending => path.ToLower().EndsWith(ending)))
-                {
-                    string errorMsg = "Aktuell werden nur folgemde Dateitypen unterstützt:\n";
-
-                    foreach (string ext in format)
-                    {
-                        errorMsg += "\"" + ext + "\" \n";
-                    }
-
-                    System.Windows.MessageBox.Show(errorMsg);
-                    return;
-                }
-
-                try
-                {
-                    image.Width = 50;
-                    image.BeginInit();
-                    string imgPath = Environment.CurrentDirectory + "/Resource/AudioDatei1.png";
-                    image.Source = (ImageSource)new ImageSourceConverter().ConvertFromString(imgPath);
-                    image.EndInit();
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.ToString());
-                }
-            }
-        }
-    }
-
     public class GraphicOptionElement : DragDropGraphicElement
     {
         public GraphicOptionElement(string id, string optionName, string tooltip, string value = "") : base(new [] {".png", ".tif", ".jpg", ".jpeg"},id, optionName, tooltip, value)
-        {  }
+        {  
+            
+        }
 
         public string GetValue()
         {
@@ -351,8 +303,8 @@ namespace SeriousGameEngine.TemplateElemente
 
     public class ArrayOptionElement : OptionUIElement
     {
-        TextBox countTextBox;
-        StackPanel contentElements;
+        TextBox countTextBox = new TextBox();
+        StackPanel contentElements = new StackPanel();
         OptionDataElement[] optionDataElements;
 
         public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements) : base(optionName, tooltip)
@@ -363,18 +315,17 @@ namespace SeriousGameEngine.TemplateElemente
             countTextBox.Width = 30;
             countTextBox.TextChanged += new TextChangedEventHandler(PopulateContent);
 
-            SetDock(countTextBox, Dock.Right);
-            Children.Add(countTextBox);
-
-
-            contentElements = new StackPanel();
             contentElements.Name = id.Replace('/', '_') + "_Content";
 
-            SetDock(contentElements, Dock.Bottom);
-            Children.Add(contentElements);
-
+            border.Child = contentElements;
+            Children.Add(countTextBox);
         }
 
+        /// <summary>
+        /// Adds the appropriate options to the stackpanel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void PopulateContent(object sender, TextChangedEventArgs args)
         {
             contentElements.Children.Clear();
@@ -429,6 +380,183 @@ namespace SeriousGameEngine.TemplateElemente
                     }
                 }
             }
+        }
+    }
+
+    public class DragDropGraphicElement : OptionUIElement
+    {
+        public string path = "";
+        private StackPanel stackPanel = new StackPanel();
+        private Border innerBorder = new Border();
+        private TextBlock pathTextBlock = new TextBlock();
+        private Image image = new Image();
+
+        private string[] format;
+        public DragDropGraphicElement(string[] format, string id, string optionName, string tooltip, string path) : base(optionName, tooltip)
+        {
+            if (!string.IsNullOrEmpty(path))
+            {
+                this.path = path;
+            }
+            this.format = format;
+            this.Height = 184;
+
+            //image.Source = 
+
+            // inner border
+            innerBorder.AllowDrop = true;
+            innerBorder.Height = 123;
+            innerBorder.Drop += DragAndDrop;
+
+            // textblock
+            pathTextBlock.Text = path;
+            pathTextBlock.FontSize = 14;
+            pathTextBlock.FontFamily = Design.AppFont;
+            pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+
+            // add elements
+            innerBorder.Child = image;
+
+            stackPanel.Children.Add(innerBorder);
+            stackPanel.Children.Add(pathTextBlock);
+
+            border.Child = stackPanel;
+        }
+
+        public override void Dispose()
+        {
+            innerBorder.Drop -= DragAndDrop;
+        }
+
+        private void DragAndDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var data = (string[])e.Data.GetData(DataFormats.FileDrop);
+                path = data[0];
+
+                if (!format.Any<string>(ending => path.ToLower().EndsWith(ending)))
+                {
+                    string errorMsg = "Aktuell werden nur folgemde Dateitypen unterstützt:\n";
+
+                    foreach (string ext in format)
+                    {
+                        errorMsg += "\"" + ext + "\" \n";
+                    }
+
+                    System.Windows.MessageBox.Show(errorMsg);
+                    return;
+                }
+
+                pathTextBlock.Text = path;
+
+                // copy the image into a resources folder
+            }
+        }
+    }
+
+    public class DragDropAudioElement : OptionUIElement
+    {
+        public string path;
+        private StackPanel stackPanel = new StackPanel();
+        private Border innerBorder = new Border();
+        private TextBlock pathTextBlock = new TextBlock();
+        private Image image = new Image();
+
+        private string[] format;
+        public DragDropAudioElement(string[] format, string id, string optionName, string tooltip, string path) : base(optionName, tooltip)
+        {
+            if (!string.IsNullOrEmpty(path))
+            {
+                this.path = path;
+            }
+            this.format = format;
+            this.Height = 184;
+
+            // inner border
+            innerBorder.AllowDrop = true;
+            innerBorder.Drop += DragAndDrop;
+            innerBorder.Height = 123;
+            innerBorder.Child = image;
+
+            // path text block
+            pathTextBlock.Text = path;
+
+            // image
+            //image.Source = 
+
+            // add elements
+            innerBorder.Child = image;
+
+            stackPanel.Children.Add(innerBorder);
+            stackPanel.Children.Add(pathTextBlock);
+
+            border.Child = stackPanel;
+        }
+
+        public override void Dispose()
+        {
+            this.Drop -= DragAndDrop;
+        }
+
+        private void DragAndDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var data = (string[])e.Data.GetData(DataFormats.FileDrop);
+                path = data[0];
+
+                if (!format.Any<string>(ending => path.ToLower().EndsWith(ending)))
+                {
+                    string errorMsg = "Aktuell werden nur folgemde Dateitypen unterstützt:\n";
+
+                    foreach (string ext in format)
+                    {
+                        errorMsg += "\"" + ext + "\" \n";
+                    }
+
+                    System.Windows.MessageBox.Show(errorMsg);
+                    return;
+                }
+
+                pathTextBlock.Text = path;
+
+                // copy file and save in a resource folder
+            }
+        }
+    }
+
+    public class Tooltip : Image, IDisposable
+    {
+        string tooltipText;
+        public Tooltip(string tooltipText)
+        {
+            // Image
+            this.tooltipText = tooltipText;
+            Width = 30;
+            Height = 30;
+            HorizontalAlignment = HorizontalAlignment.Center;
+            Margin = new Thickness(0,0,5,0);
+            VerticalAlignment = VerticalAlignment.Center;
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(Environment.CurrentDirectory + "/Resource/Tooltip.png");
+            bitmap.EndInit();
+            // Bitmap
+            Source = bitmap;
+
+            this.MouseLeftButtonDown += new MouseButtonEventHandler(OnClick);
+        }
+
+        void OnClick(object sender, MouseButtonEventArgs args)
+        {
+            System.Windows.MessageBox.Show(tooltipText, "Tooltip");
+        }
+
+        public void Dispose()
+        {
+            this.MouseLeftButtonDown -= new MouseButtonEventHandler(OnClick);
         }
     }
 }

@@ -142,6 +142,7 @@
     </ApplicationDefinition>
     <Compile Include="CMS\SGGEDataManager.cs" />
     <Compile Include="TemplateElemente\CategoryButton.cs" />
+    <Compile Include="TemplateElemente\Design.cs" />
     <Compile Include="TemplateElemente\OptionElement.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +188,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\Tooltip.png" />
     <Resource Include="Resource\AudioDatei.png" />
     <Content Include="Resource\AudioDatei1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

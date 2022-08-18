@@ -16,12 +16,12 @@ namespace SeriousGameEngine.TemplateElemente
             this.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             this.VerticalAlignment = System.Windows.VerticalAlignment.Center;
 
-            this.FontFamily = new FontFamily("Arial");
+            this.FontFamily = Design.AppFont;
             this.FontSize = 13;
 
             this.Background = new SolidColorBrush(Colors.Transparent);
             this.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            this.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OptionUIElement.foregroundColor2));
+            this.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
         }
     }
 }

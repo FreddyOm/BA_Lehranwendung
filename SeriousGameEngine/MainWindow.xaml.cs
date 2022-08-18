@@ -352,7 +352,16 @@ namespace SeriousGameEngine
 
         private void LoadOptions(string category)
         {
-            Options_Panel.Children.RemoveRange(0, Options_Panel.Children.Count);
+            foreach (var element in Options_Panel.Children)
+            {
+                if(element is OptionUIElement)
+                {
+                    OptionUIElement oue = (OptionUIElement)element;
+                    oue.Dispose();
+                }
+            }
+
+            Options_Panel.Children.Clear();
 
             OptionDataElement[] categoryElements = content.GetElementsOfCategory(category);
 

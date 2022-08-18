@@ -127,7 +127,7 @@
 
                 <Grid x:Name="Screens" DockPanel.Dock="Bottom" Margin="0,10,0,0">
 
-                    <Grid x:Name="Grid_Homescreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent">
+                    <Grid x:Name="Grid_Homescreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" d:IsHidden="True">
                         <DockPanel x:Name="Games_Screen" LastChildFill="True">
                             <Button x:Name="Button_NewGame" Style="{DynamicResource RoundedCornerStyle}" DockPanel.Dock="Top" Margin="0,0,0,0" Content="Neues Serious Game erstellen" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" Height="40" HorizontalAlignment="Left" Width="250" FontSize="14" Click="Button_NewGame_Click"/>
 
@@ -186,19 +186,19 @@
                             <Grid x:Name="Grid_Subjects" Margin="5,0,0,0">
                                 <Border x:Name="Border_SubjectsScience" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
                                     <UniformGrid x:Name="Grid_SubjectsScience" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top">
-                                        <Border x:Name="Border_Math" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="123" Width="180">
+                                        <Border x:Name="Border_Math" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="123" Width="180">
                                             <Button x:Name="Button_Math" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" FontSize="14" FontWeight="Bold" Width="178" Height="121"/>
                                         </Border>
-                                        <Border x:Name="Border_Physics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="122" Width="180">
+                                        <Border x:Name="Border_Physics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
                                             <Button x:Name="Button_Physics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Physik" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
                                         </Border>
-                                        <Border x:Name="Border_Chemistry" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="122" Width="180">
+                                        <Border x:Name="Border_Chemistry" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
                                             <Button x:Name="Button_Chemistry" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Chemie" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Ciology" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="122" Width="178">
+                                        <Border x:Name="Border_Ciology" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="178">
                                             <Button x:Name="Button_Biology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630"  Content="Biologie" FontFamily="Arial" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Sciences" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="122" Width="180">
+                                        <Border x:Name="Border_Sciences" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
                                             <Button x:Name="Button_Sciences" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
                                         
@@ -207,24 +207,24 @@
 
                                 <Border x:Name="Border_SubjectsLanguages" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
                                     <UniformGrid x:Name="Grid_SubjectsLanguages" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top" d:IsHidden="True">
-                                        <Border x:Name="Border_German" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+                                        <Border x:Name="Border_German" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_German" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Deutsch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_English" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+                                        <Border x:Name="Border_English" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_English" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Englisch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_French" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="180" Height="122">
+                                        <Border x:Name="Border_French" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_French" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Französisch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
                                         <Border x:Name="Border_Spanish" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Spanish" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Spanisch" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
+                                                Content="Spanisch" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
                                         </Border>
 
                                         <Border x:Name="Border_Latin" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
                                             <Button x:Name="Button_Latin" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Latein" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                                Content="Latein" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
                                     </UniformGrid>
                                 </Border>
@@ -471,7 +471,7 @@
                         </DockPanel>
                     </Grid>
 
-                    <Grid x:Name="Grid_Modifyscreen" Margin="0" d:IsHidden="True">
+                    <Grid x:Name="Grid_Modifyscreen" Margin="0">
 
                         <DockPanel x:Name="Modify_DockPanel" LastChildFill="True">
 
@@ -505,93 +505,6 @@
                                             <ScrollViewer x:Name="Options_ScrollView" VerticalScrollBarVisibility="Hidden">
 
                                                 <StackPanel x:Name="Options_Panel">
-                                                    <TextBlock Text="Template Headline" FontSize="14" FontFamily="Arial" Foreground="#FF9C8A87" Margin="5,0,0,0"></TextBlock>
-
-                                                    <DockPanel x:Name="Option_YesNoOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Yes No Option" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Image Width="44" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="30">
-                                                            <Image.Source>
-                                                                <BitmapImage DecodePixelWidth="200"  UriSource="Resource/Tooltip.png"/>
-                                                            </Image.Source>
-                                                        </Image>
-                                                        <Border x:Name="Border_YesNoOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF91BAD5" BorderBrush="#FF91BAD5" Foreground="#FF0A2630"></CheckBox>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_ColorOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Farbe" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Image Width="44" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="30">
-                                                            <Image.Source>
-                                                                <BitmapImage DecodePixelWidth="200"  UriSource="Resource/Tooltip.png"/>
-                                                            </Image.Source>
-                                                        </Image>
-                                                        <Border x:Name="Border_Option_ColorOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="2,2,2,2" CornerRadius="8,8,8,8" VerticalAlignment="Center">
-                                                            <xctk:ColorPicker Width="400" VerticalAlignment="Center" Background="#FF91BAD5" HorizontalAlignment="Right"/>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_TextOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Kategorieanzahl" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Image Width="44" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="30">
-                                                            <Image.Source>
-                                                                <BitmapImage DecodePixelWidth="200"  UriSource="Resource/Tooltip.png"/>
-                                                            </Image.Source>
-                                                        </Image>
-                                                        <Border x:Name="Border_TextOptionInputField" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                            <TextBox Name="Option_TextOptionInputField" Text="Eingabe" Height="30" Background="#FF91BAD5" Foreground="#FF0A2630" Margin="0" FontFamily="Arial" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center"/>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_GraphicOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="184">
-                                                        <TextBlock Text="Bild einfügen" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0"></TextBlock>
-                                                        <Image Width="44" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Height="30">
-                                                            <Image.Source>
-                                                                <BitmapImage DecodePixelWidth="200"  UriSource="Resource/Tooltip.png"/>
-                                                            </Image.Source>
-                                                        </Image>
-
-                                                        <Border x:Name="Border_GraphicOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                            <StackPanel>
-                                                                <Border Height="123" AllowDrop="True"></Border>
-                                                                <TextBlock Margin="0" Text="Level_Hintergrund_Beispiel" FontSize="14" FontFamily="Arial" Foreground="#FF0A2630"/>
-                                                            </StackPanel>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_SoundOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Musikdatei einfügen" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Border x:Name="Border_SoundOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" AllowDrop="True" Height="160" VerticalAlignment="Top" Margin="0,0,0,-118">
-                                                            <Border x:Name="Border_SoundOptionDragDrop" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                                <StackPanel Name="SounOptionDragDrop">
-                                                                    <Border Height="123" AllowDrop="True"></Border>
-                                                                    <TextBlock Margin="0" Text="Level_Sound_Beispiel" FontSize="14" FontFamily="Arial" Foreground="#FF0A2630"/>
-                                                                </StackPanel>
-                                                            </Border>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_EnmuOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Dropdownmenü" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Border x:Name="Border_EnmuOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                            <ComboBox BorderBrush="#FF91BAD5" Foreground="#FF91BAD5" VerticalAlignment="Center" Height="40" Background="#FF91BAD5" Width="400"/>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_DecimalNumberOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Dropdownmenü" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Border x:Name="Border_DecimalNumberOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                            <ComboBox BorderBrush="#FF91BAD5" Foreground="#FF91BAD5" VerticalAlignment="Center" Height="40" Background="#FF91BAD5" Width="400"/>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_RealNumberOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Dropdownmenü" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Border x:Name="Border_RealNumberInputField" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                            <TextBox Name="Option_RealNumberInputField" Text="Eingabe" Height="30" Background="#FF91BAD5" Foreground="#FF0A2630" Margin="0" FontFamily="Arial" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center"/>
-                                                        </Border>
-                                                    </DockPanel>
-                                                    <DockPanel x:Name="Option_ArrayOption" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True" Height="42">
-                                                        <TextBlock Text="Dropdownmenü" FontSize="16" FontFamily="Arial" Foreground="#FF9C8A87" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,0,0"></TextBlock>
-                                                        <Border x:Name="Border_ArrayOption" Background="#FF91BAD5" BorderBrush="#FF91BAD5" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                                                            <StackPanel>
-                                                                
-                                                            </StackPanel>
-                                                        </Border>
-                                                    </DockPanel>
 
                                                 </StackPanel>
 
