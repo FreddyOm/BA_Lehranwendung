@@ -19,6 +19,9 @@ using SeriousGameEngine.CMS;
 namespace SeriousGameEngine.TemplateElemente
 {
 
+    /// <summary>
+    /// The base class for every UI element
+    /// </summary>
     public class OptionUIElement : DockPanel, IDisposable
     {
         int marginL = 10;
@@ -73,6 +76,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes a header for a collection of options
+    /// </summary>
     public class HeaderElement : TextBlock
     {
         int marginL = 5;
@@ -95,6 +101,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes a yes or no option
+    /// </summary>
     public class YesNoOptionElement : OptionUIElement
     {
         CheckBox checkBox;
@@ -122,6 +131,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes a text
+    /// </summary>
     public class TextOptionElement : OptionUIElement
     {
         TextBox textBox;
@@ -151,6 +163,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes a real number
+    /// </summary>
     public class RealNumOptionElement : OptionUIElement
     {
         TextBox textBox = new TextBox();
@@ -183,6 +198,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes a decimal number
+    /// </summary>
     public class DecimalNumOptionElement : OptionUIElement
     {
         TextBox textBox = new TextBox();
@@ -216,6 +234,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes a color
+    /// </summary>
     public class ColorOptionElement : OptionUIElement
     {
         ColorPicker colorPicker;
@@ -242,6 +263,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes an enum
+    /// </summary>
     public class EnumOptionElement : OptionUIElement
     {
         ComboBox dropDown = new ComboBox();
@@ -270,6 +294,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes an image
+    /// </summary>
     public class GraphicOptionElement : DragDropGraphicElement
     {
         public GraphicOptionElement(string id, string optionName, string tooltip, string value = "") : base(new [] {".png", ".tif", ".jpg", ".jpeg"},id, optionName, tooltip, value)
@@ -283,6 +310,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes an audio file
+    /// </summary>
     public class AudioOptionElement : DragDropAudioElement
     {
         public AudioOptionElement(string id, string optionName, string tooltip, string value = "") : base(new[] { ".wav", ".mp3" }, id, optionName, tooltip, value)
@@ -294,6 +324,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes an array
+    /// </summary>
     public class ArrayOptionElement : OptionUIElement
     {
         TextBox countTextBox = new TextBox();
@@ -449,6 +482,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes an image
+    /// </summary>
     public class DragDropGraphicElement : OptionUIElement
     {
         public string path = "";
@@ -522,6 +558,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The UI element that describes an adio file
+    /// </summary>
     public class DragDropAudioElement : OptionUIElement
     {
         public string path;
@@ -594,6 +633,9 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    /// <summary>
+    /// The tooltip for every option ui element
+    /// </summary>
     public class Tooltip : Image, IDisposable
     {
         string tooltipText;
