@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Xceed.Wpf.Toolkit;
 using SeriousGameEngine.CMS;
+using System.Linq;
 
 namespace SeriousGameEngine.TemplateElemente
 {
@@ -37,7 +38,7 @@ namespace SeriousGameEngine.TemplateElemente
             textName.Text = optionName;
             textName.Width = width;
             //textName.Height = height;
-            textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.foregroundColor1));
+            textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FFFFFFFF));
             textName.HorizontalAlignment = HorizontalAlignment.Left;
             textName.VerticalAlignment = VerticalAlignment.Top;
 
@@ -320,6 +321,7 @@ namespace SeriousGameEngine.TemplateElemente
     public class ArrayOptionElement : OptionUIElement
     {
         TextBox countTextBox = new TextBox();
+        TextBlock showHideText = new TextBlock();
         StackPanel contentElements = new StackPanel();
         OptionDataElement[] optionDataElements;
         Grid spacing;
@@ -342,23 +344,31 @@ namespace SeriousGameEngine.TemplateElemente
             countTextBox.TextChanged += new TextChangedEventHandler(PopulateContent);
             countTextBox.VerticalContentAlignment = VerticalAlignment.Center;
             countTextBox.HorizontalAlignment = HorizontalAlignment.Right;
+            countTextBox.FontFamily = Design.AppFont;
 
             contentElements.Name = id.Replace('/', '_') + "_Content";
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C6C74"));
-            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C6C74"));
+            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF5C6C74));
+            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF5C6C74));
             border.Margin = new Thickness(0,2,0,0);
-            
+
+            checkBox.IsChecked = true;
             checkBox.VerticalAlignment = VerticalAlignment.Center;
             checkBox.HorizontalAlignment = HorizontalAlignment.Center;
 
             checkBox.Click += new RoutedEventHandler(ShowHideArrayOptions);
 
+            showHideText.Text = "Anzeigen: ";
+            showHideText.FontFamily = Design.AppFont;
+            showHideText.VerticalAlignment = VerticalAlignment.Center;
+            showHideText.HorizontalAlignment= HorizontalAlignment.Left;
+            showHideText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+
             SetDock(border, Dock.Bottom);
 
             border.Child = contentElements;
+            Children.Add(showHideText);
             Children.Add(checkBox);
             Children.Add(countTextBox);
-
         }
 
         /// <summary>
@@ -499,6 +509,7 @@ namespace SeriousGameEngine.TemplateElemente
             innerBorder.AllowDrop = true;
             innerBorder.Height = 123;
             innerBorder.Drop += DragAndDrop;
+            innerBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             // textblock
             pathTextBlock.Text = path;

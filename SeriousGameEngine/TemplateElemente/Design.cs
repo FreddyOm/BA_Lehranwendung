@@ -13,7 +13,8 @@ namespace SeriousGameEngine.TemplateElemente
 
         public static string FF0A2630 = "#FF0A2630";
         public static string FF9C8A87 = "#FF9C8A87";
-        public static string foregroundColor1 = "#FFFFFFFF";
+        public static string FFFFFFFF = "#FFFFFFFF";
         public static string FF91BAD5 = "#FF91BAD5";
+        public static string FF5C6C74 = "#FF5C6C74";
     }
 }
