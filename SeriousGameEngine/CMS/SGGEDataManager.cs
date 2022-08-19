@@ -268,19 +268,25 @@ namespace SeriousGameEngine.CMS
     public class SaveUtility : IDisposable
     {
         public static string SAVE_PATH;
-        public readonly string SAVE_FILE = "/appsave.sgge";
-        public static string EXPORT_PATH;
+        public static string SAVE_FILE = "/appsave.sgge";
+        public static string RESOURCE_PATH;
 
         private Dictionary<string, OptionValue> saveValues = new Dictionary<string, OptionValue>();
 
         public SaveUtility()
         {
             SAVE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/SGGEApp/application";
+            RESOURCE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/SGGEApp/resources";
 
             // folder
             if (!Directory.Exists(SAVE_PATH))
             {
                 Directory.CreateDirectory(SAVE_PATH);
+            }
+
+            if(!Directory.Exists(RESOURCE_PATH))
+            {
+                Directory.CreateDirectory(RESOURCE_PATH);
             }
 
             // file
@@ -346,6 +352,11 @@ namespace SeriousGameEngine.CMS
             SerializeValues();
         }
 
+        /// <summary>
+        /// Loads an option with a specific id
+        /// </summary>
+        /// <param name="optionID"></param>
+        /// <returns></returns>
         public OptionValue LoadOption(string optionID)
         {
             if(saveValues.ContainsKey(optionID))
@@ -372,6 +383,9 @@ namespace SeriousGameEngine.CMS
             sw.Close();
         }
 
+        /// <summary>
+        /// Deserializes options
+        /// </summary>
         private void DeserializeOptions()
         {
             StreamReader sr = new StreamReader(SAVE_PATH + SAVE_FILE);
@@ -424,10 +438,12 @@ namespace SeriousGameEngine.CMS
             }
         }
 
+        /// <summary>
+        /// Dispose class
+        /// </summary>
         public void Dispose()
         {
             OptionUIElement.onValueChanged -= SaveOptions;
         }
     }
-
 }

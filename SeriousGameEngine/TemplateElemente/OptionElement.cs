@@ -8,7 +8,7 @@ using Xceed.Wpf.Toolkit;
 using SeriousGameEngine.CMS;
 using System.Linq;
 using SGGE;
-using static SeriousGameEngine.TemplateElemente.OptionUIElement;
+using System.IO;
 using System.Collections.Generic;
 
 namespace SeriousGameEngine.TemplateElemente
@@ -643,7 +643,8 @@ namespace SeriousGameEngine.TemplateElemente
             innerBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             // textblock
-            pathTextBlock.Text = path;
+            FileInfo fileInfo = new FileInfo(path);
+            pathTextBlock.Text = fileInfo.Name;
             pathTextBlock.FontSize = 14;
             pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
             pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
@@ -654,8 +655,6 @@ namespace SeriousGameEngine.TemplateElemente
 
             stackPanel.Children.Add(innerBorder);
             stackPanel.Children.Add(pathTextBlock);
-
-
 
             border.Child = stackPanel;
         }
@@ -686,11 +685,13 @@ namespace SeriousGameEngine.TemplateElemente
                     return;
                 }
 
-                var splitPath = path.Replace(@"\\",@"\").Split('\\');
-                pathTextBlock.Text = splitPath[splitPath.Length - 1];
+                FileInfo f = new FileInfo(path);
+                pathTextBlock.Text = f.Name;
 
                 // copy the image into a resources folder
                 ElementValueChanged(this, OPTION.GRAPHICS);
+
+                File.Copy(path, SaveUtility.RESOURCE_PATH + "/" + f.Name);
             }
         }
     }
@@ -724,7 +725,8 @@ namespace SeriousGameEngine.TemplateElemente
             innerBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             // path text block
-            pathTextBlock.Text = path;
+            FileInfo fileInfo = new FileInfo(path);
+            pathTextBlock.Text = fileInfo.Name;
             pathTextBlock.FontSize = 14;
             pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
             pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
@@ -767,11 +769,13 @@ namespace SeriousGameEngine.TemplateElemente
                     System.Windows.MessageBox.Show(errorMsg);
                     return;
                 }
-                var splitPath = path.Split('\\');
-                pathTextBlock.Text = splitPath[splitPath.Length - 1];
+                FileInfo f = new FileInfo(path);
+                pathTextBlock.Text = f.Name;
 
                 // copy file and save in a resource folder
                 ElementValueChanged(this, OPTION.SOUND_FILE);
+
+                File.Copy(path, SaveUtility.RESOURCE_PATH + "/" + f.Name);
             }
         }
     }
