@@ -242,6 +242,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\Profil.png" />
+    <Resource Include="Resource\Homescreen.png" />
+    <Resource Include="Resource\Logout.png" />
+    <Resource Include="Resource\Settings.png" />
+    <Resource Include="Resource\Menu.png" />
+    <Resource Include="Resource\dragdrop.png" />
+    <Resource Include="Resource\navigation.png" />
+    <Resource Include="Resource\search.png" />
     <Resource Include="Resource\Tooltip.png" />
     <Resource Include="Resource\AudioDatei.png" />
     <Content Include="Resource\AudioDatei1.png">

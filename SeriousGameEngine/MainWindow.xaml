@@ -22,10 +22,10 @@
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#22222222"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF91BAD5"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#22222222"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#22222222"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
@@ -50,6 +50,7 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
@@ -64,6 +65,18 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="TestButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid x:Name="Grid_Background" Background="#FFFFFFFF">
@@ -72,53 +85,64 @@
             <Grid x:Name="Grid_MenuSettings" VerticalAlignment="Stretch">
 
                 <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch" d:IsHidden="True">
-                    <Border x:Name="Menu_Panel_Border" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,40,0,0">
-                        
+                    <Image Source="Resource/Menu.png" HorizontalAlignment="Left" Height="40" Width="40" Margin="11,0,0,0"/>
+                    <Border x:Name="Menu_Panel_Border" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,00,0,0">
+
                         <StackPanel x:Name="Menu_Panel" Height="685">
-                            <Image Source="Resource/Menu.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="51" Width="51" Margin="5,5,0,0"></Image>
                             <Button x:Name="Button_Profilepricture" Style="{DynamicResource RoundedCornerStyle}" Height="70" Width="70" Background="White" BorderBrush="Transparent"  Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Margin="62,70,66,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="White" FontFamily="Sinkin Sans 600 SemiBold" Content="Max Mustermann" Margin="5,5,5,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Button x:Name="Button_Homescreen" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Sinkin Sans 200 X Light" FontSize="16" Content="Startseite" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Homescreen_Click"/>
                             <Button x:Name="Button_Settings" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent"  Foreground="White" FontFamily="Sinkin Sans 200 X Light" FontSize="16" Content="Einstellungen" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Settings_Click"/>
                             <Button x:Name="Button_Profil" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Sinkin Sans 200 X Light" FontSize="16" Content="Benutzerkonto" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Profil_Click"/>
-                            <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="5,220,0,5"></Image>
+                            <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="8,225,0,5"></Image>
                         </StackPanel>
 
                     </Border>
                 </StackPanel>
 
                 <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left">
-                    <Border x:Name="Menu_Panel_BorderSmall" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,40,0,0" Height="673">
+                    <Image Source="Resource/Menu.png" HorizontalAlignment="Center" Height="40" Width="40" Margin="0,0,0,0"/>
+                    <Border x:Name="Menu_Panel_BorderSmall" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,0,0,0" Height="656">
                         <StackPanel x:Name="Menu_PanelSmall" Margin="0" Background="Transparent">
-                            <Image Source="Resource/Menu.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="51" Width="51" Margin="5,5,0,0"></Image>
                             <Button x:Name="Button_ProfileprictureSmall" Style="{DynamicResource RoundedCornerStyle}" Height="50" Width="56" Background="White" BorderBrush="Transparent"  Foreground="White" FontFamily="Arial" FontSize="14" Margin="5,80,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
-                            <Button x:Name="Button_HomescreenSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,80,0,0" HorizontalAlignment="Center" Click="Button_Homescreen_Click" VerticalAlignment="Center" Width="40">
+                            <Button x:Name="Button_HomescreenSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,80,0,0" HorizontalAlignment="Center" Click="Button_Homescreen_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
+                                    Foreground="Transparent" BorderBrush="Transparent">
                                 <Image Source="Resource/Homescreen.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"/>
                             </Button>
-                            <Button x:Name="Button_SettingsSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,20,0,0" HorizontalAlignment="Center" Click="Button_Settings_Click" VerticalAlignment="Center" Width="40">
+                            <Button x:Name="Button_SettingsSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,20,0,0" HorizontalAlignment="Center" Click="Button_Settings_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
+                                    Foreground="Transparent" BorderBrush="Transparent">
                                 <Image Source="Resource/Settings.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
                             </Button>
-                            <Button x:Name="Button_ProfilSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,20,0,0" HorizontalAlignment="Center" Click="Button_Profil_Click" VerticalAlignment="Center" Width="40">
+                            <Button x:Name="Button_ProfilSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,20,0,0" HorizontalAlignment="Center" Click="Button_Profil_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
+                                    Foreground="Transparent" BorderBrush="Transparent">
                                 <Image Source="Resource/Profil.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
                             </Button>
-                            <Image x:Name="Img_Menu_LogoutSmall" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="5,195,0,5"></Image>
+                            <Image x:Name="Img_Menu_LogoutSmall" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="45" Width="45" Margin="5,200,5,0" />
                         </StackPanel>
                     </Border>
                 </StackPanel>
 
             </Grid>
 
-
             <DockPanel x:Name="Inspector" Margin="8,0,0,0">
 
                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
 
                     <Border x:Name="Searchfield" DockPanel.Dock="Right" Background="Transparent" BorderBrush="#3D77B1" BorderThickness="2" CornerRadius="5" Margin="0,0,0,5" HorizontalAlignment="Right" Width="250">
-                        <TextBox Name="Search_Textbox" Text="Suche..." Height="25" Background="#00000000" Foreground="#3D77B1" Margin="5,0" FontFamily="Sinkin Sans 300 Light" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" FontSize="10"/>
-                    </Border>
 
-                    <Grid DockPanel.Dock="Left" Background="#C9E2F2" Width="1" Margin="0"></Grid>
+                        <DockPanel>
+                            <TextBox Name="Search_Textbox" Text="Suche..." Height="25" Width="210" Foreground="#3D77B1" Margin="5,0" DockPanel.Dock="Left" FontFamily="Sinkin Sans 300 Light" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" FontSize="10"/>
+                            <Button DockPanel.Dock="Right" Width="25" Height="25" HorizontalAlignment="Right" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent" Click="SearchButtonClicked">
+                                <Image Source="Resource/search.png"/>
+                            </Button>
+
+                        </DockPanel>
+
+                    </Border>
                     
+                    <Grid DockPanel.Dock="Left" Background="#C9E2F2" Width="1" Margin="0"></Grid>
+
+                    <Image Source="Resource/navigation.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Button x:Name="Button_Subjetcs" Style="{DynamicResource RoundedCornerStyle}" Height="40" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Fächer" Margin="20,0,0,0" Click="Button_Subjetcs_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Background="#00000000"/>
                     <Button x:Name="Button_Templates" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Vorlagen" Margin="20,0,0,0" Click="Button_Templates_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <Button x:Name="Button_Modify" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Bearbeiten" Margin="20,0,0,0" Click="Button_Modify_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>

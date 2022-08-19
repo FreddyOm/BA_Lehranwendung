@@ -47,6 +47,9 @@ namespace SeriousGameEngine
             SideboardSmall.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
             Sideboard.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
 
+            Search_Textbox.GotFocus += new RoutedEventHandler(SearchboxClicked);
+            Search_Textbox.LostFocus += new RoutedEventHandler(SearchboxLost);
+
         }
 
         #endregion init
@@ -73,8 +76,8 @@ namespace SeriousGameEngine
 
         public void OnCategoryButtonClicked(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
-            LoadOptions((string)button.Content);
+            CategoryButton button = (CategoryButton)sender;
+            LoadOptions(button.Text);
         }
 
         #endregion category buttons
@@ -200,6 +203,24 @@ namespace SeriousGameEngine
         }
 
         #endregion user
+
+        private void SearchButtonClicked(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Suche wird aktuell noch nicht unterstützt!");
+        }
+
+        private void SearchboxClicked(object sender, RoutedEventArgs args)
+        {
+            Search_Textbox.Text = "";
+        }
+
+        private void SearchboxLost(object sender, RoutedEventArgs args)
+        {
+            if(string.IsNullOrEmpty(Search_Textbox.Text))
+            {
+                Search_Textbox.Text = "Suche...";
+            }
+        }
 
         #endregion buttons
 
@@ -381,7 +402,8 @@ namespace SeriousGameEngine
                 {
                     CategoryButton b = Category_Buttons.Children[i] as CategoryButton;
                     if (b.HasEventHandler)
-                        b.Click -= new RoutedEventHandler(OnCategoryButtonClicked);
+                        b.click -= OnCategoryButtonClicked;
+                    b.Dispose();
                 }
             }
 
@@ -391,7 +413,7 @@ namespace SeriousGameEngine
             foreach(var e in content.GetAllCategories())
             {
                 CategoryButton button = new CategoryButton(e.Category);
-                button.Click += new RoutedEventHandler(OnCategoryButtonClicked);
+                button.click += OnCategoryButtonClicked;
                 button.HasEventHandler = true;
                 Category_Buttons.Children.Add(button);
             }
@@ -617,5 +639,4 @@ namespace SeriousGameEngine
         SIMULATION = 3,
         RPG = 4
     }
-
 }
