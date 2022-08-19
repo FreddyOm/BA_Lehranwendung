@@ -12,4 +12,4 @@
 {"Path":"Logik/Gewinne","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
 {"Path":"Logik/Hallo","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
 {"Path":"Logik/Now","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
-{"Path":"Logik/Kek","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
+{"Path":"Logik/Kek","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":0}

@@ -7,6 +7,9 @@ using System.Windows.Media.Imaging;
 using Xceed.Wpf.Toolkit;
 using SeriousGameEngine.CMS;
 using System.Linq;
+using SGGE;
+using static SeriousGameEngine.TemplateElemente.OptionUIElement;
+using System.Collections.Generic;
 
 namespace SeriousGameEngine.TemplateElemente
 {
@@ -15,6 +18,11 @@ namespace SeriousGameEngine.TemplateElemente
     /// </summary>
     public class OptionUIElement : DockPanel, IDisposable
     {
+        public delegate void OnValueChanged(string optionID, OptionUIElement value, OPTION option);
+        public static event OnValueChanged onValueChanged;
+
+        string id;
+
         int marginL = 10;
         int marginT = 10;
         int marginR = 10;
@@ -24,8 +32,9 @@ namespace SeriousGameEngine.TemplateElemente
         private float height = 38;
         public Border border = new Border();
         Tooltip tooltipElement;
-        public OptionUIElement(string optionName, string tooltip)
+        public OptionUIElement(string id, string optionName, string tooltip)
         {
+            this.id = id;
             // DockPanel
             Name = optionName;
             Margin = new Thickness(marginL, marginT, marginR, marginB);
@@ -38,7 +47,7 @@ namespace SeriousGameEngine.TemplateElemente
             textName.Text = optionName;
             textName.Width = width;
             //textName.Height = height;
-            textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FFFFFFFF));
+            textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
             textName.HorizontalAlignment = HorizontalAlignment.Left;
             textName.VerticalAlignment = VerticalAlignment.Top;
 
@@ -52,10 +61,10 @@ namespace SeriousGameEngine.TemplateElemente
 
             // border
             border.Name = "Border_" + optionName;
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            border.BorderThickness = new Thickness(1, 1, 1, 1);
-            border.CornerRadius = new CornerRadius(8, 8, 8, 8);
+            border.Background = new SolidColorBrush(Colors.Transparent);
+            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
+            border.BorderThickness = new Thickness(2);
+            border.CornerRadius = new CornerRadius(4);
             border.HorizontalAlignment = HorizontalAlignment.Stretch;
             SetDock(border, Dock.Right);            
             Children.Add(border);
@@ -65,6 +74,11 @@ namespace SeriousGameEngine.TemplateElemente
         {
             tooltipElement.Dispose();
         }
+
+        public void ElementValueChanged( OptionUIElement element, OPTION option)
+        {
+            onValueChanged?.Invoke(id, element, option);
+        }
     }
 
     /// <summary>
@@ -73,11 +87,11 @@ namespace SeriousGameEngine.TemplateElemente
     public class HeaderElement : TextBlock
     {
         int marginL = 5;
-        int marginT = 0;
+        int marginT = 10;
         int marginR = 0;
-        int marginB = 0;
+        int marginB = 5;
         
-        private int fontSize = 18;
+        private int fontSize = 14;
         private FontWeight fontWeight = SystemFonts.CaptionFontWeight;
 
         public HeaderElement(string headerText)
@@ -87,8 +101,8 @@ namespace SeriousGameEngine.TemplateElemente
 
             FontSize = fontSize;
             FontWeight = fontWeight;
-            FontFamily = Design.AppFont;
-            Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF9C8A87));
+            FontFamily = new FontFamily("Sinkin Sans 300 Light");
+            Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
         }
     }
 
@@ -97,28 +111,39 @@ namespace SeriousGameEngine.TemplateElemente
     /// </summary>
     public class YesNoOptionElement : OptionUIElement
     {
-        CheckBox checkBox;
+        CheckBox checkBox = new CheckBox();
 
-        public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(optionName, tooltip)
+        public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(id, optionName, tooltip)
         {
             HorizontalAlignment = HorizontalAlignment.Center;
             VerticalAlignment = VerticalAlignment.Center;
 
-            checkBox = new CheckBox();
             checkBox.Name = "Checkbox_" + id.Replace('/', '_');
             checkBox.IsChecked = value;
-            checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+            checkBox.HorizontalAlignment = HorizontalAlignment.Stretch;
             checkBox.VerticalAlignment = VerticalAlignment.Center;
-            checkBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            checkBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            checkBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
-
+            checkBox.Background = new SolidColorBrush(Colors.Transparent);
+            checkBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
+            checkBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
+            checkBox.Margin = new Thickness(350,5,15,5);
             border.Child = checkBox;
+
+            checkBox.Click += new RoutedEventHandler(ValueChanged);
+        }
+        private void ValueChanged(object sender, RoutedEventArgs args)
+        {
+            ElementValueChanged(this, OPTION.YES_NO_OPTION);
         }
 
         public bool GetValue()
         {
             return (bool)checkBox.IsChecked;
+        }
+
+        public override void Dispose()
+        {
+            checkBox.Click -= new RoutedEventHandler(ValueChanged);
+            base.Dispose();
         }
     }
 
@@ -129,7 +154,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         TextBox textBox;
 
-        public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(optionName, tooltip)
+        public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(id, optionName, tooltip)
         {
             // textbox
             textBox = new TextBox();
@@ -137,20 +162,31 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.Text = value;
             textBox.Height = 30;
             textBox.Background = new SolidColorBrush(Colors.Transparent);
-            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
-            textBox.FontFamily = Design.AppFont;
+            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
+            textBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
             textBox.UndoLimit = 8;
             textBox.BorderThickness = new Thickness(0);
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             textBox.Margin = new Thickness(2, 2, 2, 2);
 
+            textBox.TextChanged += new TextChangedEventHandler(ValueChanged);
+
             border.Child = textBox;
 
         }
-
+        private void ValueChanged(object sender, TextChangedEventArgs args)
+        {
+            ElementValueChanged(this, OPTION.TEXT);
+        }
         public string GetValue()
         {
             return (string)textBox.Text;
+        }
+
+        public override void Dispose()
+        {
+            textBox.TextChanged -= new TextChangedEventHandler(ValueChanged);
+            base.Dispose();
         }
     }
 
@@ -161,16 +197,16 @@ namespace SeriousGameEngine.TemplateElemente
     {
         TextBox textBox = new TextBox();
 
-        public RealNumOptionElement(string id, string optionName, string tooltip, string value = "0") : base(optionName, tooltip)
+        public RealNumOptionElement(string id, string optionName, string tooltip, int value = 0) : base(id, optionName, tooltip)
         {
             textBox.Name = "Textbox_" + id.Replace('/','_');
             textBox.Text = "" + value;
 
             textBox.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            textBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+            textBox.Background = new SolidColorBrush(Colors.Transparent);
+            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3D77B1"));
             
-            textBox.FontFamily = Design.AppFont;
+            textBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
 
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             
@@ -179,13 +215,37 @@ namespace SeriousGameEngine.TemplateElemente
 
             textBox.UndoLimit = 8;
 
+            textBox.TextChanged += new TextChangedEventHandler(ValueChanged);
+
             // add elements
             border.Child = textBox;
         }
 
+        private void ValueChanged(object sender, TextChangedEventArgs args)
+        {
+            if (string.IsNullOrEmpty(textBox.Text)) { return; }
+
+            ElementValueChanged(this, OPTION.REAL_NUM);
+        }
+
         public int GetValue()
         {
-            return int.Parse(textBox.Text);
+            int num;
+            try
+            {
+                num = int.Parse(textBox.Text);
+            }
+            catch
+            {
+                num = 0;
+            }
+            return num;
+        }
+
+        public override void Dispose()
+        {
+            textBox.TextChanged -= new TextChangedEventHandler(ValueChanged);
+            base.Dispose();
         }
     }
 
@@ -196,18 +256,18 @@ namespace SeriousGameEngine.TemplateElemente
     {
         TextBox textBox = new TextBox();
 
-        public DecimalNumOptionElement(string id, string optionName, string tooltip, string value = "0.0") : base(optionName, tooltip)
+        public DecimalNumOptionElement(string id, string optionName, string tooltip, float value = 0.0f) : base(id, optionName, tooltip)
         {
             // textbox
             textBox.Name = "Textbox_" + id.Replace('/', '_');
-            textBox.Text = value;
+            textBox.Text = "" + value;
             
             textBox.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            textBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
-            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+            textBox.Background = new SolidColorBrush(Colors.Transparent);
+            textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3D77B1"));
 
-            textBox.FontFamily = Design.AppFont;
-            
+            textBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             
             textBox.Height = 30;
@@ -215,13 +275,38 @@ namespace SeriousGameEngine.TemplateElemente
             
             textBox.UndoLimit = 8;
 
+            textBox.TextChanged += new TextChangedEventHandler(ValueChanged);
+
             // add elements
             border.Child = textBox;
         }
 
+        private void ValueChanged(object sender, TextChangedEventArgs args)
+        {
+            if (string.IsNullOrEmpty(textBox.Text)) { return; }
+
+            ElementValueChanged(this, OPTION.DECIMAL_NUM);
+        }
+
+        //Get the custom set value
         public float GetValue()
         {
-            return float.Parse(textBox.Text);
+            float num;
+            try
+            {
+                num  = float.Parse(textBox.Text);
+            }
+            catch
+            {
+                num = 0;
+            }
+            return num;
+        }
+
+        public override void Dispose()
+        {
+            textBox.TextChanged -= new TextChangedEventHandler(ValueChanged);
+            base.Dispose();
         }
     }
 
@@ -232,7 +317,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         ColorPicker colorPicker;
 
-        public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(optionName, tooltip)
+        public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(id, optionName, tooltip)
         {
             border.VerticalAlignment = VerticalAlignment.Center;
 
@@ -245,12 +330,35 @@ namespace SeriousGameEngine.TemplateElemente
             colorPicker.Background = new SolidColorBrush(Colors.Transparent);
             colorPicker.Margin = new Thickness(2);
 
+            colorPicker.SelectedColorChanged += new RoutedPropertyChangedEventHandler<Color?>(ValueChanged);
+
             border.Child = colorPicker;
+        }
+
+        private void ValueChanged(object sender, RoutedPropertyChangedEventArgs<Color?> args)
+        {
+            ElementValueChanged(this, OPTION.COLOR);
         }
 
         public Color GetValue()
         {
-            return Colors.White;
+            Color c;
+            try
+            {
+                c = (Color)colorPicker.SelectedColor;
+            }
+            catch
+            {
+                c = Colors.White;
+            }
+
+            return c;
+        }
+
+        public override void Dispose()
+        {
+            colorPicker.SelectedColorChanged -= new RoutedPropertyChangedEventHandler<Color?>(ValueChanged);
+            base.Dispose();
         }
     }
 
@@ -261,27 +369,41 @@ namespace SeriousGameEngine.TemplateElemente
     {
         ComboBox dropDown = new ComboBox();
 
-        public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions) : base(optionName, tooltip)
+        public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions, int value = 0) : base(id, optionName, tooltip)
         {
             // dropdown
             dropDown.Name = "DropDown_" + id.Replace('/', '_');
             dropDown.ItemsSource = enumOptions;
-            dropDown.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
-            dropDown.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            dropDown.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
+            dropDown.Background = new SolidColorBrush(Colors.Transparent);
             dropDown.BorderBrush = new SolidColorBrush(Colors.Transparent);
             dropDown.VerticalAlignment = VerticalAlignment.Center;
             dropDown.HorizontalAlignment = HorizontalAlignment.Stretch;
             dropDown.VerticalContentAlignment = VerticalAlignment.Center;
             dropDown.Height = 30;
             dropDown.Margin = new Thickness(2);
-            
+            dropDown.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            dropDown.SelectedIndex = value;
+
+            dropDown.SelectionChanged += new SelectionChangedEventHandler(ValueChanged);
             // add elements
             border.Child = dropDown;
+        }
+
+        private void ValueChanged(object sender, SelectionChangedEventArgs args)
+        {
+            ElementValueChanged(this, OPTION.ENUM);
         }
 
         public int GetValue()
         {
             return dropDown.SelectedIndex;
+        }
+
+        public override void Dispose()
+        {
+            dropDown.SelectionChanged -= new SelectionChangedEventHandler(ValueChanged);
+            base.Dispose();
         }
     }
 
@@ -335,20 +457,23 @@ namespace SeriousGameEngine.TemplateElemente
         /// <param name="optionName"></param>
         /// <param name="tooltip"></param>
         /// <param name="optionDataElements"></param>
-        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements) : base(optionName, tooltip)
+        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements, int amount, List<OptionValue[]> values = null) : base(id, optionName, tooltip)
         {
             this.optionDataElements = optionDataElements;
             countTextBox.Name = id.Replace('/', '_');
             countTextBox.Width = 30;
             countTextBox.Height = 26;
             countTextBox.TextChanged += new TextChangedEventHandler(PopulateContent);
+            countTextBox.TextChanged += new TextChangedEventHandler(ValueChanged);
             countTextBox.VerticalContentAlignment = VerticalAlignment.Center;
             countTextBox.HorizontalAlignment = HorizontalAlignment.Right;
-            countTextBox.FontFamily = Design.AppFont;
+            countTextBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            countTextBox.Text = "" + amount;
 
             contentElements.Name = id.Replace('/', '_') + "_Content";
-            border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF5C6C74));
-            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF5C6C74));
+            border.BorderThickness = new Thickness(2);
+            border.Background = new SolidColorBrush(Colors.Transparent);
+            border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
             border.Margin = new Thickness(0,2,0,0);
 
             checkBox.IsChecked = true;
@@ -358,10 +483,10 @@ namespace SeriousGameEngine.TemplateElemente
             checkBox.Click += new RoutedEventHandler(ShowHideArrayOptions);
 
             showHideText.Text = "Anzeigen: ";
-            showHideText.FontFamily = Design.AppFont;
+            showHideText.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
             showHideText.VerticalAlignment = VerticalAlignment.Center;
             showHideText.HorizontalAlignment= HorizontalAlignment.Left;
-            showHideText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            showHideText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
 
             SetDock(border, Dock.Bottom);
 
@@ -464,11 +589,16 @@ namespace SeriousGameEngine.TemplateElemente
                     spacing.Height = 1;
                     spacing.HorizontalAlignment = HorizontalAlignment.Stretch;
 
-                    spacing.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF91BAD5"));
+                    spacing.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
                     spacing.Margin = new Thickness(5, 10, 5, 0);
 
                     contentElements.Children.Add(spacing);
             }
+        }
+
+        private void ValueChanged(object sender, TextChangedEventArgs args)
+        {
+            ElementValueChanged(this, OPTION.ARRAY);
         }
 
         /// <summary>
@@ -478,6 +608,7 @@ namespace SeriousGameEngine.TemplateElemente
         {
             countTextBox.TextChanged -= new TextChangedEventHandler(PopulateContent);
             checkBox.Click -= new RoutedEventHandler(ShowHideArrayOptions);
+            countTextBox.TextChanged -= new TextChangedEventHandler(ValueChanged);
             base.Dispose();
         }
     }
@@ -494,7 +625,7 @@ namespace SeriousGameEngine.TemplateElemente
         private Image image = new Image();
 
         private string[] format;
-        public DragDropGraphicElement(string[] format, string id, string optionName, string tooltip, string path) : base(optionName, tooltip)
+        public DragDropGraphicElement(string[] format, string id, string optionName, string tooltip, string path) : base(id, optionName, tooltip)
         {
             if (!string.IsNullOrEmpty(path))
             {
@@ -514,14 +645,17 @@ namespace SeriousGameEngine.TemplateElemente
             // textblock
             pathTextBlock.Text = path;
             pathTextBlock.FontSize = 14;
-            pathTextBlock.FontFamily = Design.AppFont;
-            pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF0A2630));
+            pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
+            pathTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
 
             // add elements
             innerBorder.Child = image;
 
             stackPanel.Children.Add(innerBorder);
             stackPanel.Children.Add(pathTextBlock);
+
+
 
             border.Child = stackPanel;
         }
@@ -552,10 +686,11 @@ namespace SeriousGameEngine.TemplateElemente
                     return;
                 }
 
-                var splitPath = path.Split('\\');
+                var splitPath = path.Replace(@"\\",@"\").Split('\\');
                 pathTextBlock.Text = splitPath[splitPath.Length - 1];
 
                 // copy the image into a resources folder
+                ElementValueChanged(this, OPTION.GRAPHICS);
             }
         }
     }
@@ -572,7 +707,7 @@ namespace SeriousGameEngine.TemplateElemente
         private Image image = new Image();
 
         private string[] format;
-        public DragDropAudioElement(string[] format, string id, string optionName, string tooltip, string path) : base(optionName, tooltip)
+        public DragDropAudioElement(string[] format, string id, string optionName, string tooltip, string path) : base(id, optionName, tooltip)
         {
             if (!string.IsNullOrEmpty(path))
             {
@@ -590,6 +725,10 @@ namespace SeriousGameEngine.TemplateElemente
 
             // path text block
             pathTextBlock.Text = path;
+            pathTextBlock.FontSize = 14;
+            pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
+            pathTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
 
             // image
             //image.Source = 
@@ -632,6 +771,7 @@ namespace SeriousGameEngine.TemplateElemente
                 pathTextBlock.Text = splitPath[splitPath.Length - 1];
 
                 // copy file and save in a resource folder
+                ElementValueChanged(this, OPTION.SOUND_FILE);
             }
         }
     }

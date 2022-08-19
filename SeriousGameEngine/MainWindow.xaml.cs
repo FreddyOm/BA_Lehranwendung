@@ -5,6 +5,7 @@ using SeriousGameEngine.TemplateElemente;
 using SeriousGameEngine.CMS;
 using System.ComponentModel;
 using System.Collections.Generic;
+using SGGE;
 
 namespace SeriousGameEngine
 {
@@ -18,6 +19,7 @@ namespace SeriousGameEngine
         private Border[] gameTemplates = new Border[6];
 
         private SGGEDataManager content;
+        private SaveUtility saveUtility;
 
         #region init
 
@@ -36,6 +38,7 @@ namespace SeriousGameEngine
             
             // CMS
             content = new SGGEDataManager();
+            saveUtility = new SaveUtility();
 
             //Set Home menu
             SetScreen(SCREEN.HOME);
@@ -59,6 +62,7 @@ namespace SeriousGameEngine
         {
             SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
             Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
+            saveUtility.Dispose();
         }
 
         #endregion deinit
@@ -480,33 +484,106 @@ namespace SeriousGameEngine
             switch (ode.Option)
             {
                 case SGGE.OPTION.COLOR:
-                    Options_Panel.Children.Add(new ColorOptionElement(ode.Path, ode.Name, ode.Tooltip, Colors.White));
+                    var colorValue = saveUtility.LoadOption(ode.Path) as OptionColorValue;
+                    if(colorValue == null)
+                    {
+                        Options_Panel.Children.Add(new ColorOptionElement(ode.Path, ode.Name, ode.Tooltip, Colors.White));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new ColorOptionElement(ode.Path, ode.Name, ode.Tooltip, (Color)ColorConverter.ConvertFromString(colorValue.Value)));
+                    }
+                    
                     break;
                 case SGGE.OPTION.YES_NO_OPTION:
-                    Options_Panel.Children.Add(new YesNoOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    var yesNoValue = saveUtility.LoadOption(ode.Path) as OptionYesNoValue;
+                    if(yesNoValue == null)
+                    {
+                        Options_Panel.Children.Add(new YesNoOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new YesNoOptionElement(ode.Path, ode.Name, ode.Tooltip, yesNoValue.Value));
+                    }
                     break;
                 case SGGE.OPTION.GRAPHICS:
-                    Options_Panel.Children.Add(new GraphicOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    var graphicsValue = saveUtility.LoadOption(ode.Path) as OptionGraphicValue;
+                    if(graphicsValue == null)
+                    {
+                        Options_Panel.Children.Add(new GraphicOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new GraphicOptionElement(ode.Path, ode.Name, ode.Tooltip, graphicsValue.Value));
+                    }
                     break;
                 case SGGE.OPTION.SOUND_FILE:
-                    Options_Panel.Children.Add(new AudioOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    var soundFileValue = saveUtility.LoadOption(ode.Path) as OptionAudioValue;
+                    if(soundFileValue == null)
+                    {
+                        Options_Panel.Children.Add(new AudioOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new AudioOptionElement(ode.Path, ode.Name, ode.Tooltip, soundFileValue.Value));
+                    }
                     break;
                 case SGGE.OPTION.REAL_NUM:
-                    Options_Panel.Children.Add(new RealNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    var realNumValue = saveUtility.LoadOption(ode.Path) as OptionRealValue;
+                    if(realNumValue == null)
+                    {
+                        Options_Panel.Children.Add(new RealNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new RealNumOptionElement(ode.Path, ode.Name, ode.Tooltip, realNumValue.Value));
+                    }
                     break;
                 case SGGE.OPTION.DECIMAL_NUM:
-                    Options_Panel.Children.Add(new DecimalNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    var decimalNumValue = saveUtility.LoadOption(ode.Path) as OptionDecimalValue;
+                    if(decimalNumValue == null)
+                    {
+                        Options_Panel.Children.Add(new DecimalNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new DecimalNumOptionElement(ode.Path, ode.Name, ode.Tooltip, decimalNumValue.Value));
+                    }
                     break;
                 case SGGE.OPTION.ENUM:
                     EnumOptionDataElement eode = (EnumOptionDataElement)ode;
-                    Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues));
+                    var enumValue = saveUtility.LoadOption(ode.Path) as OptionEnumValue;
+                    if(enumValue == null)
+                    {
+                        Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues, 0));//TODO: Hier noch nachbessern
+                    }
                     break;
                 case SGGE.OPTION.TEXT:
-                    Options_Panel.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    var textValue = saveUtility.LoadOption(ode.Path) as OptionTextValue;
+                    if(textValue == null)
+                    {
+                        Options_Panel.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip, textValue.Value));
+                    }
                     break;
                 case SGGE.OPTION.ARRAY:
                     ArrayOptionDataElement aode = (ArrayOptionDataElement)ode;
-                    Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements));
+                    var arrayValue = saveUtility.LoadOption(ode.Path) as OptionArrayValue;
+                    if(arrayValue == null)
+                    {
+                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, 0));
+                    }
+                    else
+                    {
+                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, 0)); //TODO: Hier noch nachbessern
+                    }
                     break;
             }
         }

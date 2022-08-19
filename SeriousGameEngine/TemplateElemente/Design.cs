@@ -9,12 +9,18 @@ namespace SeriousGameEngine.TemplateElemente
 {
     class Design
     {
-        public static FontFamily AppFont = new FontFamily("Arial");
+        public static FontFamily AppFont = new FontFamily("Sinkin Sans 500 Medium");
 
-        public static string FF0A2630 = "#FF0A2630";
-        public static string FF9C8A87 = "#FF9C8A87";
+        public static string C9E2F2 = "#C9E2F2";
+        public static string _3D77B1 = "#3D77B1";
         public static string FFFFFFFF = "#FFFFFFFF";
         public static string FF91BAD5 = "#FF91BAD5";
         public static string FF5C6C74 = "#FF5C6C74";
+
+        public static String HexConverter(Color c)
+        {
+            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+        }
+
     }
 }

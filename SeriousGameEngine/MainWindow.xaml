@@ -22,10 +22,10 @@
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#22222222"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF91BAD5"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#22222222"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#22222222"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
@@ -41,7 +41,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Border x:Name="border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -50,11 +50,9 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
@@ -68,31 +66,32 @@
         </Style>
     </Window.Resources>
 
-    <Grid x:Name="Grid_Background" Background="#FF5C6C74">
+    <Grid x:Name="Grid_Background" Background="#FFFFFFFF">
 
-        <DockPanel Margin="8">
+        <DockPanel Margin="0,8,8,0">
             <Grid x:Name="Grid_MenuSettings" VerticalAlignment="Stretch">
 
-                <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch">
-                    <Border x:Name="Menu_Panel_Border" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
-                        <StackPanel x:Name="Menu_Panel" Background="Transparent" Height="685">
+                <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch" d:IsHidden="True">
+                    <Border x:Name="Menu_Panel_Border" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,40,0,0">
+                        
+                        <StackPanel x:Name="Menu_Panel" Height="685">
                             <Image Source="Resource/Menu.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="51" Width="51" Margin="5,5,0,0"></Image>
-                            <Button x:Name="Button_Profilepricture" Style="{DynamicResource RoundedCornerStyle}" Height="70" Width="70" Background="#FF5C6C74" BorderBrush="#FF0A2630"  Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Content="Profilbild" Margin="62,70,66,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Benutzername" Margin="39,5,39,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Button x:Name="Button_Homescreen" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Startseite" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Homescreen_Click"/>
-                            <Button x:Name="Button_Settings" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="#FF0A2630" BorderBrush="#FF0A2630"  Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Einstellungen" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Settings_Click"/>
-                            <Button x:Name="Button_Profil" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Benutzerkonto" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Profil_Click"/>
+                            <Button x:Name="Button_Profilepricture" Style="{DynamicResource RoundedCornerStyle}" Height="70" Width="70" Background="White" BorderBrush="Transparent"  Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Margin="62,70,66,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="White" FontFamily="Sinkin Sans 600 SemiBold" Content="Max Mustermann" Margin="5,5,5,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button x:Name="Button_Homescreen" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Sinkin Sans 200 X Light" FontSize="16" Content="Startseite" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Homescreen_Click"/>
+                            <Button x:Name="Button_Settings" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent"  Foreground="White" FontFamily="Sinkin Sans 200 X Light" FontSize="16" Content="Einstellungen" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Settings_Click"/>
+                            <Button x:Name="Button_Profil" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Sinkin Sans 200 X Light" FontSize="16" Content="Benutzerkonto" Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Profil_Click"/>
                             <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="5,220,0,5"></Image>
                         </StackPanel>
 
                     </Border>
                 </StackPanel>
 
-                <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left" d:IsHidden="True">
-                    <Border x:Name="Menu_Panel_BorderSmall" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="673">
+                <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left">
+                    <Border x:Name="Menu_Panel_BorderSmall" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,40,0,0" Height="673">
                         <StackPanel x:Name="Menu_PanelSmall" Margin="0" Background="Transparent">
                             <Image Source="Resource/Menu.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="51" Width="51" Margin="5,5,0,0"></Image>
-                            <Button x:Name="Button_ProfileprictureSmall" Style="{DynamicResource RoundedCornerStyle}" Height="50" Width="56" Background="#FF5C6C74" BorderBrush="#FF0A2630"  Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Margin="5,80,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                            <Button x:Name="Button_ProfileprictureSmall" Style="{DynamicResource RoundedCornerStyle}" Height="50" Width="56" Background="White" BorderBrush="Transparent"  Foreground="White" FontFamily="Arial" FontSize="14" Margin="5,80,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
                             <Button x:Name="Button_HomescreenSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,80,0,0" HorizontalAlignment="Center" Click="Button_Homescreen_Click" VerticalAlignment="Center" Width="40">
                                 <Image Source="Resource/Homescreen.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"/>
                             </Button>
@@ -110,44 +109,47 @@
             </Grid>
 
 
-            <DockPanel x:Name="Inspector" Margin="5,0,0,0">
+            <DockPanel x:Name="Inspector" Margin="8,0,0,0">
 
                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
 
-                    <Border x:Name="Searchfield" DockPanel.Dock="Right" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4" Margin="0" HorizontalAlignment="Right" Width="250">
-                        <TextBox Name="Search_Textbox" Text="Suche..." Height="30" Background="#00000000" Foreground="#FF91BAD5" Margin="0" FontFamily="Arial" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center"/>
+                    <Border x:Name="Searchfield" DockPanel.Dock="Right" Background="Transparent" BorderBrush="#3D77B1" BorderThickness="2" CornerRadius="5" Margin="0,0,0,5" HorizontalAlignment="Right" Width="250">
+                        <TextBox Name="Search_Textbox" Text="Suche..." Height="25" Background="#00000000" Foreground="#3D77B1" Margin="5,0" FontFamily="Sinkin Sans 300 Light" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" FontSize="10"/>
                     </Border>
 
-                    <TextBlock x:Name="Navigation" Margin="5,0,0,0" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Height="20" FontWeight="Bold" HorizontalAlignment="Center" Text="Navigation:"/>
-                    <Button x:Name="Button_Subjetcs" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Fächer" Margin="20,0,0,0" Click="Button_Subjetcs_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Button x:Name="Button_Templates" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Vorlagen" Margin="20,0,0,0" Click="Button_Templates_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Button x:Name="Button_Modify" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Bearbeiten" Margin="20,0,0,0" Click="Button_Modify_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Button x:Name="Button_Export" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="16" Content="Exportieren" Margin="20,0,0,0" Click="Button_Export_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Grid DockPanel.Dock="Left" Background="#C9E2F2" Width="1" Margin="0"></Grid>
+                    
+                    <Button x:Name="Button_Subjetcs" Style="{DynamicResource RoundedCornerStyle}" Height="40" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Fächer" Margin="20,0,0,0" Click="Button_Subjetcs_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Background="#00000000"/>
+                    <Button x:Name="Button_Templates" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Vorlagen" Margin="20,0,0,0" Click="Button_Templates_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Button x:Name="Button_Modify" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Bearbeiten" Margin="20,0,0,0" Click="Button_Modify_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Button x:Name="Button_Export" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Exportieren" Margin="20,0,0,0" Click="Button_Export_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                 </DockPanel>
+
+                <Grid DockPanel.Dock="Top" Background="#C9E2F2" Height="1" Margin="0"></Grid>
 
                 <Grid x:Name="Screens" DockPanel.Dock="Bottom" Margin="0,10,0,0">
 
                     <Grid x:Name="Grid_Homescreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" d:IsHidden="True">
                         <DockPanel x:Name="Games_Screen" LastChildFill="True">
-                            <Button x:Name="Button_NewGame" Style="{DynamicResource RoundedCornerStyle}" DockPanel.Dock="Top" Margin="0,0,0,0" Content="Neues Serious Game erstellen" Background="#FF0A2630" BorderBrush="#FF0A2630" Foreground="#FF91BAD5" Height="40" HorizontalAlignment="Left" Width="250" FontSize="14" Click="Button_NewGame_Click"/>
+                            <Button x:Name="Button_NewGame" Style="{DynamicResource RoundedCornerStyle}" DockPanel.Dock="Top" Content="Neues Serious Game erstellen" Background="Transparent" BorderBrush="#3D77B1" Foreground="#3D77B1" Height="40" HorizontalAlignment="Left" Width="250" FontSize="12" Click="Button_NewGame_Click" FontFamily="Sinkin Sans 300 Light" BorderThickness="2"/>
 
                             <DockPanel x:Name="File_Categories" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True">
-                                <TextBlock x:Name="Text_Name" Margin="0" Text="Name" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="23" Width="210"/>
-                                <TextBlock x:Name="Text_FileSize" Margin="0" Text="Dateigröße" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="23" Width="297"/>
-                                <TextBlock x:Name="Text_Changes" Margin="0" Text="Letzte Änderung" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="23" Width="350"/>
-                                <TextBlock x:Name="Text_Status" Margin="0" Text="Status" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="23"/>
+                                <TextBlock x:Name="Text_Name" Margin="0" Text="Name" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="210"/>
+                                <TextBlock x:Name="Text_FileSize" Margin="0" Text="Dateigröße" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="297"/>
+                                <TextBlock x:Name="Text_Changes" Margin="0" Text="Letzte Änderung" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="350"/>
+                                <TextBlock x:Name="Text_Status" Margin="0" Text="Status" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23"/>
                             </DockPanel>
 
-                            <Border x:Name="Scroll_Menu" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <Border x:Name="Scroll_Menu" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,5,0,8" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                 <ScrollViewer x:Name="Grid_PreviousGamesMenu" Background="#00000000" Foreground="#00000000" BorderThickness="1,1,1,1" Margin="0" VerticalScrollBarVisibility="Hidden">
                                     <StackPanel Margin="0,5">
 
-                                        <DockPanel x:Name="File" Margin="5,0,0,5" LastChildFill="False" Height="20">
-                                            <TextBlock x:Name="Text_BspName" Margin="0" Text="Mathe_SG_Laufband" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Height="23" Width="210"/>
-                                            <TextBlock x:Name="Text_BspFileSize" Margin="0" Text="5MB" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Height="23" Width="297"/>
-                                            <TextBlock x:Name="Text_BspChanges" Margin="0" Text="09.08.2022" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Height="23" Width="350"/>
-                                            <TextBlock x:Name="Text_BspStatus" Margin="0" Text="Bearbeitung" Foreground="#FF91BAD5" FontFamily="Arial" FontSize="14" Height="23"/>
+                                        <DockPanel x:Name="File" Margin="10,5,0,5" LastChildFill="False" Height="20">
+                                            <TextBlock x:Name="Text_BspName" Margin="0" Text="Mathe_SG_Laufband" Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" Height="23" Width="210" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspFileSize" Margin="0" Text="5MB" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" Height="23" Width="297" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspChanges" Margin="0" Text="09.08.2022" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" Height="23" Width="350" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspStatus" Margin="0" Text="Bearbeitung" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" Height="23" FontSize="14"/>
                                         </DockPanel>
 
                                     </StackPanel>
@@ -161,122 +163,122 @@
 
                     <Grid x:Name="Grid_Subjectscreen" d:IsHidden="True">
                         <DockPanel Margin="0">
-                            <Border x:Name="Border_SubjectsMenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0"  Width="150">
+                            <Border x:Name="Border_SubjectsMenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,8"  Width="200">
                                 <StackPanel x:Name="Grid_SubjectsMenu" Margin="0" Background="Transparent">
 
-                                    <TextBlock x:Name="Text_HeadlineSubjects" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="20,10,0,30" HorizontalAlignment="Left" VerticalAlignment="Center">FÄCHER</TextBlock>
+                                    <TextBlock x:Name="Text_HeadlineSubjects" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center">Fächer</TextBlock>
 
-                                    <Button x:Name="Button_Sciene" Margin="10" Height="30" Content="Naturwissenschaften" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Click="Button_Sciene_Click"/>
+                                    <Button x:Name="Button_Sciene" Margin="10" Height="30" Content="Naturwissenschaften" Background="Transparent" BorderBrush="Transparent" 
+                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Sciene_Click" FontSize="14"/>
 
-                                    <Button x:Name="Button_Languages" Margin="10" Height="30" Content="Sprachen" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Languages_Click"></Button>
+                                    <Button x:Name="Button_Languages" Margin="10" Height="30" Content="Sprachen" Background="Transparent" BorderBrush="Transparent" 
+                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Languages_Click"></Button>
 
-                                    <Button x:Name="Button_Politic" Margin="10" Height="30" Content="Gesellschaftliches" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" Click="Button_Politic_Click"></Button>
+                                    <Button x:Name="Button_Politic" Margin="10" Height="30" Content="Gesellschaftliches" Background="Transparent" BorderBrush="Transparent" 
+                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Click="Button_Politic_Click"></Button>
 
-                                    <Button x:Name="Button_Further" Margin="10" Height="30" Content="Weitere" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Further_Click"></Button>
+                                    <Button x:Name="Button_Further" Margin="10" Height="30" Content="Weitere" Background="Transparent" BorderBrush="Transparent" 
+                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Further_Click"></Button>
 
-                                    <Button x:Name="Button_Favourits" Margin="10" Height="30" Content="Favoriten" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Favourits_Click"></Button>
+                                    <Button x:Name="Button_Favourits" Margin="10" Height="30" Content="Favoriten" Background="Transparent" BorderBrush="Transparent" 
+                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Favourits_Click"></Button>
 
                                 </StackPanel>
                             </Border>
 
-                            <Grid x:Name="Grid_Subjects" Margin="5,0,0,0">
-                                <Border x:Name="Border_SubjectsScience" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
+                            <Grid x:Name="Grid_Subjects" Margin="5,0,0,8">
+                                <Border x:Name="Border_SubjectsScience" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
                                     <UniformGrid x:Name="Grid_SubjectsScience" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top">
-                                        <Border x:Name="Border_Math" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="123" Width="180">
-                                            <Button x:Name="Button_Math" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" FontSize="14" FontWeight="Bold" Width="178" Height="121"/>
+                                        <Border x:Name="Border_Math" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="123" Width="180">
+                                            <Button x:Name="Button_Math" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Mathematik" FontFamily="Sinkin Sans 300 Light" FontSize="14" FontWeight="Bold" Width="178" Height="121"/>
                                         </Border>
-                                        <Border x:Name="Border_Physics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
-                                            <Button x:Name="Button_Physics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Physik" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
+                                        <Border x:Name="Border_Physics" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
+                                            <Button x:Name="Button_Physics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Physik" FontFamily="Sinkin Sans 300 Light" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
                                         </Border>
-                                        <Border x:Name="Border_Chemistry" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
-                                            <Button x:Name="Button_Chemistry" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Chemie" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Chemistry" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
+                                            <Button x:Name="Button_Chemistry" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Chemie" FontFamily="Sinkin Sans 300 Light" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Ciology" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="178">
-                                            <Button x:Name="Button_Biology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630"  Content="Biologie" FontFamily="Arial" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Ciology" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="178">
+                                            <Button x:Name="Button_Biology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1"  Content="Biologie" FontFamily="Sinkin Sans 300 Light" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_Sciences" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
-                                            <Button x:Name="Button_Sciences" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Mathematik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Sciences" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
+                                            <Button x:Name="Button_Sciences" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Mathematik" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
                                     </UniformGrid>
                                 </Border>
 
-                                <Border x:Name="Border_SubjectsLanguages" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
-                                    <UniformGrid x:Name="Grid_SubjectsLanguages" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top" d:IsHidden="True">
-                                        <Border x:Name="Border_German" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_German" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Deutsch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                <Border x:Name="Border_SubjectsLanguages" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                    <UniformGrid x:Name="Grid_SubjectsLanguages" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top">
+                                        <Border x:Name="Border_German" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_German" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Deutsch" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_English" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_English" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Englisch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_English" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_English" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Englisch" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
-                                        <Border x:Name="Border_French" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_French" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Französisch" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
-                                        </Border>
-
-                                        <Border x:Name="Border_Spanish" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Spanish" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                Content="Spanisch" FontFamily="Arial" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
+                                        <Border x:Name="Border_French" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_French" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Französisch" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Latin" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Latin" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                Content="Latein" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Spanish" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Spanish" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                Content="Spanisch" FontFamily="Sinkin Sans 300 Light" FontSize="14" FontWeight="Bold" Height="122" Width="180"/>
+                                        </Border>
+
+                                        <Border x:Name="Border_Latin" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Latin" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                Content="Latein" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14"/>
                                         </Border>
                                     </UniformGrid>
                                 </Border>
 
-                                <Border x:Name="Border_SubjectsPolitics" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                <Border x:Name="Border_SubjectsPolitics" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
                                     <UniformGrid x:Name="Grid_SubjectsPolitics" Margin="10" Background="Transparent" Columns="4" VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_History" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_History" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Geschichte" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_History" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_History" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Geschichte" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Politics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Politics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Gemeinschaftskunde" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Politics" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Politics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Gemeinschaftskunde" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Ethics" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Ethics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Ethik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Ethics" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Ethics" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Ethik" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Religion" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Religion" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Religionsunterricht" FontFamily="Arial" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Religion" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Religion" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Religionsunterricht" FontFamily="Sinkin Sans 300 Light" Width="180" Height="123" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
                                     </UniformGrid>
                                 </Border>
 
-                                <Border x:Name="Border_SubjectsFurther" VerticalAlignment="Stretch" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                <Border x:Name="Border_SubjectsFurther" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0">
                                     <UniformGrid x:Name="Grid_SubjectsFurther" Margin="10" Background="Transparent" Columns="4"  VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_Sports" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Sports" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Sport" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Sports" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Sports" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Sport" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Art" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Art" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Bildende Kunst" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Art" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Art" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Bildende Kunst" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Music" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
-                                            <Button x:Name="Button_Music" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Musik" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Music" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Width="180" Height="122">
+                                            <Button x:Name="Button_Music" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Musik" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
-                                        <Border x:Name="Border_Psychology" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
-                                            <Button x:Name="Button_Psychology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Psychologie" FontFamily="Arial" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
+                                        <Border x:Name="Border_Psychology" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,20" Height="122" Width="180">
+                                            <Button x:Name="Button_Psychology" Margin="0" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Psychologie" FontFamily="Sinkin Sans 300 Light" Width="180" Height="122" FontSize="14" FontWeight="Bold"/>
                                         </Border>
 
                                     </UniformGrid>
@@ -286,66 +288,66 @@
                         </DockPanel>
                     </Grid>
 
-                    <Grid x:Name="Grid_Templatescreen" Margin="0" VerticalAlignment="Stretch" d:IsHidden="True">
+                    <Grid x:Name="Grid_Templatescreen" Margin="0,0,0,8" VerticalAlignment="Stretch" d:IsHidden="True">
                         <DockPanel Margin="0" LastChildFill="True">
-                            <Border x:Name="Border_Templatesmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0"  Width="150">
+                            <Border x:Name="Border_Templatesmenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0"  Width="200">
                                 <StackPanel x:Name="Grid_Templatesmenu" Margin="0" Background="Transparent">
 
-                                    <TextBlock x:Name="Text_TemplateHeadline" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="20,10,0,30" HorizontalAlignment="Left" 
-                                               VerticalAlignment="Center">SPIELE</TextBlock>
+                                    <TextBlock x:Name="Text_TemplateHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center">Spiele</TextBlock>
 
-                                    <Button x:Name="Button_Action" Margin="10" Height="30" Content="Actionspiel" Background="#FF0A2630" BorderBrush="#FF0A2630"
-                                               Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Action_Click"></Button>
+                                    <Button x:Name="Button_Action" Margin="10" Height="30" Content="Actionspiel" Background="Transparent" BorderBrush="Transparent"
+                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Action_Click"></Button>
 
-                                    <Button x:Name="Button_Adventure" Margin="10" Height="30" Content="Abenteuerspiel" Background="#FF0A2630" BorderBrush="#FF0A2630"
-                                               Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Adventure_Click"></Button>
+                                    <Button x:Name="Button_Adventure" Margin="10" Height="30" Content="Abenteuerspiel" Background="Transparent" BorderBrush="Transparent"
+                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Adventure_Click"></Button>
 
-                                    <Button x:Name="Button_Puzzle" Margin="10" Height="30" Content="Puzzelspiel" Background="#FF0A2630" BorderBrush="#FF0A2630"
-                                               Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" Click="Button_Puzzle_Click"></Button>
+                                    <Button x:Name="Button_Puzzle" Margin="10" Height="30" Content="Puzzelspiel" Background="Transparent" BorderBrush="Transparent"
+                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" Click="Button_Puzzle_Click"></Button>
 
-                                    <Button x:Name="Button_Simulation" Margin="10" Height="30" Content="Simulation" Background="#FF0A2630" BorderBrush="#FF0A2630"
-                                               Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Simulation_Click"></Button>
+                                    <Button x:Name="Button_Simulation" Margin="10" Height="30" Content="Simulation" Background="Transparent" BorderBrush="Transparent"
+                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Simulation_Click"></Button>
 
-                                    <Button x:Name="Button_Roleplay" Margin="10" Height="30" Content="Rollenspiel" Background="#FF0A2630" BorderBrush="#FF0A2630"
-                                              Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_Roleplay_Click"></Button>
+                                    <Button x:Name="Button_Roleplay" Margin="10" Height="30" Content="Rollenspiel" Background="Transparent" BorderBrush="Transparent"
+                                              Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Roleplay_Click"></Button>
 
-                                    <Button x:Name="Button_TemplatesFavorits" Margin="10" Height="30" Content="Favoriten" Background="#FF0A2630" BorderBrush="#FF0A2630"
-                                              Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Click="Button_TemplatesFavorits_Click"></Button>
+                                    <Button x:Name="Button_TemplatesFavorits" Margin="10" Height="30" Content="Favoriten" Background="Transparent" BorderBrush="Transparent"
+                                              Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_TemplatesFavorits_Click"></Button>
 
                                 </StackPanel>
                             </Border>
 
                             <Grid x:Name="Grid_Templates" Margin="5,0,0,0">
-                                <Border x:Name="Border_TemplateAction" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
+                                <Border x:Name="Border_TemplateAction" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
                                     <UniformGrid x:Name="Grid_TemplateAction" Margin="10" Background="Transparent" Columns="3" VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_TemplateJumpNRun" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="260" Width="260">
-                                            <Grid x:Name="Grid_TemplateJumpNRun" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_JumpNRun" Margin="0,0,0,215" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" Content="Jump'n'Run" FontFamily="Arial" FontSize="14" FontWeight="Bold" Width="260" HorizontalAlignment="Center"/>
-                                                <TextBlock Margin="5,50,5,109"><Run Text="Ein Jump'n'Run Spiel dient zum Training von"/><LineBreak/><Run Text="Reaktionsschnelligkeit und"/><LineBreak/><Run Text="Konzentration."/><Run Text=" Spielende müssen z. B. einen "/><LineBreak/><Run Text="Hindernissparkour überqueren und dabei "/><LineBreak/><Run Text="Aufgaben lösne"/></TextBlock>
-                                                <Border x:Name="Border_JumpNRunPreviw" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateJumpNRun" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Height="260" Width="260">
+                                            <Grid x:Name="Grid_TemplateJumpNRun" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_JumpNRun" Margin="0,0,0,215" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" Content="Jump'n'Run" FontFamily="Sinkin Sans 300 Light" FontSize="14" FontWeight="Bold" Width="260" HorizontalAlignment="Center"/>
+                                                <TextBlock Margin="5,50,5,109" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Ein Jump'n'Run Spiel dient zum Training von"/><LineBreak/><Run Text="Reaktionsschnelligkeit und"/><LineBreak/><Run Text="Konzentration."/><Run Text=" Spielende müssen z. B. einen "/><LineBreak/><Run Text="Hindernissparkour überqueren und dabei "/><LineBreak/><Run Text="Aufgaben lösne"/></TextBlock>
+                                                <Border x:Name="Border_JumpNRunPreviw" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_JumNRunPreview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
                                         </Border>
 
-                                        <Border x:Name="Border_TemplateRace" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplateRace" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_Race" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                    Content="Rennen" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold" Margin="0,0,0,215"/>
-                                                <TextBlock Margin="5,50,5,109"><Run Text="Ein Rennspiel ist ein gutes Training für die "/><LineBreak/><Run Text="Motorischen Fähigkeiten. Spielende können "/><LineBreak/><Run Text="sich in einem Wettkampf auf Zeit mit einander "/><LineBreak/><Run Text="messen"/></TextBlock>
-                                                <Border x:Name="Border_RacePreviewPreviw" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateRace" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplateRace" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_Race" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                    Content="Rennen" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" Margin="0,0,0,215"/>
+                                                <TextBlock Margin="5,50,5,109" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Ein Rennspiel ist ein gutes Training für die "/><LineBreak/><Run Text="Motorischen Fähigkeiten. Spielende können "/><LineBreak/><Run Text="sich in einem Wettkampf auf Zeit mit einan-"/><LineBreak/><Run Text="der messen"/></TextBlock>
+                                                <Border x:Name="Border_RacePreviewPreviw" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_RacePreview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
                                         </Border>
 
-                                        <Border x:Name="Border_TemplateConveyorBelt" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplateConveyorBelt" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_ConveyorBelt" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                    Content="Fließbandspiel" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137"><Run Text="Das Fließbandspiel hilft Spielenden unter "/><LineBreak/><Run Text="Zeitdruck instinktive Entscheidungen zu treffen. "/><LineBreak/><Run Text="Spielende müssen die auf dem Fließband "/><LineBreak/><Run Text="kommenden Elemente richtig sortieren"/></TextBlock>
-                                                <Border x:Name="Border_ConveryorBeltPreviw" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateConveyorBelt" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplateConveyorBelt" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_ConveyorBelt" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                    Content="Fließbandspiel" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Das Fließbandspiel hilft Spielenden unter "/><LineBreak/><Run Text="Zeitdruck instinktive Entscheidungen zu treffen. "/><LineBreak/><Run Text="Spielende müssen die auf dem Fließband "/><LineBreak/><Run Text="kommenden Elemente richtig sortieren"/></TextBlock>
+                                                <Border x:Name="Border_ConveryorBeltPreviw" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_ConveryorBeltPreview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
@@ -354,27 +356,27 @@
                                     </UniformGrid>
                                 </Border>
 
-                                <Border x:Name="Border_TemplateAdventure" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0">
+                                <Border x:Name="Border_TemplateAdventure" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
 
                                     <UniformGrid x:Name="Grid_TemplateAdventure" Margin="10" Background="Transparent" Columns="3" VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_TemplateLaraCroft" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Height="260" Width="260">
-                                            <Grid x:Name="Grid_TemplateLaraCroft" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_LaraCroft" Margin="0,0,0,210" Background="#FF9C8A87" BorderBrush="#FF9C8A87" Foreground="#FF0A2630" 
-                                                    Content="Lara Croft" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,109"><Run Text="Das Adventurespiel &quot;Lara Croft&quot; ermöglicht es "/><LineBreak/><Run Text="Spielenden...."/></TextBlock>
-                                                <Border x:Name="Border_Adventure2Preview" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateLaraCroft" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Height="260" Width="260">
+                                            <Grid x:Name="Grid_TemplateLaraCroft" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_LaraCroft" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                    Content="Lara Croft" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,109" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Das Adventurespiel &quot;Lara Croft&quot; ermöglicht es "/><LineBreak/><Run Text="Spielenden...."/></TextBlock>
+                                                <Border x:Name="Border_Adventure2Preview" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_LaraCroftPreview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
                                         </Border>
 
-                                        <Border x:Name="Border_TemplateAdventure2" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplateAdventure2" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_Adventure2" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                    Content="Abenteuerspiel 2" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137" Text="..."/>
-                                                <Border x:Name="Border_Adventure2Previw" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateAdventure2" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplateAdventure2" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_Adventure2" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                    Content="Abenteuerspiel 2" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" Text="..." FontFamily="Sinkin Sans 400 Light" FontSize="10"/>
+                                                <Border x:Name="Border_Adventure2Previw" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_Adventure2Preview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
@@ -384,27 +386,27 @@
 
                                 </Border>
 
-                                <Border x:Name="Border_TemplatePuzzle" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                <Border x:Name="Border_TemplatePuzzle" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
 
                                     <UniformGrid x:Name="Grid_TemplatePuzzle" Margin="10" Background="Transparent" Columns="3" VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_TemplateTetris" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplateTetris" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_Tetris" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Tetris" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137"><Run Text="Mit Hilfe des Spiels kann das räumliche Denken "/><LineBreak/><Run Text="von Spielenden unterstütz werden und ein "/><LineBreak/><Run Text="besser Vorstellung von Formen und Volumen "/><LineBreak/><Run Text="entstehen"/></TextBlock>
-                                                <Border x:Name="Border_TetrisPreviw" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateTetris" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplateTetris" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_Tetris" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Tetris" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Mit Hilfe des Spiels kann das räumliche Denken "/><LineBreak/><Run Text="von Spielenden unterstütz werden und ein "/><LineBreak/><Run Text="besser Vorstellung von Formen und Volumen "/><LineBreak/><Run Text="entstehen"/></TextBlock>
+                                                <Border x:Name="Border_TetrisPreviw" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_TetrisPreview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
                                         </Border>
 
-                                        <Border x:Name="Border_TemplatePortals" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplatePortals" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_Portals" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                        Content="Portals" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137"><Run Text="Mit Hilfe des Spiels kann das räumliche Denken "/><LineBreak/><Run Text="von Spielenden unterstütz werden und ein "/><LineBreak/><Run Text="besser Vorstellung von Formen und Volumen "/><LineBreak/><Run Text="entstehen"/></TextBlock>
-                                                <Border x:Name="Border_PortalsPreviw" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplatePortals" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplatePortals" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_Portals" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                        Content="Portals" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Mit Hilfe des Spiels kann das räumliche Denken "/><LineBreak/><Run Text="von Spielenden unterstütz werden und ein "/><LineBreak/><Run Text="besser Vorstellung von Formen und Volumen "/><LineBreak/><Run Text="entstehen"/></TextBlock>
+                                                <Border x:Name="Border_PortalsPreviw" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_PortalsPreview" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
@@ -414,27 +416,27 @@
 
                                 </Border>
 
-                                <Border x:Name="Border_TemplateSimulation" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                <Border x:Name="Border_TemplateSimulation" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
 
                                     <UniformGrid x:Name="Grid_TemplateSimulation" Margin="10" Background="Transparent" Columns="3" VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_TemplateFarmSimu" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplateFarmSimu" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_FarmSimu" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                        Content="Landwirtschaftssimulator" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137"><Run Text="Spielende müssen sich um eine fiktive Farm "/><LineBreak/><Run Text="kümmern um Verantwortung zu übernehmen "/><LineBreak/><Run Text="und lernen mit Ressourcen umzugehen."/></TextBlock>
-                                                <Border x:Name="Border_PreviwFarmSimu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateFarmSimu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplateFarmSimu" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_FarmSimu" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                        Content="Landwirtschaftssimulator" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Spielende müssen sich um eine fiktive Farm "/><LineBreak/><Run Text="kümmern um Verantwortung zu übernehmen "/><LineBreak/><Run Text="und lernen mit Ressourcen umzugehen."/></TextBlock>
+                                                <Border x:Name="Border_PreviwFarmSimu" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_PreviewFarmSimu" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
                                         </Border>
 
-                                        <Border x:Name="Border_TemplateReignCountry" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_Template_ReignCountry" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_ReignCountry" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                    Content="Regiere dein Land" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137"><Run Text="Spielende müssen sich um eine fiktive Farm "/><LineBreak/><Run Text="kümmern um Verantwortung zu übernehmen "/><LineBreak/><Run Text="und lernen mit Ressourcen umzugehen."/></TextBlock>
-                                                <Border x:Name="Border_PreviwReignCountry" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplateReignCountry" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_Template_ReignCountry" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_ReignCountry" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                    Content="Regiere dein Land" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Spielende müssen sich um eine fiktive Farm "/><LineBreak/><Run Text="kümmern um Verantwortung zu übernehmen "/><LineBreak/><Run Text="und lernen mit Ressourcen umzugehen."/></TextBlock>
+                                                <Border x:Name="Border_PreviwReignCountry" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_PreviewReignCountry" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
@@ -444,16 +446,16 @@
 
                                 </Border>
 
-                                <Border x:Name="Border_TemplateRPG" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" d:IsHidden="True">
+                                <Border x:Name="Border_TemplateRPG" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0">
 
                                     <UniformGrid x:Name="Grid_TemplateRPG" Margin="10" Background="Transparent" Columns="3" VerticalAlignment="Top">
 
-                                        <Border x:Name="Border_TemplatePokemon" Background="#FF9C8A87" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
-                                            <Grid x:Name="Grid_TemplatePokemon" Margin="0" Background="Transparent" Width="260" Height="260">
-                                                <Button x:Name="Button_Pokemon" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#FF0A2630" 
-                                                    Content="Regiere dein Land" FontFamily="Arial" Width="260" FontSize="14" FontWeight="Bold"/>
-                                                <TextBlock Margin="5,50,5,137"><Run Text="Spielende müssen sich um eine fiktive Farm "/><LineBreak/><Run Text="kümmern um Verantwortung zu übernehmen "/><LineBreak/><Run Text="und lernen mit Ressourcen umzugehen."/></TextBlock>
-                                                <Border x:Name="Border_PreviwPokemon" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="10,156,10,10">
+                                        <Border x:Name="Border_TemplatePokemon" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="260" Height="260">
+                                            <Grid x:Name="Grid_TemplatePokemon" Margin="0" Background="Transparent" Width="260" Height="260" HorizontalAlignment="Center">
+                                                <Button x:Name="Button_Pokemon" Margin="0,0,0,210" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" 
+                                                    Content="Regiere dein Land" FontFamily="Sinkin Sans 300 Light" Width="260" FontSize="14" FontWeight="Bold"/>
+                                                <TextBlock Margin="5,50,5,137" Foreground="#B7BABA" FontFamily="Sinkin Sans 400 Light" FontSize="10"><Run Text="Spielende müssen sich um eine fiktive Farm "/><LineBreak/><Run Text="kümmern um Verantwortung zu übernehmen "/><LineBreak/><Run Text="und lernen mit Ressourcen umzugehen."/></TextBlock>
+                                                <Border x:Name="Border_PreviwPokemon" Background="#3D77B1" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="8,156,8,10">
                                                     <Grid x:Name="Grid_PreviewPokemon" Margin="0" Background="Transparent"></Grid>
                                                 </Border>
                                             </Grid>
@@ -472,33 +474,27 @@
                         </DockPanel>
                     </Grid>
 
-                    <Grid x:Name="Grid_Modifyscreen" Margin="0">
+                    <Grid x:Name="Grid_Modifyscreen" Margin="0,0,0,8">
 
                         <DockPanel x:Name="Modify_DockPanel" LastChildFill="True">
 
-                            <Border x:Name="Border_Categories_Menu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="150">
+                            <Border x:Name="Border_Categories_Menu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,0" Width="150">
 
                                 <ScrollViewer x:Name="Categories_ScrollView" VerticalScrollBarVisibility="Hidden">
                                     <StackPanel x:Name="Grid_Categories_Menu" Margin="0" Background="Transparent" VerticalAlignment="Stretch">
 
-                                        <TextBlock x:Name="Text_HeadlineCategory" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0,20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="KATEGORIEN"/>
+                                        <TextBlock x:Name="Text_HeadlineCategory" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Kategorien"/>
 
-                                        <StackPanel x:Name="Category_Buttons" Margin="20,10,5,0">
-                                            <Button x:Name="Button_Level" Margin="0,10,0,0" Content="Level" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                            Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center"></Button>
-
-                                            <Button x:Name="Button_Character" Margin="0,10,0,0" Content="Charkter" Background="#FF0A2630" BorderBrush="#FF0A2630" 
-                                            Foreground="#FF91BAD5" FontFamily="Arial" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Center" Height="18"></Button>
-                                        </StackPanel>
+                                        <StackPanel x:Name="Category_Buttons" Margin="5,0,5,0"/>
 
                                     </StackPanel>
                                 </ScrollViewer>
 
                             </Border>
 
-                            <Border x:Name="Border_Optionssmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="5,0,0,0" Width="647">
+                            <Border x:Name="Border_Optionssmenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="5,0,0,0" Width="647">
                                 <DockPanel x:Name="Grid_Optionssmenu" Margin="0" Background="Transparent">
-                                    <TextBlock x:Name="Text_HeadlineOptions" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0,20" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Text="OPTIONEN"/>
+                                    <TextBlock x:Name="Text_HeadlineOptions" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Optionen"/>
 
                                     <Grid x:Name="Categories" VerticalAlignment="Stretch">
                                         <Grid x:Name="Grid_OptionLevel">
@@ -519,11 +515,15 @@
                             </Border>
 
                             <DockPanel Margin="5,0,0,0" VerticalAlignment="Stretch">
-                                <Border x:Name="Border_ModifyPreviewElement" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,0,0,2.5" DockPanel.Dock="Top" Height="250" VerticalAlignment="Stretch">
-                                    <Grid></Grid>
+                                <Border x:Name="Border_ModifyPreviewElement" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,2.5" DockPanel.Dock="Top" Height="250" VerticalAlignment="Stretch">
+                                    <Grid>
+                                        <TextBlock x:Name="Text_Preview" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Element Vorschau"/>
+                                    </Grid>
                                 </Border>
-                                <Border x:Name="Border_ModifyPreviewGame" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0,2.5,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Grid></Grid>
+                                <Border x:Name="Border_ModifyPreviewGame" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,2.5,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Grid>
+                                        <TextBlock x:Name="Text_PreviewGame" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Spiel Vorschau"/>
+                                    </Grid>
                                 </Border>
                             </DockPanel>
 
@@ -531,11 +531,11 @@
 
                     </Grid>
 
-                    <Grid x:Name="Grid_Exportscreen" Margin="0" HorizontalAlignment="Left" d:IsHidden="True">
+                    <Grid x:Name="Grid_Exportscreen" Margin="0,0,0,8" HorizontalAlignment="Left" d:IsHidden="True">
                         <DockPanel >
-                            <Border x:Name="Border_Exportsmenu" Background="#FF0A2630" BorderBrush="#FF0A2630" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Margin="0" Width="150">
+                            <Border x:Name="Border_Exportsmenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="200">
                                 <StackPanel Margin="20">
-                                    <TextBlock x:Name="Text_ExportHeadline" Foreground="#FF9C8A87" FontSize="16" FontFamily="Arial" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="EXPORT"/>
+                                    <TextBlock x:Name="Text_ExportHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Export"/>
                                 </StackPanel>
                             </Border>
 

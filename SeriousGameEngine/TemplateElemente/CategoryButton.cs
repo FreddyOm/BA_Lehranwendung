@@ -13,18 +13,18 @@ namespace SeriousGameEngine.TemplateElemente
         {
             this.Name = catName;
             this.Content = catName;
-            this.Height = 18;
-            this.Margin = new System.Windows.Thickness(0,10,0,0);
+            this.Height = 30;
+            this.Margin = new System.Windows.Thickness(10);
 
             this.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             this.VerticalAlignment = System.Windows.VerticalAlignment.Center;
 
-            this.FontFamily = Design.AppFont;
-            this.FontSize = 13;
+            this.FontFamily = new FontFamily("Sinkin Sans 300 Light");
+            this.FontSize = 14;
 
             this.Background = new SolidColorBrush(Colors.Transparent);
             this.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            this.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.FF91BAD5));
+            this.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3D77B1"));
         }
     }
 }

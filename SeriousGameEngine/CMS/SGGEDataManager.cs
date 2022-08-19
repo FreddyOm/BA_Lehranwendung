@@ -5,6 +5,10 @@ using System.Linq;
 using SGGE;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Windows.Controls;
+using SeriousGameEngine.TemplateElemente;
+using Newtonsoft.Json;
+using System.Windows.Media;
 
 namespace SeriousGameEngine.CMS
 {
@@ -260,4 +264,170 @@ namespace SeriousGameEngine.CMS
     }
 
     #endregion option data elements
+
+    public class SaveUtility : IDisposable
+    {
+        public static string SAVE_PATH;
+        public readonly string SAVE_FILE = "/appsave.sgge";
+        public static string EXPORT_PATH;
+
+        private Dictionary<string, OptionValue> saveValues = new Dictionary<string, OptionValue>();
+
+        public SaveUtility()
+        {
+            SAVE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/SGGEApp/application";
+
+            // folder
+            if (!Directory.Exists(SAVE_PATH))
+            {
+                Directory.CreateDirectory(SAVE_PATH);
+            }
+
+            // file
+            if(!File.Exists(SAVE_PATH + SAVE_FILE))
+            {
+                File.Create(SAVE_PATH + SAVE_FILE);
+            }
+
+            DeserializeOptions();
+
+            OptionUIElement.onValueChanged += SaveOptions;
+        }
+
+        /// <summary>
+        /// Saves changed values into the dictionary.
+        /// </summary>
+        /// <param name="optionID"></param>
+        /// <param name="value"></param>
+        /// <param name="option"></param>
+        private void SaveOptions(string optionID, OptionUIElement value, OPTION option)
+        { 
+            if(saveValues.ContainsKey(optionID))
+            {
+                saveValues.Remove(optionID);
+            }
+
+            switch(option)
+            {
+                case OPTION.YES_NO_OPTION:
+                    YesNoOptionElement yno = (YesNoOptionElement) value;
+                    saveValues.Add(optionID, new OptionYesNoValue(OPTION.YES_NO_OPTION, optionID, yno.GetValue()));
+                    break;
+                case OPTION.REAL_NUM:
+                    RealNumOptionElement rn = (RealNumOptionElement)value;
+                    saveValues.Add(optionID, new OptionRealValue(OPTION.REAL_NUM, optionID, rn.GetValue()));
+                    break;
+                case OPTION.DECIMAL_NUM:
+                    DecimalNumOptionElement dno = (DecimalNumOptionElement)value;
+                    saveValues.Add(optionID, new OptionDecimalValue(OPTION.DECIMAL_NUM, optionID, dno.GetValue()));
+                    break;
+                case OPTION.COLOR:
+                    ColorOptionElement co = (ColorOptionElement)value;
+                    saveValues.Add(optionID, new OptionColorValue(OPTION.COLOR, optionID, Design.HexConverter(co.GetValue())));
+                    break;
+                case OPTION.TEXT:
+                    TextOptionElement to = (TextOptionElement)value;
+                    saveValues.Add(optionID, new OptionTextValue(OPTION.TEXT, optionID, to.GetValue()));
+                    break;
+                case OPTION.SOUND_FILE:
+                    AudioOptionElement so = (AudioOptionElement)value;
+                    saveValues.Add(optionID, new OptionAudioValue(OPTION.SOUND_FILE, optionID, so.GetValue()));
+                    break;
+                case OPTION.GRAPHICS:
+                    GraphicOptionElement element = (GraphicOptionElement)value;
+                    saveValues.Add(optionID, new OptionGraphicValue(OPTION.GRAPHICS, optionID, element.GetValue()));
+                    break;
+                case OPTION.ARRAY:
+                    ArrayOptionElement ao = (ArrayOptionElement)value;
+                    saveValues.Add(optionID, new OptionArrayValue(OPTION.ARRAY, optionID, null));//TODO: Hier auf jeden Fall noch fixen!!!
+                    break;
+            }
+
+            SerializeValues();
+        }
+
+        public OptionValue LoadOption(string optionID)
+        {
+            if(saveValues.ContainsKey(optionID))
+            {
+                return saveValues[optionID];
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Serializes the dictionary to save all values
+        /// </summary>
+        private void SerializeValues()
+        {
+            StreamWriter sw = new StreamWriter(SAVE_PATH + SAVE_FILE);
+
+            foreach (KeyValuePair<string, OptionValue> option in saveValues)
+            {
+                string json =  JsonConvert.SerializeObject(option.Value);
+                sw.WriteLine(json);
+            }
+
+            sw.Close();
+        }
+
+        private void DeserializeOptions()
+        {
+            StreamReader sr = new StreamReader(SAVE_PATH + SAVE_FILE);
+            
+            while(!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+
+                OptionValue value = JsonConvert.DeserializeObject<OptionValue>(line);
+
+                switch(value.Option)
+                {
+                    case OPTION.GRAPHICS:
+                        var go = JsonConvert.DeserializeObject<OptionGraphicValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)){saveValues.Add(value.Path, go);}
+                        break;
+                    case OPTION.YES_NO_OPTION:
+                        var yno = JsonConvert.DeserializeObject<OptionYesNoValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, yno); }
+                        break;
+                    case OPTION.TEXT:
+                        var to = JsonConvert.DeserializeObject<OptionTextValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, to); }
+                        break;
+                    case OPTION.SOUND_FILE:
+                        var so = JsonConvert.DeserializeObject<OptionAudioValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, so); }
+                        break;
+                    case OPTION.DECIMAL_NUM:
+                        var dno = JsonConvert.DeserializeObject<OptionDecimalValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, dno); }
+                        break;
+                    case OPTION.REAL_NUM:
+                        var rno = JsonConvert.DeserializeObject<OptionRealValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, rno); }
+                        break;
+                    case OPTION.ENUM:
+                        var eo = JsonConvert.DeserializeObject<OptionEnumValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, eo); }
+                        break;
+                    case OPTION.ARRAY:
+                        var ao = JsonConvert.DeserializeObject<OptionArrayValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, ao); }
+                        break;
+                    case OPTION.COLOR:
+                        var co = JsonConvert.DeserializeObject<OptionColorValue>(line);
+                        if (!saveValues.ContainsKey(value.Path)) { saveValues.Add(value.Path, co); }
+                        break;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            OptionUIElement.onValueChanged -= SaveOptions;
+        }
+    }
+
 }
