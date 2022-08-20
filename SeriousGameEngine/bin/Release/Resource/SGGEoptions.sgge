@@ -1,0 +1,15 @@
+{"Path":"Logik/Kategorien/Anzahl","Tooltip": "Die Anzahl der Kategorien.","Option": 7}
+{"Path":"Logik/Kategorien/Zwei","Tooltip": "Die Anzahl der Kategorien.","Option": 7}
+{"Path":"Logik/WinCondition/Gewinnanzahl","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
+{"Enumerables":["MyFirstVar","MySecVar","MyThirdVar"],"Path":"EnumTest/Enum/MeinEnum","Tooltip":"Ein Enum.","Option":5}
+{"Path":"Kategorien/Logik/Antwort","Tooltip":"Gibt den Antwortindex dieser Kategorie an.","Option":7}
+{"Path":"Kategorie/Aussehen/Text","Tooltip":"Der Text dieser Kategorie.","Option":2}
+{"Path":"Kategorie/Aussehen/Farbe","Tooltip":"Die Farbe dieser Kategorie.","Option":1}
+{"Options":[{"Path":"Items/Fragen/Antwortkategorie","Tooltip":"Der Index, der zur entsprechenden Kategorie passt.","Option":7},{"Path":"Items/Inhalt/Text","Tooltip":"Der Text, der im Item steht.","Option":2},{"Path":"Items/Inhalt/Hintergrund","Tooltip":"Der Hintergrund des Items.","Option":3}],"Path":"Kategorien/Test/Test","Tooltip":"TESTTESTTEST.","Option":8}
+{"Path":"Grafik/Test/Versuch","Tooltip":"Die Farbe dieser Kategorie.","Option":3}
+{"Path":"Weiteres/Aussehen/Hallo","Tooltip":"Die Farbe dieser Kategorie.","Option":4}
+{"Path":"Anderes/Nochwas/Name123","Tooltip":"Hahah","Option":6}
+{"Path":"Logik/Gewinne","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
+{"Path":"Logik/Hallo","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
+{"Path":"Logik/Now","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":7}
+{"Path":"Logik/Kek","Tooltip":"Die Anzahl der Items bis zum Gewinn.","Option":0}

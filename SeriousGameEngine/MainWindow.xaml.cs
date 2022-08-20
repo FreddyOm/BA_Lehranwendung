@@ -573,25 +573,25 @@ namespace SeriousGameEngine
             Grid_Templatesmenu.Children.Add(rpgButton);
             Grid_Templatesmenu.Children.Add(favButton);
 
-            jumpNRunElement = new TemplateElement("Jump'n'Run", "Ein Jump'n'Run Spiel dient zum Training\nvon " +
-                "Reaktionsschnelligkeit und Konzen-\ntration. Spielende müssen z. B. einen\nHindernisparkour überqueren und dabei\nAufgaben lösen.");
+            jumpNRunElement = new TemplateElement("You Better Jump'n'Run", "Das Jump'n'Run Spiel dient zum Training\nvon " +
+                "Reaktionsschnelligkeit und Konzen-\ntration. Spielende müssen einen\nHindernisparkour überqueren und dabei\nAufgaben lösen.");
             
-            raceElement = new TemplateElement("Rennen", "Ein Rennspiel ist ein gutes Training für die\nmotorischen" +
-                " Fähigkeiten.\nSpielende können sich in einem Wett-\nkampf auf Zeit miteinander messen.");
+            raceElement = new TemplateElement("Faster", "Das Rennspiel ist ein gutes Training für die\nmotorischen" +
+                " Fähigkeiten.\nSpielende messen sich in einem Wett-\nkampf auf Zeit miteinander.");
             
             conveyorBeltElement = new TemplateElement("Fließbandspiel", "Das Fließbandspiel hilft Spielenden unter\n" +
                 "Zeitdruck instinktive Entscheidungen zu\ntreffen.\nSpielende müssen die auf dem Fließband\nankommenden Elemente richtig sortieren.");
 
-            laraCroftElement = new TemplateElement("Lara Croft", "Das Adventurespiel \"Lara Croft\" ermöglicht\nes Spielenden....");
+            laraCroftElement = new TemplateElement("Abenteuer Beispielspiel", "Das Adventurespiel ermöglicht\nes Spielenden in einer Fantasieumgebung Abenteur zu erleben und dabei ihr Wissen zu stärken");
             adventureGameElement = new TemplateElement("Abenteuerspiel", "...");
 
-            tetrisElement = new TemplateElement("Tetris", "Mit Hilfe des Spiels kann das räumliche\nDenken von Spielenden unterstütz wer-\nden und ein besser Vorstellung von\nFormen und Volumen entstehen.");
-            portalsElement = new TemplateElement("Portale", "Mit Hilfe des Spiels kann das räumliche\nDenken von Spielenden unterstütz wer-\nden und ein besser Vorstellung von\nFormen und Volumen entstehen.");
+            tetrisElement = new TemplateElement("Blöcke stapeln", "Mit Hilfe des Spiels kann das räumliche\nDenken von Spielenden unterstütz wer-\nden und ein besser Vorstellung von\nFormen und Volumen entstehen.");
+            portalsElement = new TemplateElement("Beispielspiel Puzzle", "...");
 
-            farmSimulatorElement = new TemplateElement("Landwirtschaftssimulator", "Spielende müssen sich um eine fiktive\nFarm kümmern um Verantwortung zu\nübernehmen und zu lernen, mit Res-\nsourcen umzugehen.");
-            reignCntryElement = new TemplateElement("Regiere dein Land", "Spielende müssen ein fiktives Land re-\ngieren um Verantwortung zu übernehmen\nund zu lernen, mit Ressourcen umzugehen.");
+            farmSimulatorElement = new TemplateElement("Meine kleine Farm", "Spielende müssen sich um eine fiktive\nFarm kümmern um Verantwortung zu\nübernehmen und zu lernen, mit Res-\nsourcen umzugehen.");
+            reignCntryElement = new TemplateElement("Beispielspiel Simulation", "...");
 
-            RPG_Element = new TemplateElement("Rollenspiel", "...");
+            RPG_Element = new TemplateElement("Model UN", "In dem Rollenspiel Model UN, stellen Spielende die United Nations nache und lernen wichtige Entscheidungen zu treffen.");
 
             Grid_TemplateAction.Children.Add(jumpNRunElement);
             Grid_TemplateAction.Children.Add(raceElement);

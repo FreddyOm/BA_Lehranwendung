@@ -86,30 +86,34 @@
 
     <Grid x:Name="Grid_Background" Background="#FFFFFFFF">
 
-        <DockPanel Margin="0,8,8,0">
+        <DockPanel Margin="0,0,8,0">
             <Grid x:Name="Grid_MenuSettings" VerticalAlignment="Stretch">
 
-                <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch" d:IsHidden="True">
-                    <Image Source="Resource/Menu.png" HorizontalAlignment="Left" Height="40" Width="40" Margin="11,0,0,0"/>
-                    <Border x:Name="Menu_Panel_Border" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,00,0,0">
+                <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch">
+                    <Border x:Name="Menu_Panel_Border" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,0,0,0">
+                        <Grid>
+                        <Image Source="Resource/Menu.png" HorizontalAlignment="Left" Height="40" Width="40" Margin="11,0,0,0" VerticalAlignment="Top"/>
 
-                        <StackPanel x:Name="Menu_Panel" Height="685">
+                        <StackPanel x:Name="Menu_Panel" Height="687">
                             <Border x:Name="Button_Profilepricture" CornerRadius="4" Height="70" Width="70" Background="White" BorderBrush="Transparent" Margin="62,70,66,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="White" FontFamily="Sinkin Sans 600 SemiBold" Content="Max Mustermann" Margin="5,5,5,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <StackPanel x:Name="SideboardButtons">
                                 
                             </StackPanel>
 
-                            <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="8,225,0,5"></Image>
+                            <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="8,280,0,5"></Image>
                         </StackPanel>
-
+                        </Grid>
                     </Border>
                 </StackPanel>
 
-                <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left">
-                    <Image Source="Resource/Menu.png" HorizontalAlignment="Center" Height="40" Width="40" Margin="0,0,0,0"/>
-                    <Border x:Name="Menu_Panel_BorderSmall" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,0,0,0" Height="656">
+                <StackPanel x:Name="SideboardSmall" Margin="0" Width="62" Background="Transparent" HorizontalAlignment="Left" d:IsHidden="True">
+                    
+                    <Border x:Name="Menu_Panel_BorderSmall" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,0,0,0" Height="687">
+                        <Grid>
+                        <Image Source="Resource/Menu.png" HorizontalAlignment="Center" Height="40" Width="40" Margin="0,0,0,0" VerticalAlignment="Top"/>
                         <StackPanel x:Name="Menu_PanelSmall" Margin="0" Background="Transparent">
+                           
                             <Border x:Name="Button_ProfileprictureSmall" CornerRadius="4" Height="50" Width="50" Background="White" BorderBrush="Transparent" Margin="5,80,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Button x:Name="Button_HomescreenSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,80,0,0" HorizontalAlignment="Center" Click="Button_Homescreen_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
                                     Foreground="Transparent" BorderBrush="Transparent">
@@ -123,14 +127,15 @@
                                     Foreground="Transparent" BorderBrush="Transparent">
                                 <Image Source="Resource/Profil.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
                             </Button>
-                            <Image x:Name="Img_Menu_LogoutSmall" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="45" Width="45" Margin="5,200,5,0" />
+                            <Image x:Name="Img_Menu_LogoutSmall" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="45" Width="45" Margin="5,255,5,0" />
                         </StackPanel>
+                        </Grid>
                     </Border>
                 </StackPanel>
 
             </Grid>
 
-            <DockPanel x:Name="Inspector" Margin="8,0,0,0">
+            <DockPanel x:Name="Inspector" Margin="8,8,0,0">
 
                 <DockPanel x:Name="NavigationPanel" DockPanel.Dock="Top" LastChildFill="False">
 
