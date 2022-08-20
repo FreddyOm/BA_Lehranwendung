@@ -158,8 +158,10 @@
                     <Grid x:Name="Grid_Homescreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" d:IsHidden="True">
                         <DockPanel x:Name="Games_Screen" LastChildFill="True">
 
-                            <Border x:Name="Button_NewGameBorder" BorderThickness="2" DockPanel.Dock="Top" Background="Transparent" BorderBrush="#3D77B1" Width="250" Height="40" CornerRadius="8">
-
+                            <Border x:Name="Button_NewGameBorder" BorderThickness="2" DockPanel.Dock="Top" Background="Transparent" BorderBrush="#3D77B1" Width="250" Height="40" CornerRadius="8" HorizontalAlignment="Left">
+                                <Grid x:Name="Button_NewGameGrid" Width="250" Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                                    
+                                </Grid>
                             </Border>
 
                             <DockPanel x:Name="File_Categories" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True">

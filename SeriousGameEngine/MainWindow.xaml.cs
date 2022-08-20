@@ -546,7 +546,7 @@ namespace SeriousGameEngine
             newGameButton = new NewGameButton("Neues Serious Game erstellen");
             newGameButton.click += Button_NewGame_Click;
 
-            Button_NewGameBorder.Child = newGameButton;
+            Button_NewGameGrid.Children.Add(newGameButton);
         }
 
         private void DeInitNewGameButton()

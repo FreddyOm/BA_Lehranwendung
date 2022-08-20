@@ -373,11 +373,9 @@ namespace SeriousGameEngine.TemplateElemente
         {
             this.Name = catName.Replace(' ', '_');
             this.Text = catName;
-            this.Height = 40;
-            this.Width = 250;
             this.FontFamily = normalFont;
             this.FontSize = 12;
-            this.Margin = new Thickness(0, 0, 0, 0);
+            this.Margin = new Thickness(10);
 
             this.HorizontalAlignment = HorizontalAlignment.Center;
             this.VerticalAlignment = VerticalAlignment.Center;
