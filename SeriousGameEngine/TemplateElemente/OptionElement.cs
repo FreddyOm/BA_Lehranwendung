@@ -629,11 +629,17 @@ namespace SeriousGameEngine.TemplateElemente
             if (!string.IsNullOrEmpty(path))
             {
                 this.path = path;
+                FileInfo fileInfo = new FileInfo(path);
+                pathTextBlock.Text = fileInfo.Name;
             }
             this.format = format;
             this.Height = 184;
 
-            //image.Source = 
+            //image 
+            image.Source = new BitmapImage(new Uri(Environment.CurrentDirectory + "/Resource/dragdrop.png"));
+            image.Width = 50;
+            image.Height = 50;
+            image.Opacity = 0.75f;
 
             // inner border
             innerBorder.AllowDrop = true;
@@ -642,8 +648,6 @@ namespace SeriousGameEngine.TemplateElemente
             innerBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             // textblock
-            FileInfo fileInfo = new FileInfo(path);
-            pathTextBlock.Text = fileInfo.Name;
             pathTextBlock.FontSize = 14;
             pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
             pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
@@ -712,6 +716,8 @@ namespace SeriousGameEngine.TemplateElemente
             if (!string.IsNullOrEmpty(path))
             {
                 this.path = path;
+                FileInfo fileInfo = new FileInfo(path);
+                pathTextBlock.Text = fileInfo.Name;
             }
             this.format = format;
             this.Height = 184;
@@ -724,15 +730,17 @@ namespace SeriousGameEngine.TemplateElemente
             innerBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             // path text block
-            FileInfo fileInfo = new FileInfo(path);
-            pathTextBlock.Text = fileInfo.Name;
+            
             pathTextBlock.FontSize = 14;
             pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
             pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
             pathTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
 
             // image
-            //image.Source = 
+            image.Source = new BitmapImage(new Uri(Environment.CurrentDirectory + "/Resource/dragdrop.png"));
+            image.Width = 50;
+            image.Height = 50;
+            image.Opacity = 0.75f;
 
             // add elements
             innerBorder.Child = image;
