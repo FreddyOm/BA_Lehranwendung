@@ -23,6 +23,14 @@ namespace SeriousGameEngine
 
         NewGameButton newGameButton;
 
+        #region sideboard buttons
+
+        SideboardButton homeButton;
+        SideboardButton settingsButton;
+        SideboardButton userButton;
+
+        #endregion sideboard buttons
+
         #region template buttons
 
         TemplateButton actionButton;
@@ -69,6 +77,7 @@ namespace SeriousGameEngine
             InitGameTemplates();
             InitNavigation();
             InitNewGameButton();
+            InitSideboardButtons();
 
             // CMS
             content = new SGGEDataManager();
@@ -101,6 +110,7 @@ namespace SeriousGameEngine
             DeInitSubjects();
             DeInitNavigation();
             DeInitNewGameButton();
+            DeInitSideboardButtons();
             SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
             Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
             saveUtility.Dispose();
@@ -556,6 +566,32 @@ namespace SeriousGameEngine
         }
 
         #endregion new game
+
+        #region sideboard
+
+        private void InitSideboardButtons() 
+        {
+            homeButton = new SideboardButton("Startseite");
+            settingsButton = new SideboardButton("Einstellungen");
+            userButton = new SideboardButton("Benutzerkonto");
+
+            homeButton.click += Button_Homescreen_Click;
+            settingsButton.click += Button_Settings_Click;
+            userButton.click += Button_Profil_Click;
+
+            SideboardButtons.Children.Add(homeButton);
+            SideboardButtons.Children.Add(settingsButton);
+            SideboardButtons.Children.Add(userButton);
+        }
+
+        private void DeInitSideboardButtons()
+        {
+            homeButton.click -= Button_Homescreen_Click;
+            settingsButton.click -= Button_Settings_Click;
+            userButton.click -= Button_Profil_Click;
+        }
+
+        #endregion sideboard
 
         #region cms
 

@@ -444,4 +444,89 @@ namespace SeriousGameEngine.TemplateElemente
         }
     }
 
+    internal class SideboardButton : TextBlock, IDisposable
+    {
+        static SideboardButton lastSelected = null;
+
+        bool isSelected = false;
+
+        public delegate void Click(object sender, RoutedEventArgs args);
+        public event Click click;
+
+        public bool HasEventHandler { get; set; }
+        public FontFamily normalFont = new FontFamily("Sinkin Sans 200 X Light");
+        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public SideboardButton(string catName)
+        {
+            this.Name = catName;
+            this.Text = catName;
+            this.Height = 40;
+            this.Margin = new System.Windows.Thickness(20,0,0,0);
+
+            this.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            this.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+
+            this.FontFamily = normalFont;
+            this.FontSize = 16;
+
+            this.Background = new SolidColorBrush(Colors.Transparent);
+            this.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+
+            this.MouseEnter += new MouseEventHandler(MEnter);
+            this.MouseLeave += new MouseEventHandler(MExit);
+            this.PreviewMouseDown += new MouseButtonEventHandler(MDown);
+
+        }
+
+        /// <summary>
+        /// Mouse entering
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void MEnter(object sender, MouseEventArgs args)
+        {
+            this.FontFamily = highlightedFont;
+        }
+
+        /// <summary>
+        /// Mouse exiting
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void MExit(object sender, MouseEventArgs args)
+        {
+            if (!isSelected)
+                this.FontFamily = normalFont;
+        }
+
+        private void MDown(object sender, MouseButtonEventArgs args)
+        {
+            isSelected = true;
+            click?.Invoke(sender, args);
+            args.Handled = true;
+            if (lastSelected != this)
+            {
+                lastSelected?.Deselect();
+                lastSelected = this;
+                this.FontFamily = highlightedFont;
+            }
+        }
+
+        public void Deselect()
+        {
+            this.isSelected = false;
+            this.FontFamily = normalFont;
+        }
+
+        /// <summary>
+        /// Dispose object
+        /// </summary>
+        public void Dispose()
+        {
+            this.MouseEnter -= new MouseEventHandler(MEnter);
+            this.MouseLeave -= new MouseEventHandler(MExit);
+            this.MouseDown += new MouseButtonEventHandler(MDown);
+        }
+    }
+
 }
