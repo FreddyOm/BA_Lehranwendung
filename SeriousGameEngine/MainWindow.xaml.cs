@@ -58,8 +58,53 @@ namespace SeriousGameEngine
         NavigationButton templatesNavButton;
         NavigationButton modifyNavButton;
         NavigationButton exportNavButton;
-        
+
         #endregion navigation buttons
+
+        #region template elements
+
+        TemplateElement jumpNRunElement;
+        TemplateElement raceElement;
+        TemplateElement conveyorBeltElement;
+
+        TemplateElement laraCroftElement;
+        TemplateElement adventureGameElement;
+
+        TemplateElement tetrisElement;
+        TemplateElement portalsElement;
+
+        TemplateElement farmSimulatorElement;
+        TemplateElement reignCntryElement;
+
+        TemplateElement RPG_Element;
+
+        #endregion template elements
+
+        #region subject elements
+
+        SubjectElement mathElement;
+        SubjectElement physicsElement;
+        SubjectElement chemistryElement;
+        SubjectElement biologyElement;
+        SubjectElement informaticsElement;
+
+        SubjectElement germanElement;
+        SubjectElement englishElement;
+        SubjectElement frenchElement;
+        SubjectElement spanishElement;
+        SubjectElement latinElement;
+
+        SubjectElement historyElement;
+        SubjectElement politicsElement;
+        SubjectElement ethicsElement;
+        SubjectElement religionElement;
+
+        SubjectElement sportsElement;
+        SubjectElement artElement;
+        SubjectElement musicElement;
+        SubjectElement psychologyElement;
+
+        #endregion subject elements
 
         #region init
 
@@ -394,7 +439,6 @@ namespace SeriousGameEngine
             furtherButton = new SubjectButton("Weitere");
             favSubjectButton = new SubjectButton("Favoriten");
 
-
             scienceButton.click += Button_Science_Click;
             langButton.click += Button_Languages_Click;
             politicButton.click += Button_Politic_Click;
@@ -406,6 +450,51 @@ namespace SeriousGameEngine
             Grid_SubjectsMenu.Children.Add(politicButton);
             Grid_SubjectsMenu.Children.Add(furtherButton);
             Grid_SubjectsMenu.Children.Add(favSubjectButton);
+
+
+            mathElement = new SubjectElement("Mathematik");
+            physicsElement = new SubjectElement("Physik");
+            chemistryElement = new SubjectElement("Chemie");
+            biologyElement = new SubjectElement("Biologie");
+            informaticsElement = new SubjectElement("Informatik");
+
+            germanElement = new SubjectElement("Deutsch");
+            englishElement = new SubjectElement("Englisch");
+            frenchElement = new SubjectElement("Französisch");
+            spanishElement = new SubjectElement("Spanisch");
+            latinElement = new SubjectElement("Latein");
+
+            historyElement = new SubjectElement("Geschichte");
+            politicsElement = new SubjectElement("Politik");
+            ethicsElement = new SubjectElement("Ethik");
+            religionElement = new SubjectElement("Religion");
+
+            sportsElement = new SubjectElement("Sport");
+            artElement = new SubjectElement("Kunst");
+            musicElement = new SubjectElement("Musik");
+            psychologyElement = new SubjectElement("Psychologie");
+
+            Grid_SubjectsScience.Children.Add(mathElement);
+            Grid_SubjectsScience.Children.Add(physicsElement);
+            Grid_SubjectsScience.Children.Add(chemistryElement);
+            Grid_SubjectsScience.Children.Add(biologyElement);
+            Grid_SubjectsScience.Children.Add(informaticsElement);
+
+            Grid_SubjectsLanguages.Children.Add(germanElement);
+            Grid_SubjectsLanguages.Children.Add(englishElement);
+            Grid_SubjectsLanguages.Children.Add(frenchElement);
+            Grid_SubjectsLanguages.Children.Add(spanishElement);
+            Grid_SubjectsLanguages.Children.Add(latinElement);
+
+            Grid_SubjectsPolitics.Children.Add(historyElement);
+            Grid_SubjectsPolitics.Children.Add(politicsElement);
+            Grid_SubjectsPolitics.Children.Add(ethicsElement);
+            Grid_SubjectsPolitics.Children.Add(religionElement);
+
+            Grid_SubjectsFurther.Children.Add(sportsElement);
+            Grid_SubjectsFurther.Children.Add(artElement);
+            Grid_SubjectsFurther.Children.Add(musicElement);
+            Grid_SubjectsFurther.Children.Add(psychologyElement);
         }
 
         private void DeInitSubjects()
@@ -463,7 +552,7 @@ namespace SeriousGameEngine
             puzzleButton.click += Button_Puzzle_Click;
 
             simulationButton = new TemplateButton("Simulation");
-            simulationButton.click += Button_Action_Click;
+            simulationButton.click += Button_Simulation_Click;
 
             rpgButton = new TemplateButton("Rollenspiel");
             rpgButton.click += Button_Roleplay_Click;
@@ -477,6 +566,42 @@ namespace SeriousGameEngine
             Grid_Templatesmenu.Children.Add(simulationButton);
             Grid_Templatesmenu.Children.Add(rpgButton);
             Grid_Templatesmenu.Children.Add(favButton);
+
+            jumpNRunElement = new TemplateElement("Jump'n'Run", "Ein Jump'n'Run Spiel dient zum Training\nvon " +
+                "Reaktionsschnelligkeit und Konzen-\ntration. Spielende müssen z. B. einen\nHindernisparkour überqueren und dabei\nAufgaben lösen.");
+            
+            raceElement = new TemplateElement("Rennen", "Ein Rennspiel ist ein gutes Training für die\nmotorischen" +
+                " Fähigkeiten.\nSpielende können sich in einem Wett-\nkampf auf Zeit miteinander messen.");
+            
+            conveyorBeltElement = new TemplateElement("Fließbandspiel", "Das Fließbandspiel hilft Spielenden unter\n" +
+                "Zeitdruck instinktive Entscheidungen zu\ntreffen.\nSpielende müssen die auf dem Fließband\nankommenden Elemente richtig sortieren.");
+
+            laraCroftElement = new TemplateElement("Lara Croft", "Das Adventurespiel \"Lara Croft\" ermöglicht\nes Spielenden....");
+            adventureGameElement = new TemplateElement("Abenteuerspiel", "...");
+
+            tetrisElement = new TemplateElement("Tetris", "Mit Hilfe des Spiels kann das räumliche\nDenken von Spielenden unterstütz wer-\nden und ein besser Vorstellung von\nFormen und Volumen entstehen.");
+            portalsElement = new TemplateElement("Portale", "Mit Hilfe des Spiels kann das räumliche\nDenken von Spielenden unterstütz wer-\nden und ein besser Vorstellung von\nFormen und Volumen entstehen.");
+
+            farmSimulatorElement = new TemplateElement("Landwirtschaftssimulator", "Spielende müssen sich um eine fiktive\nFarm kümmern um Verantwortung zu\nübernehmen und zu lernen, mit Res-\nsourcen umzugehen.");
+            reignCntryElement = new TemplateElement("Regiere dein Land", "Spielende müssen ein fiktives Land re-\ngieren um Verantwortung zu übernehmen\nund zu lernen, mit Ressourcen umzugehen.");
+
+            RPG_Element = new TemplateElement("Rollenspiel", "...");
+
+            Grid_TemplateAction.Children.Add(jumpNRunElement);
+            Grid_TemplateAction.Children.Add(raceElement);
+            Grid_TemplateAction.Children.Add(conveyorBeltElement);
+
+            Grid_TemplateAdventure.Children.Add(laraCroftElement);
+            Grid_TemplateAdventure.Children.Add(adventureGameElement);
+
+            Grid_TemplatePuzzle.Children.Add(tetrisElement);
+            Grid_TemplatePuzzle.Children.Add(portalsElement);
+
+            Grid_TemplateSimulation.Children.Add(farmSimulatorElement);
+            Grid_TemplateSimulation.Children.Add(reignCntryElement);
+
+            Grid_TemplateRPG.Children.Add(RPG_Element);
+
         }
 
         private void DeInitTemplates()
@@ -484,7 +609,7 @@ namespace SeriousGameEngine
             actionButton.click -= Button_Action_Click;
             adventureButton.click -= Button_Adventure_Click;
             puzzleButton.click -= Button_Puzzle_Click;
-            simulationButton.click -= Button_Action_Click;
+            simulationButton.click -= Button_Simulation_Click;
             rpgButton.click -= Button_Roleplay_Click;
             favButton.click -= Button_TemplatesFavorits_Click;
 
@@ -820,8 +945,6 @@ namespace SeriousGameEngine
         #endregion options
 
         #endregion cms
-
-        
     }
 
     public enum SCREEN
