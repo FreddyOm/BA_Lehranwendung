@@ -731,7 +731,7 @@ namespace SeriousGameEngine.TemplateElemente
             descriptionText.FontFamily = new FontFamily("Sinkin Sans 400 Light");
             descriptionText.FontSize = 10;
             descriptionText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B7BABA"));
-            descriptionText.Margin = new Thickness(8);
+            descriptionText.Margin = new Thickness(5);
             #endregion description Text
 
             #region preview
