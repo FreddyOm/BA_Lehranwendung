@@ -72,14 +72,26 @@ namespace SeriousGameEngine.TemplateElemente
             {
                 lastSelected?.Deselect();
                 lastSelected = this;
-                this.FontFamily = highlightedFont;
             }
+            this.FontFamily = highlightedFont;
         }
 
         public void Deselect()
         {
             this.isSelected = false;
             this.FontFamily = normalFont;
+        }
+
+        public void Select()
+        {
+            isSelected = true;
+            click?.Invoke(this, null);
+            if (lastSelected != this)
+            {
+                lastSelected?.Deselect();
+                lastSelected = this;
+            }
+            this.FontFamily = highlightedFont;
         }
 
         /// <summary>
@@ -156,14 +168,26 @@ namespace SeriousGameEngine.TemplateElemente
             {
                 lastSelected?.Deselect();
                 lastSelected = this;
-                this.FontFamily = highlightedFont;
             }
+            this.FontFamily = highlightedFont;
         }
 
         public void Deselect()
         {
             this.isSelected = false;
             this.FontFamily = normalFont;
+        }
+
+        public void Select()
+        {
+            isSelected = true;
+            click?.Invoke(this, null);
+            if (lastSelected != this)
+            {
+                lastSelected?.Deselect();
+                lastSelected = this;
+            }
+            this.FontFamily = highlightedFont;
         }
 
         /// <summary>
@@ -240,14 +264,27 @@ namespace SeriousGameEngine.TemplateElemente
             {
                 lastSelected?.Deselect();
                 lastSelected = this;
-                this.FontFamily = highlightedFont;
+               
             }
+            this.FontFamily = highlightedFont;
         }
 
         public void Deselect()
         {
             this.isSelected = false;
             this.FontFamily = normalFont;
+        }
+
+        public void Select()
+        {
+            isSelected = true;
+            click?.Invoke(this, null);
+            if (lastSelected != this)
+            {
+                lastSelected?.Deselect();
+                lastSelected = this;
+            }
+            this.FontFamily = highlightedFont;
         }
 
         /// <summary>
@@ -324,8 +361,8 @@ namespace SeriousGameEngine.TemplateElemente
             {
                 lastSelected?.Deselect();
                 lastSelected = this;
-                this.FontFamily = highlightedFont;
             }
+            this.FontFamily = highlightedFont;
         }
 
         public void Deselect()
@@ -342,8 +379,8 @@ namespace SeriousGameEngine.TemplateElemente
             {
                 lastSelected?.Deselect();
                 lastSelected = this;
-                this.FontFamily = highlightedFont;
             }
+            this.FontFamily = highlightedFont;
         }
 
         /// <summary>
@@ -430,8 +467,8 @@ namespace SeriousGameEngine.TemplateElemente
             {
                 lastSelected?.Deselect();
                 lastSelected = this;
-                this.FontFamily = highlightedFont;
             }
+            this.FontFamily = highlightedFont;
         }
 
         /// <summary>
@@ -446,7 +483,7 @@ namespace SeriousGameEngine.TemplateElemente
 
     internal class SideboardButton : TextBlock, IDisposable
     {
-        static SideboardButton lastSelected = null;
+        public static SideboardButton lastSelected = null;
 
         bool isSelected = false;
 
@@ -516,6 +553,17 @@ namespace SeriousGameEngine.TemplateElemente
         {
             this.isSelected = false;
             this.FontFamily = normalFont;
+        }
+
+        public void Select()
+        {
+            isSelected = true;
+            if (lastSelected != this)
+            {
+                lastSelected?.Deselect();
+                lastSelected = this;
+                this.FontFamily = highlightedFont;
+            }
         }
 
         /// <summary>

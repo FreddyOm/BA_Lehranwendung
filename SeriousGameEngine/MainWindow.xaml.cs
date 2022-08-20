@@ -130,6 +130,7 @@ namespace SeriousGameEngine
 
             //Set Home menu
             SetScreen(SCREEN.HOME);
+            homeButton.Select();
             MoveSideBoard(false);
 
             SideboardSmall.MouseDown += new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
@@ -187,27 +188,30 @@ namespace SeriousGameEngine
         {
             SetScreen(SCREEN.SUBJECT);
             SetSubject(SUBJECT.SCIENCE);
-
+            SideboardButton.lastSelected?.Deselect();
         }
 
         private void Button_Templates_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(SCREEN.TEMPLATE);
+            SideboardButton.lastSelected?.Deselect();
         }
 
         private void Button_Modify_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(SCREEN.MODIFY);
+            SideboardButton.lastSelected?.Deselect();
         }
 
         private void Button_Export_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(SCREEN.EXPORT);
+            SideboardButton.lastSelected?.Deselect();
         }
 
         private void Button_Konto_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Button_Settings_Click(object sender, RoutedEventArgs e)
@@ -352,11 +356,13 @@ namespace SeriousGameEngine
                     screens[(int)SCREEN.SUBJECT].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
                     SetSubject(SUBJECT.SCIENCE);
+                    scienceButton.Select();
                     break;
                 case SCREEN.TEMPLATE:
                     screens[(int)SCREEN.TEMPLATE].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
                     SetGameTemplateCategory(TEMPLATE_CATEGORY.ACTION);
+                    actionButton.Select();
                     break;
                 case SCREEN.MODIFY:
                     screens[(int)SCREEN.MODIFY].Visibility = Visibility.Visible;
@@ -749,6 +755,13 @@ namespace SeriousGameEngine
                 button.HasEventHandler = true;
                 Category_Buttons.Children.Add(button);
             }
+
+            if(Category_Buttons.Children.Count >0)
+            {
+                CategoryButton firstButton = Category_Buttons.Children[0] as CategoryButton;
+                firstButton.Select();
+            }
+                
         }
 
         #endregion category
