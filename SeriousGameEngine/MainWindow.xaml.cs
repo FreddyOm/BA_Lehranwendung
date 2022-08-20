@@ -21,6 +21,38 @@ namespace SeriousGameEngine
         private SGGEDataManager content;
         private SaveUtility saveUtility;
 
+        NewGameButton newGameButton;
+
+        #region template buttons
+
+        TemplateButton actionButton;
+        TemplateButton adventureButton;
+        TemplateButton puzzleButton;
+        TemplateButton simulationButton;
+        TemplateButton rpgButton;
+        TemplateButton favButton;
+
+        #endregion template buttons
+
+        #region subject buttons
+
+        SubjectButton scienceButton;
+        SubjectButton langButton;
+        SubjectButton politicButton;
+        SubjectButton furtherButton;
+        SubjectButton favSubjectButton;
+
+        #endregion subject buttons
+
+        #region navigation buttons
+
+        NavigationButton subjectsNavButton;
+        NavigationButton templatesNavButton;
+        NavigationButton modifyNavButton;
+        NavigationButton exportNavButton;
+        
+        #endregion navigation buttons
+
         #region init
 
         /// <summary>
@@ -35,7 +67,9 @@ namespace SeriousGameEngine
             InitScreens();
             InitSubjects();
             InitGameTemplates();
-            
+            InitNavigation();
+            InitNewGameButton();
+
             // CMS
             content = new SGGEDataManager();
             saveUtility = new SaveUtility();
@@ -49,8 +83,8 @@ namespace SeriousGameEngine
 
             Search_Textbox.GotFocus += new RoutedEventHandler(SearchboxClicked);
             Search_Textbox.LostFocus += new RoutedEventHandler(SearchboxLost);
-
         }
+
 
         #endregion init
 
@@ -63,6 +97,10 @@ namespace SeriousGameEngine
         /// <param name="e"></param>
         public void Window_Closing(object sender, CancelEventArgs e)
         {
+            DeInitTemplates();
+            DeInitSubjects();
+            DeInitNavigation();
+            DeInitNewGameButton();
             SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
             Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
             saveUtility.Dispose();
@@ -87,12 +125,14 @@ namespace SeriousGameEngine
         private void Button_Homescreen_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(SCREEN.HOME);
+            NavigationButton.lastSelected?.Deselect();
         }
 
         private void Button_Subjetcs_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(SCREEN.SUBJECT);
             SetSubject(SUBJECT.SCIENCE);
+
         }
 
         private void Button_Templates_Click(object sender, RoutedEventArgs e)
@@ -124,7 +164,7 @@ namespace SeriousGameEngine
 
         #region subjects
 
-        private void Button_Sciene_Click(object sender, RoutedEventArgs e)
+        private void Button_Science_Click(object sender, RoutedEventArgs e)
         {
             SetSubject(SUBJECT.SCIENCE);
         }
@@ -155,6 +195,7 @@ namespace SeriousGameEngine
 
         private void Button_Action_Click(object sender, RoutedEventArgs e)
         {
+
             SetGameTemplateCategory(TEMPLATE_CATEGORY.ACTION);
         }
 
@@ -189,7 +230,7 @@ namespace SeriousGameEngine
 
         private void Button_NewGame_Click(object sender, RoutedEventArgs e)
         {
-            SetScreen(SCREEN.SUBJECT);
+            subjectsNavButton.Select();
         }
 
         private void Button_Profil_Click(object sender, RoutedEventArgs e)
@@ -336,6 +377,40 @@ namespace SeriousGameEngine
             subjects[1] = Border_SubjectsLanguages;
             subjects[2] = Border_SubjectsPolitics;
             subjects[3] = Border_SubjectsFurther;
+
+            scienceButton = new SubjectButton("Naturwissenschaften");
+            langButton = new SubjectButton("Sprachen");
+            politicButton = new SubjectButton("Gesellschaftliches");
+            furtherButton = new SubjectButton("Weitere");
+            favSubjectButton = new SubjectButton("Favoriten");
+
+
+            scienceButton.click += Button_Science_Click;
+            langButton.click += Button_Languages_Click;
+            politicButton.click += Button_Politic_Click;
+            furtherButton.click += Button_Further_Click;
+            favSubjectButton.click += Button_Favourits_Click;
+
+            Grid_SubjectsMenu.Children.Add(scienceButton);
+            Grid_SubjectsMenu.Children.Add(langButton);
+            Grid_SubjectsMenu.Children.Add(politicButton);
+            Grid_SubjectsMenu.Children.Add(furtherButton);
+            Grid_SubjectsMenu.Children.Add(favSubjectButton);
+        }
+
+        private void DeInitSubjects()
+        {
+            scienceButton.click -= Button_Science_Click;
+            langButton.click -= Button_Languages_Click;
+            politicButton.click -= Button_Politic_Click;
+            furtherButton.click -= Button_Further_Click;
+            favSubjectButton.click -= Button_Favourits_Click;
+
+            scienceButton.Dispose();
+            langButton.Dispose();
+            politicButton.Dispose();
+            furtherButton.Dispose();
+            favSubjectButton.Dispose();
         }
 
         /// <summary>
@@ -367,6 +442,48 @@ namespace SeriousGameEngine
             gameTemplates[3] = Border_TemplateSimulation;
             gameTemplates[4] = Border_TemplateRPG;
             gameTemplates[5] = Border_TemplateFavourites;
+
+            actionButton = new TemplateButton("Actionspiel");
+            actionButton.click += Button_Action_Click;
+
+            adventureButton = new TemplateButton("Abenteuerspiel");
+            adventureButton.click += Button_Adventure_Click;
+
+            puzzleButton = new TemplateButton("Puzzlespiel");
+            puzzleButton.click += Button_Puzzle_Click;
+
+            simulationButton = new TemplateButton("Simulation");
+            simulationButton.click += Button_Action_Click;
+
+            rpgButton = new TemplateButton("Rollenspiel");
+            rpgButton.click += Button_Roleplay_Click;
+
+            favButton = new TemplateButton("Favoriten");
+            favButton.click += Button_TemplatesFavorits_Click;
+
+            Grid_Templatesmenu.Children.Add(actionButton);
+            Grid_Templatesmenu.Children.Add(adventureButton);
+            Grid_Templatesmenu.Children.Add(puzzleButton);
+            Grid_Templatesmenu.Children.Add(simulationButton);
+            Grid_Templatesmenu.Children.Add(rpgButton);
+            Grid_Templatesmenu.Children.Add(favButton);
+        }
+
+        private void DeInitTemplates()
+        {
+            actionButton.click -= Button_Action_Click;
+            adventureButton.click -= Button_Adventure_Click;
+            puzzleButton.click -= Button_Puzzle_Click;
+            simulationButton.click -= Button_Action_Click;
+            rpgButton.click -= Button_Roleplay_Click;
+            favButton.click -= Button_TemplatesFavorits_Click;
+
+            actionButton.Dispose();
+            adventureButton.Dispose();
+            puzzleButton.Dispose();
+            simulationButton.Dispose();
+            rpgButton.Dispose();
+            favButton.Dispose();
         }
 
         /// <summary>
@@ -385,6 +502,60 @@ namespace SeriousGameEngine
 
 
         #endregion game templates
+
+        #region navigation
+
+        private void InitNavigation()
+        {
+            subjectsNavButton = new NavigationButton("Fächer", 60);
+            templatesNavButton = new NavigationButton("Vorlagen", 75);
+            modifyNavButton = new NavigationButton("Bearbeiten", 90);
+            exportNavButton = new NavigationButton("Exportieren", 100);
+
+            subjectsNavButton.click += Button_Subjetcs_Click;
+            templatesNavButton.click += Button_Templates_Click;
+            modifyNavButton.click += Button_Modify_Click;
+            exportNavButton.click += Button_Export_Click;
+
+            NavigationPanel.Children.Add(subjectsNavButton);
+            NavigationPanel.Children.Add(templatesNavButton);
+            NavigationPanel.Children.Add(modifyNavButton);
+            NavigationPanel.Children.Add(exportNavButton);
+
+        }
+
+        private void DeInitNavigation()
+        {
+            subjectsNavButton.click -= Button_Subjetcs_Click;
+            templatesNavButton.click -= Button_Templates_Click;
+            modifyNavButton.click -= Button_Modify_Click;
+            exportNavButton.click -= Button_Export_Click;
+
+            subjectsNavButton.Dispose();
+            templatesNavButton.Dispose();
+            modifyNavButton.Dispose();
+            exportNavButton.Dispose();
+        }
+
+        #endregion navigation
+
+        #region new game
+
+        private void InitNewGameButton()
+        {
+            newGameButton = new NewGameButton("Neues Serious Game erstellen");
+            newGameButton.click += Button_NewGame_Click;
+
+            Button_NewGameBorder.Child = newGameButton;
+        }
+
+        private void DeInitNewGameButton()
+        {
+            newGameButton.click -= Button_NewGame_Click;
+            newGameButton.Dispose();
+        }
+
+        #endregion new game
 
         #region cms
 
@@ -613,6 +784,8 @@ namespace SeriousGameEngine
         #endregion options
 
         #endregion cms
+
+        
     }
 
     public enum SCREEN

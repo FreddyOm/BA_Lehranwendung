@@ -29,7 +29,6 @@ namespace SeriousGameEngine.TemplateElemente
         int marginB = 0;
 
         private float width = 200.0f;
-        private float height = 38;
         public Border border = new Border();
         Tooltip tooltipElement;
         public OptionUIElement(string id, string optionName, string tooltip)

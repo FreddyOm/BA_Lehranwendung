@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Windows.Controls;
 using SeriousGameEngine.TemplateElemente;
-using Newtonsoft.Json;
 using System.Windows.Media;
 
 namespace SeriousGameEngine.CMS
@@ -94,7 +93,7 @@ namespace SeriousGameEngine.CMS
                 return true;
             }
             //otherwise show exception message
-            catch (Exception e)
+            catch (Exception)
             {
                 System.Windows.MessageBox.Show("Die \".sgge\" Datei konnte nicht gefunden werden oder nicht korrekt gelesen werden.\nStelle sicher, dass sie am erwarteten Zielpfad ist.");
                 return false;

@@ -65,14 +65,19 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="TestButtonStyle" TargetType="Button">
+        <Style x:Key="TestButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="Sinkin Sans 300 Light"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter x:Name="PART_Content"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"></ContentPresenter>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -126,7 +131,7 @@
 
             <DockPanel x:Name="Inspector" Margin="8,0,0,0">
 
-                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                <DockPanel x:Name="NavigationPanel" DockPanel.Dock="Top" LastChildFill="False">
 
                     <Border x:Name="Searchfield" DockPanel.Dock="Right" Background="Transparent" BorderBrush="#3D77B1" BorderThickness="2" CornerRadius="5" Margin="0,0,0,5" HorizontalAlignment="Right" Width="250">
 
@@ -143,11 +148,7 @@
                     <Grid DockPanel.Dock="Left" Background="#C9E2F2" Width="1" Margin="0"></Grid>
 
                     <Image Source="Resource/navigation.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Button x:Name="Button_Subjetcs" Style="{DynamicResource RoundedCornerStyle}" Height="40" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Fächer" Margin="20,0,0,0" Click="Button_Subjetcs_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Background="#00000000"/>
-                    <Button x:Name="Button_Templates" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Vorlagen" Margin="20,0,0,0" Click="Button_Templates_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Button x:Name="Button_Modify" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Bearbeiten" Margin="20,0,0,0" Click="Button_Modify_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Button x:Name="Button_Export" Style="{DynamicResource RoundedCornerStyle}" Height="40" Background="Transparent" BorderBrush="Transparent" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" FontSize="14" Content="Exportieren" Margin="20,0,0,0" Click="Button_Export_Click" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
+                    
                 </DockPanel>
 
                 <Grid DockPanel.Dock="Top" Background="#C9E2F2" Height="1" Margin="0"></Grid>
@@ -156,7 +157,10 @@
 
                     <Grid x:Name="Grid_Homescreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" d:IsHidden="True">
                         <DockPanel x:Name="Games_Screen" LastChildFill="True">
-                            <Button x:Name="Button_NewGame" Style="{DynamicResource RoundedCornerStyle}" DockPanel.Dock="Top" Content="Neues Serious Game erstellen" Background="Transparent" BorderBrush="#3D77B1" Foreground="#3D77B1" Height="40" HorizontalAlignment="Left" Width="250" FontSize="12" Click="Button_NewGame_Click" FontFamily="Sinkin Sans 300 Light" BorderThickness="2"/>
+
+                            <Border x:Name="Button_NewGameBorder" BorderThickness="2" DockPanel.Dock="Top" Background="Transparent" BorderBrush="#3D77B1" Width="250" Height="40" CornerRadius="8">
+
+                            </Border>
 
                             <DockPanel x:Name="File_Categories" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True">
                                 <TextBlock x:Name="Text_Name" Margin="0" Text="Name" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="210"/>
@@ -185,27 +189,12 @@
 
                     </Grid>
 
-                    <Grid x:Name="Grid_Subjectscreen" d:IsHidden="True">
+                    <Grid x:Name="Grid_Subjectscreen">
                         <DockPanel Margin="0">
                             <Border x:Name="Border_SubjectsMenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,8"  Width="200">
                                 <StackPanel x:Name="Grid_SubjectsMenu" Margin="0" Background="Transparent">
 
                                     <TextBlock x:Name="Text_HeadlineSubjects" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center">Fächer</TextBlock>
-
-                                    <Button x:Name="Button_Sciene" Margin="10" Height="30" Content="Naturwissenschaften" Background="Transparent" BorderBrush="Transparent" 
-                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Sciene_Click" FontSize="14"/>
-
-                                    <Button x:Name="Button_Languages" Margin="10" Height="30" Content="Sprachen" Background="Transparent" BorderBrush="Transparent" 
-                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Languages_Click"></Button>
-
-                                    <Button x:Name="Button_Politic" Margin="10" Height="30" Content="Gesellschaftliches" Background="Transparent" BorderBrush="Transparent" 
-                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Click="Button_Politic_Click"></Button>
-
-                                    <Button x:Name="Button_Further" Margin="10" Height="30" Content="Weitere" Background="Transparent" BorderBrush="Transparent" 
-                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Further_Click"></Button>
-
-                                    <Button x:Name="Button_Favourits" Margin="10" Height="30" Content="Favoriten" Background="Transparent" BorderBrush="Transparent" 
-                                        Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Favourits_Click"></Button>
 
                                 </StackPanel>
                             </Border>
@@ -319,24 +308,6 @@
 
                                     <TextBlock x:Name="Text_TemplateHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" 
                                                VerticalAlignment="Center">Spiele</TextBlock>
-
-                                    <Button x:Name="Button_Action" Margin="10" Height="30" Content="Actionspiel" Background="Transparent" BorderBrush="Transparent"
-                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Action_Click"></Button>
-
-                                    <Button x:Name="Button_Adventure" Margin="10" Height="30" Content="Abenteuerspiel" Background="Transparent" BorderBrush="Transparent"
-                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Adventure_Click"></Button>
-
-                                    <Button x:Name="Button_Puzzle" Margin="10" Height="30" Content="Puzzelspiel" Background="Transparent" BorderBrush="Transparent"
-                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" Click="Button_Puzzle_Click"></Button>
-
-                                    <Button x:Name="Button_Simulation" Margin="10" Height="30" Content="Simulation" Background="Transparent" BorderBrush="Transparent"
-                                               Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Simulation_Click"></Button>
-
-                                    <Button x:Name="Button_Roleplay" Margin="10" Height="30" Content="Rollenspiel" Background="Transparent" BorderBrush="Transparent"
-                                              Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_Roleplay_Click"></Button>
-
-                                    <Button x:Name="Button_TemplatesFavorits" Margin="10" Height="30" Content="Favoriten" Background="Transparent" BorderBrush="Transparent"
-                                              Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Click="Button_TemplatesFavorits_Click"></Button>
 
                                 </StackPanel>
                             </Border>
@@ -498,7 +469,7 @@
                         </DockPanel>
                     </Grid>
 
-                    <Grid x:Name="Grid_Modifyscreen" Margin="0,0,0,8">
+                    <Grid x:Name="Grid_Modifyscreen" Margin="0,0,0,8" d:IsHidden="True">
 
                         <DockPanel x:Name="Modify_DockPanel" LastChildFill="True">
 
