@@ -947,11 +947,11 @@ namespace SeriousGameEngine
                     var arrayValue = application.saveUtility.LoadOption(ode.Path) as OptionArrayValue;
                     if(arrayValue == null)
                     {
-                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, 0));
+                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements));
                     }
                     else
                     {
-                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, arrayValue.Children, arrayValue.Value));
+                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, arrayValue.Children));
                     }
                     break;
             }

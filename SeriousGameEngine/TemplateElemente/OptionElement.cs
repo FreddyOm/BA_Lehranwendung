@@ -460,7 +460,7 @@ namespace SeriousGameEngine.TemplateElemente
         /// <param name="optionName"></param>
         /// <param name="tooltip"></param>
         /// <param name="optionDataElements"></param>
-        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements, int amount, string[] values = null) : base(id, optionName, tooltip, OPTION.ARRAY)
+        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements, int amount = 0) : base(id, optionName, tooltip, OPTION.ARRAY)
         {
             this.optionDataElements = optionDataElements;
             this.values = values.ToList<string>();
@@ -801,7 +801,7 @@ namespace SeriousGameEngine.TemplateElemente
 
                 var currentFileName = SaveUtility.RESOURCE_PATH + "/" + pathTextBlock.Text;
 
-                if (!string.IsNullOrEmpty(pathTextBlock.Text) && File.Exists(currentFileName))
+                if (!string.IsNullOrEmpty(pathTextBlock.Text) && File.Exists(currentFileName) || File.Exists(SaveUtility.RESOURCE_PATH + "/" + data[0]))
                 {
                     File.Delete(currentFileName);
                 }
@@ -813,7 +813,14 @@ namespace SeriousGameEngine.TemplateElemente
                 // copy the image into a resources folder
                 ElementValueChanged(this, OPTION.GRAPHICS);
 
-                File.Copy(path, SaveUtility.RESOURCE_PATH + "/" + f.Name);
+                try
+                {
+                    File.Copy(path, SaveUtility.RESOURCE_PATH + "/" + f.Name);
+                }
+                catch(Exception except)
+                {
+                    System.Windows.MessageBox.Show(except.Message);
+                }
             }
         }
     }

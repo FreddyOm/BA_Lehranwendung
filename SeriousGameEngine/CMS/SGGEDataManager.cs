@@ -367,7 +367,7 @@ namespace SeriousGameEngine.CMS
                     break;
                 case OPTION.ARRAY:
                     ArrayOptionElement ao = (ArrayOptionElement)value;
-                    saveValues.Add(optionID, new OptionArrayValue(OPTION.ARRAY, optionID, ao.GetArrayCount(), ao.GetValue()));
+                    saveValues.Add(optionID, new OptionArrayValue(OPTION.ARRAY, optionID, ao.GetArrayCount()));
                     break;
                 case OPTION.ENUM:
                     EnumOptionElement eo = (EnumOptionElement)value;
