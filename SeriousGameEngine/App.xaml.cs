@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeriousGameEngine.CMS;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,22 @@ namespace SeriousGameEngine
     /// </summary>
     public partial class App : Application
     {
+        public SGGEDataManager content;
+        public SaveUtility saveUtility;
+
+        public App()
+        {
+            this.Exit += new ExitEventHandler(Dispose);
+
+            content = new SGGEDataManager();
+            saveUtility = new SaveUtility();
+        }
+
+        private void Dispose(object sender, ExitEventArgs args)
+        {
+            this.Exit -= new ExitEventHandler(Dispose);
+            saveUtility.Dispose();
+        }
+
     }
 }

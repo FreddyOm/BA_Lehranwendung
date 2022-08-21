@@ -299,6 +299,29 @@ namespace SeriousGameEngine.CMS
             OptionUIElement.onValueChanged += SaveOptions;
         }
 
+        public string[] GetFullOptionID(string id)
+        {
+            List<string> ids = new List<string>();
+
+            foreach(var kvp in saveValues)
+            {
+                if(kvp.Key.Contains(id))
+                {
+                    ids.Add(kvp.Key);
+                }
+            }
+
+            return ids.ToArray();
+        }
+
+        public void Remove(string id)
+        {
+            if (saveValues.ContainsKey(id))
+            {
+                saveValues.Remove(id);
+            }
+        }
+
         /// <summary>
         /// Saves changed values into the dictionary.
         /// </summary>
@@ -344,7 +367,11 @@ namespace SeriousGameEngine.CMS
                     break;
                 case OPTION.ARRAY:
                     ArrayOptionElement ao = (ArrayOptionElement)value;
-                    saveValues.Add(optionID, new OptionArrayValue(OPTION.ARRAY, optionID, null));//TODO: Hier auf jeden Fall noch fixen!!!
+                    saveValues.Add(optionID, new OptionArrayValue(OPTION.ARRAY, optionID, ao.GetArrayCount(), ao.GetValue()));
+                    break;
+                case OPTION.ENUM:
+                    EnumOptionElement eo = (EnumOptionElement)value;
+                    saveValues.Add(optionID, new OptionEnumValue(OPTION.ENUM, optionID, eo.GetValue()));
                     break;
             }
 
@@ -360,7 +387,27 @@ namespace SeriousGameEngine.CMS
         {
             if(saveValues.ContainsKey(optionID))
             {
-                return saveValues[optionID];
+                switch(saveValues[optionID].Option)
+                {
+                    case OPTION.YES_NO_OPTION:
+                        return saveValues[optionID] as OptionYesNoValue;
+                    case OPTION.REAL_NUM:
+                        return saveValues[optionID] as OptionRealValue;
+                    case OPTION.DECIMAL_NUM:
+                        return saveValues[optionID] as OptionDecimalValue;
+                    case OPTION.GRAPHICS:
+                        return saveValues[optionID] as OptionGraphicValue;
+                    case OPTION.SOUND_FILE:
+                        return saveValues[optionID] as OptionAudioValue;
+                    case OPTION.ENUM:
+                        return saveValues[optionID] as OptionEnumValue;
+                    case OPTION.ARRAY:
+                        return saveValues[optionID] as OptionArrayValue;
+                    case OPTION.TEXT:
+                        return saveValues[optionID] as OptionTextValue;
+                    case OPTION.COLOR:
+                        return saveValues[optionID] as OptionColorValue;
+                }
             }
 
             return null;
@@ -375,7 +422,8 @@ namespace SeriousGameEngine.CMS
 
             foreach (KeyValuePair<string, OptionValue> option in saveValues)
             {
-                string json =  JsonConvert.SerializeObject(option.Value);
+                string json;
+                json = JsonConvert.SerializeObject(option.Value);
                 sw.WriteLine(json);
             }
 

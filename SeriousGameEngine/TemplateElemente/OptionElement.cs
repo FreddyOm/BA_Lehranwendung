@@ -21,7 +21,8 @@ namespace SeriousGameEngine.TemplateElemente
         public delegate void OnValueChanged(string optionID, OptionUIElement value, OPTION option);
         public static event OnValueChanged onValueChanged;
 
-        string id;
+        public string id;
+        public OPTION Option { get; private set; }
 
         int marginL = 10;
         int marginT = 10;
@@ -31,9 +32,10 @@ namespace SeriousGameEngine.TemplateElemente
         private float width = 200.0f;
         public Border border = new Border();
         Tooltip tooltipElement;
-        public OptionUIElement(string id, string optionName, string tooltip)
+        public OptionUIElement(string id, string optionName, string tooltip, OPTION option)
         {
             this.id = id;
+            this.Option = option;
             // DockPanel
             Name = optionName;
             Margin = new Thickness(marginL, marginT, marginR, marginB);
@@ -112,7 +114,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         CheckBox checkBox = new CheckBox();
 
-        public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(id, optionName, tooltip)
+        public YesNoOptionElement(string id, string optionName, string tooltip, bool value = false) : base(id, optionName, tooltip, OPTION.YES_NO_OPTION)
         {
             HorizontalAlignment = HorizontalAlignment.Center;
             VerticalAlignment = VerticalAlignment.Center;
@@ -153,7 +155,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         TextBox textBox;
 
-        public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(id, optionName, tooltip)
+        public TextOptionElement(string id, string optionName, string tooltip, string value = "") : base(id, optionName, tooltip, OPTION.TEXT)
         {
             // textbox
             textBox = new TextBox();
@@ -196,7 +198,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         TextBox textBox = new TextBox();
 
-        public RealNumOptionElement(string id, string optionName, string tooltip, int value = 0) : base(id, optionName, tooltip)
+        public RealNumOptionElement(string id, string optionName, string tooltip, int value = 0) : base(id, optionName, tooltip, OPTION.REAL_NUM)
         {
             textBox.Name = "Textbox_" + id.Replace('/','_');
             textBox.Text = "" + value;
@@ -255,7 +257,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         TextBox textBox = new TextBox();
 
-        public DecimalNumOptionElement(string id, string optionName, string tooltip, float value = 0.0f) : base(id, optionName, tooltip)
+        public DecimalNumOptionElement(string id, string optionName, string tooltip, float value = 0.0f) : base(id, optionName, tooltip, OPTION.DECIMAL_NUM)
         {
             // textbox
             textBox.Name = "Textbox_" + id.Replace('/', '_');
@@ -316,7 +318,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         ColorPicker colorPicker;
 
-        public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(id, optionName, tooltip)
+        public ColorOptionElement(string id, string optionName, string tooltip, Color value) : base(id, optionName, tooltip, OPTION.COLOR)
         {
             border.VerticalAlignment = VerticalAlignment.Center;
 
@@ -368,7 +370,7 @@ namespace SeriousGameEngine.TemplateElemente
     {
         ComboBox dropDown = new ComboBox();
 
-        public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions, int value = 0) : base(id, optionName, tooltip)
+        public EnumOptionElement(string id, string optionName, string tooltip, string[] enumOptions, int value = 0) : base(id, optionName, tooltip, OPTION.ENUM)
         {
             // dropdown
             dropDown.Name = "DropDown_" + id.Replace('/', '_');
@@ -446,7 +448,9 @@ namespace SeriousGameEngine.TemplateElemente
         StackPanel contentElements = new StackPanel();
         OptionDataElement[] optionDataElements;
         Grid spacing;
-        CheckBox checkBox = new CheckBox();
+        CheckBox showHideCheckBox = new CheckBox();
+        List<string> values = new List<string>();
+
         private int maxElements = 99;
 
         /// <summary>
@@ -456,9 +460,10 @@ namespace SeriousGameEngine.TemplateElemente
         /// <param name="optionName"></param>
         /// <param name="tooltip"></param>
         /// <param name="optionDataElements"></param>
-        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements, int amount, List<OptionValue[]> values = null) : base(id, optionName, tooltip)
+        public ArrayOptionElement(string id, string optionName, string tooltip, OptionDataElement[] optionDataElements, int amount, string[] values = null) : base(id, optionName, tooltip, OPTION.ARRAY)
         {
             this.optionDataElements = optionDataElements;
+            this.values = values.ToList<string>();
             countTextBox.Name = id.Replace('/', '_');
             countTextBox.Width = 30;
             countTextBox.Height = 26;
@@ -475,11 +480,11 @@ namespace SeriousGameEngine.TemplateElemente
             border.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
             border.Margin = new Thickness(0,2,0,0);
 
-            checkBox.IsChecked = true;
-            checkBox.VerticalAlignment = VerticalAlignment.Center;
-            checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+            showHideCheckBox.IsChecked = true;
+            showHideCheckBox.VerticalAlignment = VerticalAlignment.Center;
+            showHideCheckBox.HorizontalAlignment = HorizontalAlignment.Center;
 
-            checkBox.Click += new RoutedEventHandler(ShowHideArrayOptions);
+            showHideCheckBox.Click += new RoutedEventHandler(ShowHideArrayOptions);
 
             showHideText.Text = "Anzeigen: ";
             showHideText.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
@@ -491,8 +496,33 @@ namespace SeriousGameEngine.TemplateElemente
 
             border.Child = contentElements;
             Children.Add(showHideText);
-            Children.Add(checkBox);
+            Children.Add(showHideCheckBox);
             Children.Add(countTextBox);
+        }
+
+        /// <summary>
+        /// Returns the length of the array.
+        /// </summary>
+        /// <returns></returns>
+        public int GetArrayCount()
+        {
+            int num;
+            try
+            {
+                num = int.Parse(countTextBox.Text);
+            }
+            catch
+            {
+                num = 0;
+            }
+
+            return num;
+        }
+
+        public string[] GetValue()
+        {
+
+            return values.ToArray();
         }
 
         /// <summary>
@@ -505,6 +535,53 @@ namespace SeriousGameEngine.TemplateElemente
             PopulateContent(null, null);
         }
 
+
+        private bool PrepareContent()
+        {
+            
+
+            // no valid inputs
+            if (string.IsNullOrEmpty(countTextBox.Text))
+            {
+                return false;
+            }
+            
+            // dispose elements to avoid memory leak and clear them afterwards
+            foreach (var element in contentElements.Children)
+            {
+                if (element is OptionUIElement)
+                {
+                    OptionUIElement e = element as OptionUIElement;
+                    e.Dispose();
+                }
+            }
+
+            contentElements.Children.Clear();
+
+            // return if checkbox is not checked
+            if (!(bool)showHideCheckBox.IsChecked) { return false; }
+
+            return true;
+        }
+
+        private int GetAmount()
+        {
+            int amount = 0;
+            amount = int.Parse(countTextBox.Text);
+
+            if (amount < 0)
+            {
+                amount = 0;
+            }
+            else if (amount > maxElements)
+            {
+                System.Windows.MessageBox.Show($"Es werden maximal {maxElements} Elemente unterstützt.\nGebe eine Anzahl zwischen 0 und {maxElements} an.");
+                amount = 0;
+            }
+
+            return amount;
+        }
+
         /// <summary>
         /// Adds the appropriate options to the stackpanel.
         /// </summary>
@@ -512,91 +589,126 @@ namespace SeriousGameEngine.TemplateElemente
         /// <param name="args"></param>
         private void PopulateContent(object sender, TextChangedEventArgs args)
         {
-            // dispose elements to avoid memory leak and clear them afterwards
-            foreach(var element in contentElements.Children)
+            if (!PrepareContent())
             {
-                if(element is OptionUIElement)
-                {
-                    OptionUIElement e = element as OptionUIElement;
-                    e.Dispose();
-                }                
-            }
-
-            contentElements.Children.Clear();
-
-            // return if checkbox is not checked
-            if (!(bool)checkBox.IsChecked) { return; }
-
-            // no valid inputs
-            if(string.IsNullOrEmpty(countTextBox.Text))
-            { 
                 return;
             }
 
-            int amount = 0;
-            amount = int.Parse(countTextBox.Text);
-            
-            if (amount < 0)
+            for(int i = 0; i < optionDataElements.Length; i++)
             {
-                amount = 0;
-            }
-            else if(amount > maxElements)
-            {
-                System.Windows.MessageBox.Show($"Es werden maximal {maxElements} Elemente unterstützt.\nGebe eine Anzahl zwischen 0 und {maxElements} an.");
-                amount = 0;
-            }
-
-            // show elements
-            for (int i = 0; i < amount; i++)
-            {
-                foreach(var element in optionDataElements)
+                string[] keys = (Application.Current as App).saveUtility.GetFullOptionID(optionDataElements[i].Path);
+                foreach(var key in keys)
                 {
-                    switch (element.Option)
+                    if(int.Parse(key.Split('_')[1]) >= GetAmount())
                     {
-                        case SGGE.OPTION.COLOR:
-                            contentElements.Children.Add(new ColorOptionElement(element.Path, element.Name, element.Tooltip, Colors.White));
-                            break;
-                        case SGGE.OPTION.YES_NO_OPTION:
-                            contentElements.Children.Add(new YesNoOptionElement(element.Path, element.Name, element.Tooltip));
-                            break;
-                        case SGGE.OPTION.GRAPHICS:
-                            contentElements.Children.Add(new GraphicOptionElement(element.Path, element.Name, element.Tooltip));
-                            break;
-                        case SGGE.OPTION.SOUND_FILE:
-                            contentElements.Children.Add(new AudioOptionElement(element.Path, element.Name, element.Tooltip));
-                            break;
-                        case SGGE.OPTION.REAL_NUM:
-                            contentElements.Children.Add(new RealNumOptionElement(element.Path, element.Name, element.Tooltip));
-                            break;
-                        case SGGE.OPTION.DECIMAL_NUM:
-                            contentElements.Children.Add(new DecimalNumOptionElement(element.Path, element.Name, element.Tooltip));
-                            break;
-                        case SGGE.OPTION.ENUM:
-                            EnumOptionDataElement eode = (EnumOptionDataElement)element;
-                            contentElements.Children.Add(new EnumOptionElement(element.Path, element.Name, element.Tooltip, eode.EnumValues));
-                            break;
-                        case SGGE.OPTION.TEXT:
-                            contentElements.Children.Add(new TextOptionElement(element.Path, element.Name, element.Tooltip));
-                            break;
-                        case SGGE.OPTION.ARRAY:
-                            // currently not supported
-                            break;
+                        (Application.Current as App).saveUtility.Remove(key);
                     }
                 }
+            }
+            
+
+            // show elements
+            for (int i = 0; i < GetAmount(); i++)
+            {
+                for(int j = 0; j < optionDataElements.Length; j++)
+                {
+                    AddOptionElement(i, j, optionDataElements[j].Option);
+                }
                 // add spacing 
-                    spacing = new Grid();
-                    spacing.Height = 1;
-                    spacing.HorizontalAlignment = HorizontalAlignment.Stretch;
-
-                    spacing.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
-                    spacing.Margin = new Thickness(5, 10, 5, 0);
-
-                    contentElements.Children.Add(spacing);
+                AddSpacingElement();
             }
         }
 
+        private void AddOptionElement(int countIndex, int elementIndex, OPTION option)
+        {
+            App application = (Application.Current as App);
+            string subPath = optionDataElements[elementIndex].Path + $"_{countIndex}_{elementIndex}";
+
+            switch (option)
+            {
+                case SGGE.OPTION.COLOR:
+                    OptionColorValue ocv = application.saveUtility.LoadOption(subPath) as OptionColorValue;
+                    if (ocv != null)
+                        contentElements.Children.Add(new ColorOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, (Color)ColorConverter.ConvertFromString(ocv.Value)));
+                    else
+                        contentElements.Children.Add(new ColorOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, Colors.White));
+                    break;
+                case SGGE.OPTION.YES_NO_OPTION:
+                    OptionYesNoValue ynv = application.saveUtility.LoadOption(subPath) as OptionYesNoValue;
+                    if(ynv != null)
+                        contentElements.Children.Add(new YesNoOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, ynv.Value));
+                    else
+                        contentElements.Children.Add(new YesNoOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip));
+                    break;
+                case SGGE.OPTION.GRAPHICS:
+                    OptionGraphicValue ogv = application.saveUtility.LoadOption(subPath) as OptionGraphicValue;
+                    if (ogv != null)
+                        contentElements.Children.Add(new GraphicOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, ogv.Value));
+                    else
+                        contentElements.Children.Add(new GraphicOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip));
+                    break;
+                case SGGE.OPTION.SOUND_FILE:
+                    OptionAudioValue oav = application.saveUtility.LoadOption(subPath) as OptionAudioValue;
+                    if (oav != null)
+                        contentElements.Children.Add(new AudioOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, oav.Value));
+                    else
+                        contentElements.Children.Add(new AudioOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip));
+                    break;
+                case SGGE.OPTION.REAL_NUM:
+                    OptionRealValue ornv = application.saveUtility.LoadOption(subPath) as OptionRealValue;
+                    if (ornv != null)
+                        contentElements.Children.Add(new RealNumOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, ornv.Value));
+                    else
+                        contentElements.Children.Add(new RealNumOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip));
+                    break;
+                case SGGE.OPTION.DECIMAL_NUM:
+                    OptionDecimalValue odnv = application.saveUtility.LoadOption(subPath) as OptionDecimalValue;
+                    if (odnv != null)
+                        contentElements.Children.Add(new DecimalNumOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, odnv.Value));
+                    else
+                        contentElements.Children.Add(new DecimalNumOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip));
+                    break;
+                case SGGE.OPTION.ENUM:
+                    EnumOptionDataElement eode = (EnumOptionDataElement)optionDataElements[elementIndex];
+                    OptionEnumValue oev = application.saveUtility.LoadOption(subPath) as OptionEnumValue;
+                    if (oev != null)
+                        contentElements.Children.Add(new EnumOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, eode.EnumValues, oev.Value));
+                    else
+                        contentElements.Children.Add(new EnumOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, eode.EnumValues));
+                    break;
+                case SGGE.OPTION.TEXT:
+                    OptionTextValue otv = application.saveUtility.LoadOption(subPath) as OptionTextValue;
+                    if (otv != null)
+                        contentElements.Children.Add(new TextOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip, otv.Value));
+                    else
+                        contentElements.Children.Add(new TextOptionElement(subPath, optionDataElements[elementIndex].Name, optionDataElements[elementIndex].Tooltip));
+                    break;
+                case SGGE.OPTION.ARRAY:
+                    // currently not supported
+                    break;
+            }
+        }
+
+        private void AddSpacingElement()
+        {
+            spacing = new Grid();
+            spacing.Height = 1;
+            spacing.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            spacing.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
+            spacing.Margin = new Thickness(5, 10, 5, 0);
+
+            contentElements.Children.Add(spacing);
+        }
+
+        /// <summary>
+        /// Gets called whenever the value was cahnged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void ValueChanged(object sender, TextChangedEventArgs args)
         {
+            if (string.IsNullOrEmpty(countTextBox.Text)) { return; }
             ElementValueChanged(this, OPTION.ARRAY);
         }
 
@@ -606,7 +718,7 @@ namespace SeriousGameEngine.TemplateElemente
         public override void Dispose()
         {
             countTextBox.TextChanged -= new TextChangedEventHandler(PopulateContent);
-            checkBox.Click -= new RoutedEventHandler(ShowHideArrayOptions);
+            showHideCheckBox.Click -= new RoutedEventHandler(ShowHideArrayOptions);
             countTextBox.TextChanged -= new TextChangedEventHandler(ValueChanged);
             base.Dispose();
         }
@@ -624,7 +736,7 @@ namespace SeriousGameEngine.TemplateElemente
         private Image image = new Image();
 
         private string[] format;
-        public DragDropGraphicElement(string[] format, string id, string optionName, string tooltip, string path) : base(id, optionName, tooltip)
+        public DragDropGraphicElement(string[] format, string id, string optionName, string tooltip, string path) : base(id, optionName, tooltip, OPTION.GRAPHICS)
         {
             if (!string.IsNullOrEmpty(path))
             {
@@ -673,9 +785,8 @@ namespace SeriousGameEngine.TemplateElemente
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var data = (string[])e.Data.GetData(DataFormats.FileDrop);
-                path = data[0];
 
-                if (!format.Any<string>(ending => path.ToLower().EndsWith(ending)))
+                if (!format.Any<string>(ending => data[0].ToLower().EndsWith(ending)))
                 {
                     string errorMsg = "Aktuell werden nur folgemde Dateitypen unterstützt:\n";
 
@@ -688,6 +799,14 @@ namespace SeriousGameEngine.TemplateElemente
                     return;
                 }
 
+                var currentFileName = SaveUtility.RESOURCE_PATH + "/" + pathTextBlock.Text;
+
+                if (!string.IsNullOrEmpty(pathTextBlock.Text) && File.Exists(currentFileName))
+                {
+                    File.Delete(currentFileName);
+                }
+
+                path = data[0];
                 FileInfo f = new FileInfo(path);
                 pathTextBlock.Text = f.Name;
 
@@ -711,7 +830,7 @@ namespace SeriousGameEngine.TemplateElemente
         private Image image = new Image();
 
         private string[] format;
-        public DragDropAudioElement(string[] format, string id, string optionName, string tooltip, string path) : base(id, optionName, tooltip)
+        public DragDropAudioElement(string[] format, string id, string optionName, string tooltip, string path) : base(id, optionName, tooltip, OPTION.SOUND_FILE)
         {
             if (!string.IsNullOrEmpty(path))
             {
@@ -762,9 +881,8 @@ namespace SeriousGameEngine.TemplateElemente
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var data = (string[])e.Data.GetData(DataFormats.FileDrop);
-                path = data[0];
 
-                if (!format.Any<string>(ending => path.ToLower().EndsWith(ending)))
+                if (!format.Any<string>(ending => data[0].ToLower().EndsWith(ending)))
                 {
                     string errorMsg = "Aktuell werden nur folgemde Dateitypen unterstützt:\n";
 
@@ -776,11 +894,20 @@ namespace SeriousGameEngine.TemplateElemente
                     System.Windows.MessageBox.Show(errorMsg);
                     return;
                 }
+
+                var currentFileName = SaveUtility.RESOURCE_PATH + "/" + pathTextBlock.Text;
+
+                if (!string.IsNullOrEmpty(pathTextBlock.Text) && File.Exists(currentFileName))
+                {
+                    File.Delete(currentFileName);
+                }
+
+                path = data[0];
                 FileInfo f = new FileInfo(path);
                 pathTextBlock.Text = f.Name;
 
-                // copy file and save in a resource folder
-                ElementValueChanged(this, OPTION.SOUND_FILE);
+                // copy the image into a resources folder
+                ElementValueChanged(this, OPTION.GRAPHICS);
 
                 File.Copy(path, SaveUtility.RESOURCE_PATH + "/" + f.Name);
             }

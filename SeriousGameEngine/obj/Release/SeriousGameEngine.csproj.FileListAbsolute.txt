@@ -65,7 +65,6 @@ A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Release\ro\Xceed.Wpf.Avalon
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Release\ru\Xceed.Wpf.AvalonDock.resources.dll
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Release\sv\Xceed.Wpf.AvalonDock.resources.dll
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\bin\Release\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine.csprojAssemblyReference.cache
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\MainWindow.g.cs
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\App.g.cs
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine_Content.g.cs
@@ -79,3 +78,4 @@ A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine.c
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine.csproj.CopyComplete
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine.exe
 A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine.pdb
+A:\HdM\Bachelor\Anwendung\SGGE\SeriousGameEngine\obj\Release\SeriousGameEngine.csprojAssemblyReference.cache

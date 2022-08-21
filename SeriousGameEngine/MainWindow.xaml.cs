@@ -18,8 +18,10 @@ namespace SeriousGameEngine
         private Border[] subjects = new Border[4];
         private Border[] gameTemplates = new Border[6];
 
-        private SGGEDataManager content;
-        private SaveUtility saveUtility;
+        //public SGGEDataManager content;
+        //public application.saveUtility application.saveUtility;
+
+        App application;
 
         NewGameButton newGameButton;
 
@@ -115,8 +117,9 @@ namespace SeriousGameEngine
         {
             // Win
             InitializeComponent();
-            
+
             // App
+            application = (Application.Current as App);
             InitScreens();
             InitSubjects();
             InitGameTemplates();
@@ -125,8 +128,8 @@ namespace SeriousGameEngine
             InitSideboardButtons();
 
             // CMS
-            content = new SGGEDataManager();
-            saveUtility = new SaveUtility();
+            //content = new SGGEDataManager();
+            //saveUtility = new saveUtility();
 
             //Set Home menu
             SetScreen(SCREEN.HOME);
@@ -159,7 +162,6 @@ namespace SeriousGameEngine
             DeInitSideboardButtons();
             SideboardSmall.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedSmallSideboard);
             Sideboard.MouseDown -= new System.Windows.Input.MouseButtonEventHandler(MousePressedBigSideboard);
-            saveUtility.Dispose();
         }
 
         #endregion deinit
@@ -748,7 +750,7 @@ namespace SeriousGameEngine
             Category_Buttons.Children.Clear();
 
             //Rebuild all categories
-            foreach(var e in content.GetAllCategories())
+            foreach(var e in application.content.GetAllCategories())
             {
                 CategoryButton button = new CategoryButton(e.Category);
                 button.click += OnCategoryButtonClicked;
@@ -788,7 +790,7 @@ namespace SeriousGameEngine
             Options_Panel.Children.Clear();
 
             //categories
-            OptionDataElement[] categoryElements = content.GetElementsOfCategory(category);
+            OptionDataElement[] categoryElements = application.content.GetElementsOfCategory(category);
 
             // filter headings and list every heading once
             List<string> header = new List<string>();
@@ -851,7 +853,7 @@ namespace SeriousGameEngine
             switch (ode.Option)
             {
                 case SGGE.OPTION.COLOR:
-                    var colorValue = saveUtility.LoadOption(ode.Path) as OptionColorValue;
+                    var colorValue = application.saveUtility.LoadOption(ode.Path) as OptionColorValue;
                     if(colorValue == null)
                     {
                         Options_Panel.Children.Add(new ColorOptionElement(ode.Path, ode.Name, ode.Tooltip, Colors.White));
@@ -863,7 +865,7 @@ namespace SeriousGameEngine
                     
                     break;
                 case SGGE.OPTION.YES_NO_OPTION:
-                    var yesNoValue = saveUtility.LoadOption(ode.Path) as OptionYesNoValue;
+                    var yesNoValue = application.saveUtility.LoadOption(ode.Path) as OptionYesNoValue;
                     if(yesNoValue == null)
                     {
                         Options_Panel.Children.Add(new YesNoOptionElement(ode.Path, ode.Name, ode.Tooltip));
@@ -874,7 +876,7 @@ namespace SeriousGameEngine
                     }
                     break;
                 case SGGE.OPTION.GRAPHICS:
-                    var graphicsValue = saveUtility.LoadOption(ode.Path) as OptionGraphicValue;
+                    var graphicsValue = application.saveUtility.LoadOption(ode.Path) as OptionGraphicValue;
                     if(graphicsValue == null)
                     {
                         Options_Panel.Children.Add(new GraphicOptionElement(ode.Path, ode.Name, ode.Tooltip));
@@ -885,7 +887,7 @@ namespace SeriousGameEngine
                     }
                     break;
                 case SGGE.OPTION.SOUND_FILE:
-                    var soundFileValue = saveUtility.LoadOption(ode.Path) as OptionAudioValue;
+                    var soundFileValue = application.saveUtility.LoadOption(ode.Path) as OptionAudioValue;
                     if(soundFileValue == null)
                     {
                         Options_Panel.Children.Add(new AudioOptionElement(ode.Path, ode.Name, ode.Tooltip));
@@ -896,7 +898,7 @@ namespace SeriousGameEngine
                     }
                     break;
                 case SGGE.OPTION.REAL_NUM:
-                    var realNumValue = saveUtility.LoadOption(ode.Path) as OptionRealValue;
+                    var realNumValue = application.saveUtility.LoadOption(ode.Path) as OptionRealValue;
                     if(realNumValue == null)
                     {
                         Options_Panel.Children.Add(new RealNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
@@ -907,7 +909,7 @@ namespace SeriousGameEngine
                     }
                     break;
                 case SGGE.OPTION.DECIMAL_NUM:
-                    var decimalNumValue = saveUtility.LoadOption(ode.Path) as OptionDecimalValue;
+                    var decimalNumValue = application.saveUtility.LoadOption(ode.Path) as OptionDecimalValue;
                     if(decimalNumValue == null)
                     {
                         Options_Panel.Children.Add(new DecimalNumOptionElement(ode.Path, ode.Name, ode.Tooltip));
@@ -919,18 +921,18 @@ namespace SeriousGameEngine
                     break;
                 case SGGE.OPTION.ENUM:
                     EnumOptionDataElement eode = (EnumOptionDataElement)ode;
-                    var enumValue = saveUtility.LoadOption(ode.Path) as OptionEnumValue;
+                    var enumValue = application.saveUtility.LoadOption(ode.Path) as OptionEnumValue;
                     if(enumValue == null)
                     {
                         Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues));
                     }
                     else
                     {
-                        Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues, 0));//TODO: Hier noch nachbessern
+                        Options_Panel.Children.Add(new EnumOptionElement(ode.Path, ode.Name, ode.Tooltip, eode.EnumValues, enumValue.Value));
                     }
                     break;
                 case SGGE.OPTION.TEXT:
-                    var textValue = saveUtility.LoadOption(ode.Path) as OptionTextValue;
+                    var textValue = application.saveUtility.LoadOption(ode.Path) as OptionTextValue;
                     if(textValue == null)
                     {
                         Options_Panel.Children.Add(new TextOptionElement(ode.Path, ode.Name, ode.Tooltip));
@@ -942,14 +944,14 @@ namespace SeriousGameEngine
                     break;
                 case SGGE.OPTION.ARRAY:
                     ArrayOptionDataElement aode = (ArrayOptionDataElement)ode;
-                    var arrayValue = saveUtility.LoadOption(ode.Path) as OptionArrayValue;
+                    var arrayValue = application.saveUtility.LoadOption(ode.Path) as OptionArrayValue;
                     if(arrayValue == null)
                     {
                         Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, 0));
                     }
                     else
                     {
-                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, 0)); //TODO: Hier noch nachbessern
+                        Options_Panel.Children.Add(new ArrayOptionElement(aode.Path, aode.Name, aode.Tooltip, aode.subOptionElements, arrayValue.Children, arrayValue.Value));
                     }
                     break;
             }
