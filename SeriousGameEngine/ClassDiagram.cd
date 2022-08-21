@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SeriousGameEngine.App" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YCBEEGmSUUIMYhgoCD0QBIUgwphkml65LGBQoURCQVg=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.CMS.SGGEDataManager" Collapsed="true">
+    <Position X="22.75" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAEAAAAgAAAAAAAAAAAAAAAAAAAgAAAACAAACAIAAA=</HashCode>
+      <FileName>CMS\SGGEDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.CMS.OptionDataElement">
+    <Position X="1.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAIAAAAgCAQAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>CMS\SGGEDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.CMS.ArrayOptionDataElement">
+    <Position X="0.5" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CMS\SGGEDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.CMS.EnumOptionDataElement">
+    <Position X="2.75" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CMS\SGGEDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.CMS.SaveUtility" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCAAAAAABAAABAABAAAAAAEgIIAAAAAwAAA=</HashCode>
+      <FileName>CMS\SGGEDataManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.Properties.Resources" Collapsed="true">
+    <Position X="22.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.Properties.Settings" Collapsed="true">
+    <Position X="22.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.CategoryButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQAAAACQAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.TemplateButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQAAAACQAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.SubjectButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQAAAACQAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.NavigationButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="5.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="SeriousGameEngine.TemplateElemente.NavigationButton.Click" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TemplateElemente\CategoryButton.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQAAAACQAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.NewGameButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQAAAACQAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.SideboardButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQAAAACQAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.SubjectElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAAAAQIAAACAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.TemplateElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32.25" Y="8.25" Width="1.75" />
+    <NestedTypes>
+      <Delegate Name="SeriousGameEngine.TemplateElemente.TemplateElement.Click" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TemplateElemente\CategoryButton.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAgCQAQAKEAAAAAAAQAAAAAEAAABAQAAAACAAABgAA=</HashCode>
+      <FileName>TemplateElemente\CategoryButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.Design" Collapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgEAAAAAAAAAAAAAEAAAAAAAAAYAAEAAAAAAEAAA=</HashCode>
+      <FileName>TemplateElemente\Design.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.OptionUIElement" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAEAVAAEGABAAAAAAAAAAAABABAAAgA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.HeaderElement" Collapsed="true">
+    <Position X="32.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACFAAEEAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.YesNoOptionElement">
+    <Position X="20" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.TextOptionElement">
+    <Position X="0.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.RealNumOptionElement">
+    <Position X="3" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.DecimalNumOptionElement">
+    <Position X="7.75" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.ColorOptionElement">
+    <Position X="13" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.EnumOptionElement">
+    <Position X="17.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACICAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.GraphicOptionElement">
+    <Position X="10.5" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.AudioOptionElement">
+    <Position X="15.25" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.ArrayOptionElement">
+    <Position X="5.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIKAAAAAAABECCAAGAEAAgiAAAAABEAAgEEA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.DragDropGraphicElement">
+    <Position X="10.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAQACCAAAEAAAAAAAAAAAAJAAgAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.DragDropAudioElement">
+    <Position X="15.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAQACCAAAEAAAAAAAAAAAAJAAgAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeriousGameEngine.TemplateElemente.Tooltip" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateElemente\OptionElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="SeriousGameEngine.SCREEN">
+    <Position X="22" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAACAAABEAAAAAAAAAgAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SeriousGameEngine.SUBJECT">
+    <Position X="23.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAACAAAAAABAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SeriousGameEngine.TEMPLATE_CATEGORY">
+    <Position X="25.5" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAIAAAAAAAAAABAAAAAAAABEAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
