@@ -8,6 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/audiodatei1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/profil.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/homescreen.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/logout.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/settings.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/menu.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/dragdrop.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/navigation.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/search.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/tooltip.png")]
 
 
