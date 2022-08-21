@@ -9,7 +9,7 @@ namespace SeriousGameEngine.TemplateElemente
 {
     class Design
     {
-        public static FontFamily AppFont = new FontFamily("Sinkin Sans 500 Medium");
+        public static FontFamily AppFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
 
         public static string C9E2F2 = "#C9E2F2";
         public static string _3D77B1 = "#3D77B1";

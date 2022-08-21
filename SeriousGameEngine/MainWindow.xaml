@@ -66,7 +66,7 @@
             </Setter>
         </Style>
         <Style x:Key="TestButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="FontFamily" Value="Sinkin Sans 300 Light"/>
+            <Setter Property="FontFamily" Value="{StaticResource SinkinSans300Light}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -92,16 +92,16 @@
                 <StackPanel x:Name="Sideboard" Margin="0" Width="200" Background="Transparent" VerticalAlignment="Stretch">
                     <Border x:Name="Menu_Panel_Border" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,0,0,0">
                         <Grid>
-                        <Image Source="Resource/Menu.png" HorizontalAlignment="Left" Height="40" Width="40" Margin="11,0,0,0" VerticalAlignment="Top"/>
+                        <Image Source="/Resource/Menu.png" HorizontalAlignment="Left" Height="40" Width="40" Margin="11,0,0,0" VerticalAlignment="Top"/>
 
                         <StackPanel x:Name="Menu_Panel" Height="687">
                             <Border x:Name="Button_Profilepricture" CornerRadius="4" Height="70" Width="70" Background="White" BorderBrush="Transparent" Margin="62,70,66,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="White" FontFamily="Sinkin Sans 600 SemiBold" Content="Max Mustermann" Margin="5,5,5,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label x:Name="Text_Username" Height="30" Background="#00000000" BorderBrush="#00000000" Foreground="White" FontFamily="{StaticResource SinkinSans600SemiBold}" Content="Max Mustermann" Margin="5,5,5,50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <StackPanel x:Name="SideboardButtons">
                                 
                             </StackPanel>
 
-                            <Image x:Name="Img_Menu_Logout" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="8,280,0,5"></Image>
+                            <Image x:Name="Img_Menu_Logout" Source="/Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="45" Width="45" Margin="8,280,0,5"></Image>
                         </StackPanel>
                         </Grid>
                     </Border>
@@ -111,21 +111,21 @@
                     
                     <Border x:Name="Menu_Panel_BorderSmall" Background="#3D77B1" BorderBrush="#3D77B1" BorderThickness="1,1,1,1" Margin="0,0,0,0" Height="687">
                         <Grid>
-                        <Image Source="Resource/Menu.png" HorizontalAlignment="Center" Height="40" Width="40" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <Image Source="/Resource/Menu.png" HorizontalAlignment="Center" Height="40" Width="40" Margin="0,0,0,0" VerticalAlignment="Top"/>
                         <StackPanel x:Name="Menu_PanelSmall" Margin="0" Background="Transparent">
                            
                             <Border x:Name="Button_ProfileprictureSmall" CornerRadius="4" Height="50" Width="50" Background="White" BorderBrush="Transparent" Margin="5,80,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Button x:Name="Button_HomescreenSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,80,0,0" HorizontalAlignment="Center" Click="Button_Homescreen_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
                                     Foreground="Transparent" BorderBrush="Transparent">
-                                <Image Source="Resource/Homescreen.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"/>
+                                <Image Source="/Resource/Homescreen.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"/>
                             </Button>
                             <Button x:Name="Button_SettingsSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,20,0,0" HorizontalAlignment="Center" Click="Button_Settings_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
                                     Foreground="Transparent" BorderBrush="Transparent">
-                                <Image Source="Resource/Settings.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
+                                <Image Source="/Resource/Settings.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
                             </Button>
                             <Button x:Name="Button_ProfilSmall" Style="{DynamicResource RoundedCornerStyle}" Height="40" Margin="0,20,0,0" HorizontalAlignment="Center" Click="Button_Profil_Click" VerticalAlignment="Center" Width="40" Background="Transparent"
                                     Foreground="Transparent" BorderBrush="Transparent">
-                                <Image Source="Resource/Profil.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
+                                <Image Source="/Resource/Profil.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36" Margin="0"></Image>
                             </Button>
                             <Image x:Name="Img_Menu_LogoutSmall" Source="Resource/Logout.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="45" Width="45" Margin="5,255,5,0" />
                         </StackPanel>
@@ -142,9 +142,9 @@
                     <Border x:Name="Searchfield" DockPanel.Dock="Right" Background="Transparent" BorderBrush="#3D77B1" BorderThickness="2" CornerRadius="5" Margin="0,0,0,5" HorizontalAlignment="Right" Width="250">
 
                         <DockPanel>
-                            <TextBox Name="Search_Textbox" Text="Suche..." Height="25" Width="210" Foreground="#3D77B1" Margin="5,0" DockPanel.Dock="Left" FontFamily="Sinkin Sans 300 Light" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" FontSize="10"/>
+                            <TextBox Name="Search_Textbox" Text="Suche..." Height="25" Width="210" Foreground="#3D77B1" Margin="5,0" DockPanel.Dock="Left" FontFamily="{StaticResource SinkinSans300Light}" UndoLimit="8" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" FontSize="10"/>
                             <Button DockPanel.Dock="Right" Width="25" Height="25" HorizontalAlignment="Right" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent" Click="SearchButtonClicked">
-                                <Image Source="Resource/search.png"/>
+                                <Image Source="/Resource/search.png"/>
                             </Button>
 
                         </DockPanel>
@@ -153,7 +153,7 @@
                     
                     <Grid DockPanel.Dock="Left" Background="#C9E2F2" Width="1" Margin="0"></Grid>
 
-                    <Image Source="Resource/navigation.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image Source="/Resource/navigation.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     
                 </DockPanel>
 
@@ -171,10 +171,10 @@
                             </Border>
 
                             <DockPanel x:Name="File_Categories" Margin="10,10,10,0" DockPanel.Dock="Top" LastChildFill="True">
-                                <TextBlock x:Name="Text_Name" Margin="0" Text="Name" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="210"/>
-                                <TextBlock x:Name="Text_FileSize" Margin="0" Text="Dateigröße" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="297"/>
-                                <TextBlock x:Name="Text_Changes" Margin="0" Text="Letzte Änderung" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23" Width="350"/>
-                                <TextBlock x:Name="Text_Status" Margin="0" Text="Status" Foreground="#B7BABA" FontFamily="Sinkin Sans 500 Medium" FontSize="16" FontWeight="Bold" Height="23"/>
+                                <TextBlock x:Name="Text_Name" Margin="0" Text="Name" Foreground="#B7BABA" FontFamily="{StaticResource SinkinSans500Medium}" FontSize="16" FontWeight="Bold" Height="23" Width="210"/>
+                                <TextBlock x:Name="Text_FileSize" Margin="0" Text="Dateigröße" Foreground="#B7BABA" FontFamily="{StaticResource SinkinSans500Medium}" FontSize="16" FontWeight="Bold" Height="23" Width="297"/>
+                                <TextBlock x:Name="Text_Changes" Margin="0" Text="Letzte Änderung" Foreground="#B7BABA" FontFamily="{StaticResource SinkinSans500Medium}" FontSize="16" FontWeight="Bold" Height="23" Width="350"/>
+                                <TextBlock x:Name="Text_Status" Margin="0" Text="Status" Foreground="#B7BABA" FontFamily="{StaticResource SinkinSans500Medium}" FontSize="16" FontWeight="Bold" Height="23"/>
                             </DockPanel>
 
                             <Border x:Name="Scroll_Menu" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,5,0,8" ScrollViewer.VerticalScrollBarVisibility="Hidden">
@@ -182,10 +182,10 @@
                                     <StackPanel Margin="0,5">
 
                                         <DockPanel x:Name="File" Margin="10,5,0,5" LastChildFill="False" Height="20">
-                                            <TextBlock x:Name="Text_BspName" Margin="0" Text="Mathe_SG_Laufband" Foreground="#3D77B1" FontFamily="Sinkin Sans 300 Light" Height="23" Width="210" FontSize="14"/>
-                                            <TextBlock x:Name="Text_BspFileSize" Margin="0" Text="5MB" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" Height="23" Width="297" FontSize="14"/>
-                                            <TextBlock x:Name="Text_BspChanges" Margin="0" Text="09.08.2022" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" Height="23" Width="350" FontSize="14"/>
-                                            <TextBlock x:Name="Text_BspStatus" Margin="0" Text="Bearbeitung" Foreground="#3D77B1" FontFamily="Sinkin Sans 200 X Light" Height="23" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspName" Margin="0" Text="Mathe_SG_Laufband" Foreground="#3D77B1" FontFamily="{StaticResource SinkinSans300Light}" Height="23" Width="210" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspFileSize" Margin="0" Text="5MB" Foreground="#3D77B1" FontFamily="{StaticResource SinkinSans200XLight}" Height="23" Width="297" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspChanges" Margin="0" Text="09.08.2022" Foreground="#3D77B1" FontFamily="{StaticResource SinkinSans200XLight}" Height="23" Width="350" FontSize="14"/>
+                                            <TextBlock x:Name="Text_BspStatus" Margin="0" Text="Bearbeitung" Foreground="#3D77B1" FontFamily="{StaticResource SinkinSans200XLight}" Height="23" FontSize="14"/>
                                         </DockPanel>
 
                                     </StackPanel>
@@ -200,7 +200,7 @@
                             <Border x:Name="Border_SubjectsMenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,8"  Width="200">
                                 <StackPanel x:Name="Grid_SubjectsMenu" Margin="0" Background="Transparent">
 
-                                    <TextBlock x:Name="Text_HeadlineSubjects" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center">Fächer</TextBlock>
+                                    <TextBlock x:Name="Text_HeadlineSubjects" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center">Fächer</TextBlock>
 
                                 </StackPanel>
                             </Border>
@@ -243,7 +243,7 @@
                             <Border x:Name="Border_Templatesmenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0"  Width="200">
                                 <StackPanel x:Name="Grid_Templatesmenu" Margin="0" Background="Transparent">
 
-                                    <TextBlock x:Name="Text_TemplateHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" 
+                                    <TextBlock x:Name="Text_TemplateHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0,10,0,30" HorizontalAlignment="Center" 
                                                VerticalAlignment="Center">Spiele</TextBlock>
 
                                 </StackPanel>
@@ -306,7 +306,7 @@
                                 <ScrollViewer x:Name="Categories_ScrollView" VerticalScrollBarVisibility="Hidden">
                                     <StackPanel x:Name="Grid_Categories_Menu" Margin="0" Background="Transparent" VerticalAlignment="Stretch">
 
-                                        <TextBlock x:Name="Text_HeadlineCategory" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Kategorien"/>
+                                        <TextBlock x:Name="Text_HeadlineCategory" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Kategorien"/>
 
                                         <StackPanel x:Name="Category_Buttons" Margin="5,0,5,0"/>
 
@@ -317,7 +317,7 @@
 
                             <Border x:Name="Border_Optionssmenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="5,0,0,0" Width="647">
                                 <DockPanel x:Name="Grid_Optionssmenu" Margin="0" Background="Transparent">
-                                    <TextBlock x:Name="Text_HeadlineOptions" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Optionen"/>
+                                    <TextBlock x:Name="Text_HeadlineOptions" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0,10,0,30" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Optionen"/>
 
                                     <Grid x:Name="Categories" VerticalAlignment="Stretch">
                                         <Grid x:Name="Grid_OptionLevel">
@@ -340,12 +340,12 @@
                             <DockPanel Margin="5,0,0,0" VerticalAlignment="Stretch">
                                 <Border x:Name="Border_ModifyPreviewElement" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,0,0,2.5" DockPanel.Dock="Top" Height="250" VerticalAlignment="Stretch">
                                     <Grid>
-                                        <TextBlock x:Name="Text_Preview" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Element Vorschau"/>
+                                        <TextBlock x:Name="Text_Preview" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Element Vorschau"/>
                                     </Grid>
                                 </Border>
                                 <Border x:Name="Border_ModifyPreviewGame" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0,2.5,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Grid>
-                                        <TextBlock x:Name="Text_PreviewGame" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Spiel Vorschau"/>
+                                        <TextBlock x:Name="Text_PreviewGame" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0,10,0,30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Spiel Vorschau"/>
                                     </Grid>
                                 </Border>
                             </DockPanel>
@@ -358,7 +358,7 @@
                         <DockPanel >
                             <Border x:Name="Border_Exportsmenu" Background="Transparent" BorderBrush="#C9E2F2" BorderThickness="2" CornerRadius="8,8,8,8" Margin="0" Width="200">
                                 <StackPanel Margin="20">
-                                    <TextBlock x:Name="Text_ExportHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="Sinkin Sans 500 Medium" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Export"/>
+                                    <TextBlock x:Name="Text_ExportHeadline" Foreground="#B7BABA" FontSize="16" FontFamily="{StaticResource SinkinSans500Medium}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Export"/>
                                 </StackPanel>
                             </Border>
 

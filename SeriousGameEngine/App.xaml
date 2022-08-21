@@ -4,6 +4,23 @@
              xmlns:local="clr-namespace:SeriousGameEngine"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="SinkinSans100Thin">pack://application:,,,/Fonts/#Sinkin Sans 100 Thin</FontFamily>
+        <FontFamily x:Key="SinkinSans100ThinItalic">pack://application:,,,/Fonts/#Sinkin Sans 100 Thin Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans200XLight">pack://application:,,,/Fonts/#Sinkin Sans 200 X Light</FontFamily>
+        <FontFamily x:Key="SinkinSans200XLightItalic">pack://application:,,,/Fonts/#Sinkin Sans 200 X Light Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans300Light">pack://application:,,,/Fonts/#Sinkin Sans 300 Light</FontFamily>
+        <FontFamily x:Key="SinkinSans300LightItalic">pack://application:,,,/Fonts/#Sinkin Sans 300 Light Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans400Regular">pack://application:,,,/Fonts/#Sinkin Sans 400 Regular</FontFamily>
+        <FontFamily x:Key="SinkinSans400Italic">pack://application:,,,/Fonts/#Sinkin Sans 400 Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans500Medium">pack://application:,,,/Fonts/#Sinkin Sans 500 Medium</FontFamily>
+        <FontFamily x:Key="SinkinSans500MediumItalic">pack://application:,,,/Fonts/#Sinkin Sans 500 Medium Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans600SemiBold">pack://application:,,,/Fonts/#Sinkin Sans 600 Semi Bold</FontFamily>
+        <FontFamily x:Key="SinkinSans600SemiBoldItalic">pack://application:,,,/Fonts/#Sinkin Sans 600 Semi Bold Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans700Bold">pack://application:,,,/Fonts/#Sinkin Sans 700 Bold</FontFamily>
+        <FontFamily x:Key="SinkinSans700BoldItalic">pack://application:,,,/Fonts/#Sinkin Sans 700 Bold Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans800Black">pack://application:,,,/Fonts/#Sinkin Sans 800 Black</FontFamily>
+        <FontFamily x:Key="SinkinSans800BlackItalic">pack://application:,,,/Fonts/#Sinkin Sans 800 Black Italic</FontFamily>
+        <FontFamily x:Key="SinkinSans900Black">pack://application:,,,/Fonts/#Sinkin Sans 900 Black</FontFamily>
+        <FontFamily x:Key="SinkinSans900BlackItalic">pack://application:,,,/Fonts/#Sinkin Sans 900 Black Italic</FontFamily>
     </Application.Resources>
 </Application>

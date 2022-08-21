@@ -253,11 +253,6 @@
     <Resource Include="Resource\navigation.png" />
     <Resource Include="Resource\search.png" />
     <Resource Include="Resource\Tooltip.png" />
-    <Resource Include="Resource\AudioDatei.png" />
-    <Content Include="Resource\AudioDatei1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Resource\AudioDatei2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" />

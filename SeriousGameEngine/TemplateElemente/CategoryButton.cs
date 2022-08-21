@@ -19,8 +19,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 300 Light");
-        public FontFamily highlightedFont =new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
+        public FontFamily highlightedFont =new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
         public CategoryButton(string catName)
         {
             this.Name = catName;
@@ -115,8 +115,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 300 Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
         public TemplateButton(string catName)
         {
             this.Name = catName;
@@ -211,8 +211,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 300 Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
         public SubjectButton(string catName)
         {
             this.Name = catName;
@@ -308,8 +308,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 200 X Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
         public NavigationButton(string catName, int width)
         {
             this.Name = catName;
@@ -404,8 +404,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 300 Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
         public NewGameButton(string catName)
         {
             this.Name = catName.Replace(' ', '_');
@@ -491,8 +491,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 200 X Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
         public SideboardButton(string catName)
         {
             this.Name = catName;
@@ -587,8 +587,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 300 Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
 
         private TextBlock text = new TextBlock();
 
@@ -689,8 +689,8 @@ namespace SeriousGameEngine.TemplateElemente
         public event Click click;
 
         public bool HasEventHandler { get; set; }
-        public FontFamily normalFont = new FontFamily("Sinkin Sans 300 Light");
-        public FontFamily highlightedFont = new FontFamily("Sinkin Sans 500 Medium");
+        public FontFamily normalFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
+        public FontFamily highlightedFont = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 500 Medium");
 
         private TextBlock headerText = new TextBlock();
         private TextBlock descriptionText = new TextBlock();
@@ -728,7 +728,7 @@ namespace SeriousGameEngine.TemplateElemente
             #region description Text
             
             descriptionText.Text = description_text;
-            descriptionText.FontFamily = new FontFamily("Sinkin Sans 400 Light");
+            descriptionText.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 400 Light");
             descriptionText.FontSize = 10;
             descriptionText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B7BABA"));
             descriptionText.Margin = new Thickness(5);

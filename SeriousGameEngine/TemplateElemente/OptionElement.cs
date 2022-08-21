@@ -24,7 +24,7 @@ namespace SeriousGameEngine.TemplateElemente
         public string id;
         public OPTION Option { get; private set; }
 
-        int marginL = 10;
+        int marginL = 20;
         int marginT = 10;
         int marginR = 10;
         int marginB = 0;
@@ -51,6 +51,7 @@ namespace SeriousGameEngine.TemplateElemente
             textName.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
             textName.HorizontalAlignment = HorizontalAlignment.Left;
             textName.VerticalAlignment = VerticalAlignment.Top;
+            textName.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
 
             SetDock(textName, Dock.Left);
             Children.Add(textName);
@@ -87,7 +88,7 @@ namespace SeriousGameEngine.TemplateElemente
     /// </summary>
     public class HeaderElement : TextBlock
     {
-        int marginL = 5;
+        int marginL = 15;
         int marginT = 10;
         int marginR = 0;
         int marginB = 5;
@@ -102,7 +103,7 @@ namespace SeriousGameEngine.TemplateElemente
 
             FontSize = fontSize;
             FontWeight = fontWeight;
-            FontFamily = new FontFamily("Sinkin Sans 300 Light");
+            FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 300 Light");
             Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
         }
     }
@@ -126,7 +127,7 @@ namespace SeriousGameEngine.TemplateElemente
             checkBox.Background = new SolidColorBrush(Colors.Transparent);
             checkBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
             checkBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design.C9E2F2));
-            checkBox.Margin = new Thickness(350,5,15,5);
+            checkBox.Margin = new Thickness(345,5,15,5);
             border.Child = checkBox;
 
             checkBox.Click += new RoutedEventHandler(ValueChanged);
@@ -164,7 +165,7 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.Height = 30;
             textBox.Background = new SolidColorBrush(Colors.Transparent);
             textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
-            textBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            textBox.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
             textBox.UndoLimit = 8;
             textBox.BorderThickness = new Thickness(0);
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
@@ -207,7 +208,7 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.Background = new SolidColorBrush(Colors.Transparent);
             textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3D77B1"));
             
-            textBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            textBox.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
 
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             
@@ -267,7 +268,7 @@ namespace SeriousGameEngine.TemplateElemente
             textBox.Background = new SolidColorBrush(Colors.Transparent);
             textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3D77B1"));
 
-            textBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            textBox.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
 
             textBox.VerticalContentAlignment = VerticalAlignment.Center;
             
@@ -383,7 +384,7 @@ namespace SeriousGameEngine.TemplateElemente
             dropDown.VerticalContentAlignment = VerticalAlignment.Center;
             dropDown.Height = 30;
             dropDown.Margin = new Thickness(2);
-            dropDown.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            dropDown.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
             dropDown.SelectedIndex = value;
 
             dropDown.SelectionChanged += new SelectionChangedEventHandler(ValueChanged);
@@ -471,7 +472,7 @@ namespace SeriousGameEngine.TemplateElemente
             countTextBox.TextChanged += new TextChangedEventHandler(ValueChanged);
             countTextBox.VerticalContentAlignment = VerticalAlignment.Center;
             countTextBox.HorizontalAlignment = HorizontalAlignment.Right;
-            countTextBox.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            countTextBox.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
             countTextBox.Text = "" + amount;
 
             contentElements.Name = id.Replace('/', '_') + "_Content";
@@ -487,7 +488,7 @@ namespace SeriousGameEngine.TemplateElemente
             showHideCheckBox.Click += new RoutedEventHandler(ShowHideArrayOptions);
 
             showHideText.Text = "Anzeigen: ";
-            showHideText.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            showHideText.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
             showHideText.VerticalAlignment = VerticalAlignment.Center;
             showHideText.HorizontalAlignment= HorizontalAlignment.Left;
             showHideText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
@@ -761,7 +762,7 @@ namespace SeriousGameEngine.TemplateElemente
 
             // textblock
             pathTextBlock.FontSize = 14;
-            pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            pathTextBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
             pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
             pathTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
 
@@ -858,7 +859,7 @@ namespace SeriousGameEngine.TemplateElemente
             // path text block
             
             pathTextBlock.FontSize = 14;
-            pathTextBlock.FontFamily = new FontFamily("Sinkin Sans 200 X Light");
+            pathTextBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Sinkin Sans 200 X Light");
             pathTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Design._3D77B1));
             pathTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
 

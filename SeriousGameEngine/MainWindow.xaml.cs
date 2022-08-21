@@ -379,6 +379,7 @@ namespace SeriousGameEngine
                     //HOME
                     screens[(int)SCREEN.HOME].Visibility = Visibility.Visible;
                     screens[(int)SCREEN.MENUSETTINGS].Visibility = Visibility.Visible;
+                    homeButton.Select();
                     break;
             }
         }
